@@ -17,7 +17,7 @@ from core.views import UserRegistrationView, UserViewSet, PaisViewSet
 router = DefaultRouter()
 
 router.register(r'usuarios', UserViewSet, basename='usuarios')
-router.register(r'pais', PaisViewSet, basename='pais')
+router.register(r'paises', PaisViewSet, basename='paises')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
