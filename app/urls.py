@@ -12,7 +12,10 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
-from core.views import UserRegistrationView, UserViewSet, PaisViewSet
+from core.views import UploadFotoPerfilView, UserRegistrationView, UserViewSet, PaisViewSet
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = DefaultRouter()
 
@@ -41,4 +44,6 @@ urlpatterns = [
     path('api/registro/', UserRegistrationView.as_view(), name='user_registration'),
     # API
     path('api/', include(router.urls)),
-]
+    
+    path('api/perfil/foto/', UploadFotoPerfilView.as_view(), name='upload_foto'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
