@@ -52,7 +52,18 @@ class UserAdmin(BaseUserAdmin):
     )
 
 
-from core.models import Pais
-
+from core.models import (
+    Pais,
+    Estado,
+    Agencia,
+    Avaliacao,
+    Plano,
+    Programa,
+)
 admin.site.register(models.User, UserAdmin)
 admin.site.register(Pais)
+admin.site.register(Estado)
+admin.site.register(Agencia)
+admin.site.register(Avaliacao)
+admin.site.register(Plano)
+admin.site.register(Programa)
