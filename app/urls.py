@@ -26,13 +26,12 @@ from core.views import (
 router = DefaultRouter()
 
 router.register(r'usuarios', UserViewSet, basename='usuarios')
-router.register(r'pais', PaisViewSet, basename='pais')
+router.register(r'paises', PaisViewSet, basename='paises')
 router.register(r'agencia', AgenciaViewSet, basename='agencia')
 router.register(r'avaliacao', AvaliacaoViewSet, basename='avaliacao')
 router.register(r'estado', EstadoViewSet, basename='estado')
 router.register(r'plano', PlanoViewSet, basename='plano')
 router.register(r'programa', ProgramaViewSet, basename='programa')
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
