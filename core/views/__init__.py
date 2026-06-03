@@ -1,4 +1,4 @@
-from .user import UserRegistrationView, UserViewSet
+from .user import UserRegistrationView, UserViewSet, UploadFotoPerfilView
 from .pais import PaisViewSet
 from .agencia import AgenciaViewSet   
 from .avaliacao import AvaliacaoViewSet
