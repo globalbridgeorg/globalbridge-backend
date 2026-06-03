@@ -12,7 +12,17 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
-from core.views import UploadFotoPerfilView, UserRegistrationView, UserViewSet, PaisViewSet
+from core.views import (
+    UploadFotoPerfilView,
+    UserRegistrationView, 
+    UserViewSet, 
+    PaisViewSet,     
+    AgenciaViewSet,  
+    AvaliacaoViewSet,
+    EstadoViewSet,   
+    PlanoViewSet,    
+    ProgramaViewSet  
+)
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -21,6 +31,11 @@ router = DefaultRouter()
 
 router.register(r'usuarios', UserViewSet, basename='usuarios')
 router.register(r'paises', PaisViewSet, basename='paises')
+router.register(r'agencia', AgenciaViewSet, basename='agencia')
+router.register(r'avaliacao', AvaliacaoViewSet, basename='avaliacao')
+router.register(r'estado', EstadoViewSet, basename='estado')
+router.register(r'plano', PlanoViewSet, basename='plano')
+router.register(r'programa', ProgramaViewSet, basename='programa')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
