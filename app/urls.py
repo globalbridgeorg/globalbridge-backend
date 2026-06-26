@@ -21,7 +21,8 @@ from core.views import (
     AvaliacaoViewSet,
     EstadoViewSet,   
     PlanoViewSet,    
-    ProgramaViewSet  
+    ProgramaViewSet,
+    InstituicaoViewSet
 )
 
 from django.conf import settings
@@ -36,6 +37,7 @@ router.register(r'avaliacao', AvaliacaoViewSet, basename='avaliacao')
 router.register(r'estado', EstadoViewSet, basename='estado')
 router.register(r'plano', PlanoViewSet, basename='plano')
 router.register(r'programa', ProgramaViewSet, basename='programa')
+router.register(r'instituicao', InstituicaoViewSet, basename='instituicao')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

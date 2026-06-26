@@ -60,6 +60,7 @@ from core.models import (
     Avaliacao,
     Plano,
     Programa,
+    Instituicao
 )
 admin.site.register(models.User, UserAdmin)
 admin.site.register(Pais)
@@ -68,3 +69,4 @@ admin.site.register(Agencia)
 admin.site.register(Avaliacao)
 admin.site.register(Plano)
 admin.site.register(Programa)
+admin.site.register(Instituicao)
