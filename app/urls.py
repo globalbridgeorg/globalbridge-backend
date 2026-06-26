@@ -53,6 +53,13 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     # Registro de usuários
     path('api/registro/', UserRegistrationView.as_view(), name='user_registration'),
+    # Local dev root aliases (frontend may use base URL without /api)
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair_root'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh_root'),
+    path('token/verify/', TokenVerifyView.as_view(), name='token_verify_root'),
+    path('registro/', UserRegistrationView.as_view(), name='user_registration_root'),
+    path('perfil/foto/', UserViewSet.as_view({'patch': 'foto'}), name='perfil_foto'),
     # API
     path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]
