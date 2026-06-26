@@ -1,5 +1,7 @@
 from django.db import models
 
+from .user import User
+
 class Agencia(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.TextField()
@@ -9,6 +11,8 @@ class Agencia(models.Model):
     endereco = models.TextField()
     data_cadastro = models.DateTimeField()
     ativo = models.BooleanField()
+    id_user = models.ForeignKey(User, on_delete=CASCADE)
+
 
     def __str__(self):
         return f"{self.id} - {self.nome}"

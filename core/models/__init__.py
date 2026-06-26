@@ -5,3 +5,4 @@ from .avaliacao import Avaliacao
 from .estado import Estado
 from .plano import Plano
 from .programa import Programa
+from .instituicao import Instituicao 

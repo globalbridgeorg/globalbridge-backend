@@ -5,3 +5,4 @@ from .avaliacao import AvaliacaoViewSet
 from .estado import EstadoViewSet
 from .plano import PlanoViewSet
 from .programa import ProgramaViewSet
+from .instituicao import InstituicaoViewSet

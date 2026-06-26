@@ -5,3 +5,4 @@ from .avaliacao import AvaliacaoSerializer
 from .estado import EstadoSerializer
 from .plano import PlanoSerializer
 from .programa import ProgramaSerializer
+from .instituicao import InstituicaoSerializer
