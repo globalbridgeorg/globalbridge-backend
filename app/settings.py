@@ -121,12 +121,22 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 FILE_UPLOAD_PERMISSIONS = 0o640
 
 # Configurações específicas para desenvolvimento, migração e produção
+CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
+
 if MODE == 'DEVELOPMENT':
     MY_IP = os.getenv('MY_IP', '127.0.0.1')
     MEDIA_URL = 'http://127.0.0.1:8000/media/'
+    if CLOUDINARY_URL:
+        STORAGES = {
+            'default': {
+                'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
+            },
+            'staticfiles': {
+                'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+            },
+        }
 else:
     MEDIA_URL = '/media/'
-    CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STORAGES = {
         'default': {
