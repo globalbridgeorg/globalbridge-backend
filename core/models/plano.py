@@ -12,7 +12,7 @@ class Plano(models.Model):
     inclui = models.TextField(default='', blank=True)
 
     def __str__(self):
-        return f"Plano {self.id} - {self.id_programa.nome}" 
+        return f"Plano {self.id} - {self.id_programa.nome}"
 
     class Meta:
         verbose_name = "Plano"
