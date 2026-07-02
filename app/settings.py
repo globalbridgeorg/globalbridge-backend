@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Define o modo de execução da aplicação
-MODE = os.getenv('MODE')
+MODE = os.getenv('MODE', 'DEVELOPMENT').upper()
 
 # Constrói o caminho base do projeto, usado para definir caminhos relativos
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,7 +75,8 @@ TEMPLATES = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",   # React padrão
     "http://127.0.0.1:3000",
-    # "http://localhost:5173", # Vite (Vue/React)
+    "http://localhost:5173",   # Vite (Vue/React) local dev
+    "https://globalbridge-frontend-production.up.railway.app",  # Railway production
 ]
 
 WSGI_APPLICATION = 'app.wsgi.application'
@@ -124,11 +125,19 @@ CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
 
 if MODE == 'DEVELOPMENT':
     MY_IP = os.getenv('MY_IP', '127.0.0.1')
-    MEDIA_URL = '/media/'
+    MEDIA_URL = 'http://127.0.0.1:8000/media/'
+    if CLOUDINARY_URL:
+        STORAGES = {
+            'default': {
+                'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
+            },
+            'staticfiles': {
+                'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+            },
+        }
 else:
     # Sempre expõe a mesma URL de mídia por padrão
     MEDIA_URL = '/media/'
-    # Diretório de arquivos estáticos em produção
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
     # Se CLOUDINARY_URL estiver configurado, usa o storage do Cloudinary para media
