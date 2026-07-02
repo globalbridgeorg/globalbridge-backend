@@ -15,10 +15,18 @@ class UserSerializer(ModelSerializer):
     def get_avatar_url(self, obj):
         if not obj.avatar:
             return None
-        request = self.context.get('request')
-        if request is not None:
-            return request.build_absolute_uri(obj.avatar.url)
-        return obj.avatar.url
+
+        avatar_value = getattr(obj.avatar, 'name', obj.avatar)
+        if isinstance(avatar_value, str) and (avatar_value.startswith('http://') or avatar_value.startswith('https://')):
+            return avatar_value
+
+        if hasattr(obj.avatar, 'url'):
+            request = self.context.get('request')
+            if request is not None:
+                return request.build_absolute_uri(obj.avatar.url)
+            return obj.avatar.url
+
+        return avatar_value
 
 
 class UserRegistrationSerializer(ModelSerializer):

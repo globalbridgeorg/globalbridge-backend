@@ -1,3 +1,4 @@
+from django.core.files.base import ContentFile
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.decorators import action
@@ -83,8 +84,8 @@ class UserViewSet(ModelViewSet):
         return self.foto(request)
 
     @extend_schema(
-        summary="Atualizar foto via Cloudinary",
-        description="Atualiza a foto de perfil usando URL do Cloudinary.",
+        summary="Atualizar foto via upload direto ou URL do Cloudinary",
+        description="Aceita um arquivo enviado em multipart ou uma URL do Cloudinary para atualizar o avatar do usuário.",
         responses={200: UserSerializer, 400: None, 401: None},
     )
     @action(
@@ -95,43 +96,42 @@ class UserViewSet(ModelViewSet):
         parser_classes=[JSONParser, MultiPartParser, FormParser],
     )
     def avatar_cloudinary(self, request):
-        """Atualiza a foto de perfil do usuário com URL do Cloudinary."""
+        """Atualiza a foto de perfil do usuário com upload direto ou URL do Cloudinary."""
         user = request.user
-        
-        # Aceita tanto JSON quanto FormData
+
+        avatar_file = request.FILES.get('avatar') or request.FILES.get('foto')
+        if avatar_file:
+            try:
+                user.avatar.save(avatar_file.name, avatar_file, save=True)
+            except Exception as exc:
+                return Response(
+                    {'detail': f'Erro ao processar imagem: {str(exc)}'},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            serializer = UserSerializer(user, context={'request': request})
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
         avatar_url = request.data.get('avatar_url') if isinstance(request.data, dict) else None
-        
         if not avatar_url:
             return Response(
-                {'detail': 'avatar_url é obrigatória.'}, 
-                status=status.HTTP_400_BAD_REQUEST
+                {'detail': 'avatar_url ou um arquivo de imagem é obrigatório.'},
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # Se receber uma URL, salvamos como ImageField usando o URLField como nome
-        # Para isso, vamos fazer download da imagem do Cloudinary
-        try:
-            import requests
-            from django.core.files.base import ContentFile
-            from urllib.parse import urlparse
-            
-            # Fazer download da imagem
-            response = requests.get(avatar_url, timeout=10)
-            response.raise_for_status()
-            
-            # Extrair nome do arquivo da URL
-            parsed_url = urlparse(avatar_url)
-            filename = parsed_url.path.split('/')[-1] or 'avatar.jpg'
-            
-            # Salvar como arquivo
-            user.avatar.save(
-                filename,
-                ContentFile(response.content),
-                save=True
-            )
-        except Exception as e:
+        if not avatar_url.startswith('http://') and not avatar_url.startswith('https://'):
             return Response(
-                {'detail': f'Erro ao processar imagem: {str(e)}'}, 
-                status=status.HTTP_400_BAD_REQUEST
+                {'detail': 'URL inválida para avatar.'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        try:
+            user.avatar = avatar_url
+            user.save(update_fields=['avatar'])
+        except Exception as exc:
+            return Response(
+                {'detail': f'Erro ao processar imagem: {str(exc)}'},
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         serializer = UserSerializer(user, context={'request': request})
