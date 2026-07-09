@@ -10,6 +10,7 @@ class Pais(models.Model):
     imagem_url = models.CharField(max_length=250)
     intercambistas = models.IntegerField()
     universidades = models.IntegerField()
+    programas_disponiveis = models.IntegerField(default=0)
     ativo = models.BooleanField(default=True)
 
     def __str__(self):

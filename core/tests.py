@@ -2,9 +2,10 @@ from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.test import TestCase
+from django.urls import reverse
 from rest_framework.test import APIClient
 
-from core.models import Agencia, Plano, Programa
+from core.models import Agencia, Pais, Plano, Programa
 
 
 class PlanoModelTests(TestCase):
@@ -64,3 +65,51 @@ class UserAvatarUploadTests(TestCase):
 
         user.refresh_from_db()
         self.assertEqual(user.avatar, 'https://res.cloudinary.com/demo/image/upload/avatar.png')
+
+
+class PaisApiTests(TestCase):
+    def test_mais_procurados_returns_active_countries_with_programs_count(self):
+        Pais.objects.create(
+            nome='Brasil',
+            codigo_iso='BR',
+            custo_de_vida='Médio',
+            idioma='Português',
+            cultura='Cultura brasileira',
+            descricao='Descrição do Brasil',
+            imagem_url='https://example.com/brasil.png',
+            intercambistas=2500,
+            universidades=120,
+            ativo=True,
+        )
+        Pais.objects.create(
+            nome='Canadá',
+            codigo_iso='CA',
+            custo_de_vida='Alto',
+            idioma='Inglês',
+            cultura='Cultura canadense',
+            descricao='Descrição do Canadá',
+            imagem_url='https://example.com/canada.png',
+            intercambistas=1900,
+            universidades=95,
+            ativo=True,
+        )
+        Pais.objects.create(
+            nome='Alemanha',
+            codigo_iso='DE',
+            custo_de_vida='Médio',
+            idioma='Alemão',
+            cultura='Cultura alemã',
+            descricao='Descrição da Alemanha',
+            imagem_url='https://example.com/alemanha.png',
+            intercambistas=1600,
+            universidades=85,
+            ativo=False,
+        )
+
+        client = APIClient()
+        response = client.get(reverse('paises-mais-procurados'), {'quantidade': 2})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.data), 2)
+        self.assertTrue(all(item['ativo'] for item in response.data))
+        self.assertIn('programas_disponiveis', response.data[0])

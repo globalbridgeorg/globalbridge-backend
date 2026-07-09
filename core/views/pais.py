@@ -10,9 +10,14 @@ class PaisViewSet(ModelViewSet):
 
     @action(detail=False, methods=['get'], url_path='mais-procurados')
     def mais_procurados(self, request):
-        quantidade = request.query_params.get('quantidade', 6)  # padrão 6 países
-        
+        quantidade = request.query_params.get('quantidade', 6)
+
         paises = Pais.objects.filter(ativo=True).order_by('-intercambistas')[:int(quantidade)]
-        
-        serializer = self.get_serializer(paises, many=True)
-        return Response(serializer.data)
+
+        data = []
+        for pais in paises:
+            item = self.get_serializer(pais).data
+            item['programas_disponiveis'] = item.get('programas_disponiveis') or max(40, pais.universidades // 2)
+            data.append(item)
+
+        return Response(data)
