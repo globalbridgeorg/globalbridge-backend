@@ -6,6 +6,7 @@ from core.models import User
 
 class UserSerializer(ModelSerializer):
     avatar_url = serializers.SerializerMethodField()
+    foto_url = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -13,20 +14,26 @@ class UserSerializer(ModelSerializer):
         depth = 1
 
     def get_avatar_url(self, obj):
-        if not obj.avatar:
+        return self._build_file_url(obj.avatar)
+
+    def get_foto_url(self, obj):
+        return self._build_file_url(obj.foto)
+
+    def _build_file_url(self, file_field):
+        if not file_field:
             return None
 
-        avatar_value = getattr(obj.avatar, 'name', obj.avatar)
-        if isinstance(avatar_value, str) and (avatar_value.startswith('http://') or avatar_value.startswith('https://')):
-            return avatar_value
+        file_value = getattr(file_field, 'name', file_field)
+        if isinstance(file_value, str) and (file_value.startswith('http://') or file_value.startswith('https://')):
+            return file_value
 
-        if hasattr(obj.avatar, 'url'):
+        if hasattr(file_field, 'url'):
             request = self.context.get('request')
             if request is not None:
-                return request.build_absolute_uri(obj.avatar.url)
-            return obj.avatar.url
+                return request.build_absolute_uri(file_field.url)
+            return file_field.url
 
-        return avatar_value
+        return file_value
 
 
 class UserRegistrationSerializer(ModelSerializer):
