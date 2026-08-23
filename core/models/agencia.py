@@ -16,6 +16,7 @@ class Agencia(models.Model):
     usuario = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='agencia'
     )
+    tags = models.ManyToManyField('Tag', related_name='agencias', blank=True)
 
     def __str__(self):
         return f"{self.id} - {self.nome}"

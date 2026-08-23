@@ -59,6 +59,7 @@ from core.models import (
     Avaliacao,
     Plano,
     Programa,
+    Tag,
 )
 
 
@@ -75,6 +76,7 @@ class PaisAdmin(admin.ModelAdmin):
     list_display = ('nome', 'codigo_iso', 'regiao', 'ativo', 'universidades', 'intercambistas')
     search_fields = ('nome', 'codigo_iso')
     list_filter = ('ativo', 'regiao')
+    filter_horizontal = ('tags',)
 
 
 @admin.register(Estado)
@@ -89,6 +91,7 @@ class AgenciaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'id_estado', 'telefone', 'site', 'ativo')
     search_fields = ('nome', 'contato', 'telefone')
     list_filter = ('ativo', 'id_estado__id_pais')
+    filter_horizontal = ('tags',)
 
 
 @admin.register(Avaliacao)
@@ -108,3 +111,10 @@ class PlanoAdmin(admin.ModelAdmin):
 class ProgramaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'duracao_min', 'duracao_max')
     search_fields = ('nome', 'descricao')
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('categoria', 'valor', 'label')
+    list_filter = ('categoria',)
+    search_fields = ('valor', 'label')

@@ -14,14 +14,15 @@ from rest_framework_simplejwt.views import (
 
 from core.views import (
     UploadFotoPerfilView,
-    UserRegistrationView, 
-    UserViewSet, 
-    PaisViewSet,     
-    AgenciaViewSet,  
+    UserRegistrationView,
+    UserViewSet,
+    PaisViewSet,
+    AgenciaViewSet,
     AvaliacaoViewSet,
-    EstadoViewSet,   
-    PlanoViewSet,    
-    ProgramaViewSet  
+    EstadoViewSet,
+    PlanoViewSet,
+    ProgramaViewSet,
+    TagViewSet
 )
 
 from django.conf import settings
@@ -36,6 +37,7 @@ router.register(r'avaliacao', AvaliacaoViewSet, basename='avaliacao')
 router.register(r'estado', EstadoViewSet, basename='estado')
 router.register(r'plano', PlanoViewSet, basename='plano')
 router.register(r'programa', ProgramaViewSet, basename='programa')
+router.register(r'tags', TagViewSet, basename='tags')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

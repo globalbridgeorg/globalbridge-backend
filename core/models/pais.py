@@ -11,6 +11,9 @@ class Pais(models.Model):
     ]
 
     nome = models.CharField(max_length=51)
+    # Nome em inglês, igual ao usado pelo world-atlas (o dataset do globo
+    # 3D) — é assim que o mapa casa um país do banco com o polígono certo.
+    nome_ingles = models.CharField(max_length=60, blank=True)
     codigo_iso = models.CharField(max_length=2)
     regiao = models.CharField(max_length=20, choices=REGIAO_CHOICES, blank=True)
     custo_de_vida = models.CharField(max_length=20)
@@ -21,6 +24,7 @@ class Pais(models.Model):
     intercambistas = models.IntegerField()
     universidades = models.IntegerField()
     ativo = models.BooleanField(default=True)
+    tags = models.ManyToManyField('Tag', related_name='paises', blank=True)
 
     def __str__(self):
         return f"{self.id} - {self.nome} ({self.codigo_iso})"

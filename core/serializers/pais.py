@@ -2,11 +2,13 @@ from rest_framework import serializers
 from django.db.models import Avg
 
 from core.models import Pais, Estado, Agencia, Programa
+from .tag import TagSerializer
 
 
 class PaisSerializer(serializers.ModelSerializer):
     programas_count = serializers.SerializerMethodField()
     agencia_destaque = serializers.SerializerMethodField()
+    tags = TagSerializer(many=True, read_only=True)
 
     class Meta:
         model = Pais
@@ -36,10 +38,11 @@ class CidadeResumidaSerializer(serializers.ModelSerializer):
 class AgenciaResumidaSerializer(serializers.ModelSerializer):
     cidade = serializers.SerializerMethodField()
     nota_media = serializers.SerializerMethodField()
+    tags = TagSerializer(many=True, read_only=True)
 
     class Meta:
         model = Agencia
-        fields = ['id', 'nome', 'descricao', 'cidade', 'nota_media']
+        fields = ['id', 'nome', 'descricao', 'cidade', 'nota_media', 'tags']
 
     def get_cidade(self, obj):
         return obj.id_estado.cidade_principal if obj.id_estado else None
