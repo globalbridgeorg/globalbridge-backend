@@ -1,4 +1,5 @@
 from django.core.files.base import ContentFile
+from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.decorators import action
@@ -20,12 +21,23 @@ class UserViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
-        # Ver o perfil de OUTRA pessoa (retrieve) nunca deve vazar email,
-        # permissões etc. — só o /usuarios/me/ (uma @action separada) usa
-        # o serializer completo pro próprio usuário.
-        if self.action == 'retrieve':
+        # Ver o perfil de OUTRA pessoa (retrieve/by_username) nunca deve
+        # vazar email, permissões etc. — só o /usuarios/me/ (uma @action
+        # separada) usa o serializer completo pro próprio usuário.
+        if self.action in ('retrieve', 'by_username'):
             return PublicProfileSerializer
         return UserSerializer
+
+    @extend_schema(
+        summary="Perfil público por nome de usuário",
+        description="Retorna nome e foto de um usuário a partir do seu username (usado na URL /usuarios/<username>).",
+        responses={200: PublicProfileSerializer, 404: None},
+    )
+    @action(detail=False, methods=['get'], url_path=r'u/(?P<username>[\w-]+)')
+    def by_username(self, request, username=None):
+        user = get_object_or_404(User, username=username)
+        serializer = self.get_serializer(user)
+        return Response(serializer.data)
 
     @extend_schema(
         summary="Dados do usuário autenticado",

@@ -10,7 +10,7 @@ class UserSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'name', 'foto', 'foto_url', 'avatar', 'avatar_url', 'is_active', 'is_staff', 'is_superuser', 'last_login', 'groups']
+        fields = ['id', 'username', 'email', 'name', 'foto', 'foto_url', 'avatar', 'avatar_url', 'is_active', 'is_staff', 'is_superuser', 'last_login', 'groups']
         depth = 1
 
     def get_avatar_url(self, obj):
@@ -43,7 +43,7 @@ class PublicProfileSerializer(UserSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'name', 'foto_url', 'avatar_url']
+        fields = ['id', 'username', 'name', 'foto_url', 'avatar_url']
 
 
 class UserRegistrationSerializer(ModelSerializer):

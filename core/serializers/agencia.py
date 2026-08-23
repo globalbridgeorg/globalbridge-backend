@@ -26,6 +26,7 @@ class AvaliacaoResumidaSerializer(serializers.Serializer):
     comentario = serializers.CharField()
     autor = serializers.CharField(source='id_usuario.name')
     autor_id = serializers.IntegerField(source='id_usuario.id')
+    autor_username = serializers.CharField(source='id_usuario.username')
     autor_foto = serializers.SerializerMethodField()
 
     def get_autor_foto(self, obj):

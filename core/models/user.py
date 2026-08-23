@@ -8,6 +8,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.db import models
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
 
@@ -46,6 +47,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     ]
 
     email = models.EmailField(max_length=255, unique=True, verbose_name=_('email'), help_text=_('Email'))
+    username = models.SlugField(
+        max_length=40, unique=True, blank=True,
+        verbose_name=_('nome de usuário'), help_text=_('Usado na URL do perfil público (/usuarios/<username>).'),
+    )
     tipo = models.CharField(
         max_length=20, choices=TIPO_CHOICES, default='estudante',
         verbose_name=_('tipo de conta'), help_text=_('Estudante ou agência de intercâmbio.'),
@@ -78,3 +83,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         verbose_name = 'Usuário'
         verbose_name_plural = 'Usuários'
+
+    def save(self, *args, **kwargs):
+        if not self.username:
+            self.username = self._gerar_username_unico()
+        super().save(*args, **kwargs)
+
+    def _gerar_username_unico(self):
+        base = slugify(self.name or self.email.split('@')[0]) or 'usuario'
+        base = base[:32]
+        candidato = base
+        sufixo = 1
+        while User.objects.filter(username=candidato).exclude(pk=self.pk).exists():
+            sufixo += 1
+            candidato = f'{base}{sufixo}'
+        return candidato
