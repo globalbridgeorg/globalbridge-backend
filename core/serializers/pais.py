@@ -5,9 +5,16 @@ from core.models import Pais, Estado, Agencia, Programa
 
 
 class PaisSerializer(serializers.ModelSerializer):
+    programas_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Pais
         fields = '__all__'
+
+    def get_programas_count(self, obj):
+        return Programa.objects.filter(
+            plano__id_agencia__id_estado__id_pais=obj
+        ).distinct().count()
 
 
 class CidadeResumidaSerializer(serializers.ModelSerializer):
