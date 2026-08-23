@@ -46,6 +46,8 @@ class AgenciaDetalheSerializer(serializers.ModelSerializer):
 
     cidade = serializers.SerializerMethodField()
     pais = serializers.SerializerMethodField()
+    pais_id = serializers.SerializerMethodField()
+    regiao = serializers.SerializerMethodField()
     nota_media = serializers.SerializerMethodField()
     total_avaliacoes = serializers.SerializerMethodField()
     planos = serializers.SerializerMethodField()
@@ -54,8 +56,8 @@ class AgenciaDetalheSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agencia
         fields = [
-            'id', 'nome', 'descricao', 'contato', 'telefone', 'site', 'endereco',
-            'ativo', 'cidade', 'pais', 'nota_media', 'total_avaliacoes', 'planos', 'avaliacoes',
+            'id', 'nome', 'descricao', 'como_funciona', 'contato', 'telefone', 'site', 'endereco',
+            'ativo', 'cidade', 'pais', 'pais_id', 'regiao', 'nota_media', 'total_avaliacoes', 'planos', 'avaliacoes',
         ]
 
     def get_cidade(self, obj):
@@ -63,6 +65,12 @@ class AgenciaDetalheSerializer(serializers.ModelSerializer):
 
     def get_pais(self, obj):
         return obj.id_estado.id_pais.nome if obj.id_estado else None
+
+    def get_pais_id(self, obj):
+        return obj.id_estado.id_pais.id if obj.id_estado else None
+
+    def get_regiao(self, obj):
+        return obj.id_estado.id_pais.regiao if obj.id_estado else None
 
     def get_nota_media(self, obj):
         media = obj.avaliacao_set.aggregate(media=Avg('nota'))['media']

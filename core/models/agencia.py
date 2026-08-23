@@ -4,6 +4,11 @@ from django.db import models
 class Agencia(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.TextField()
+    como_funciona = models.TextField(
+        blank=True, default='',
+        verbose_name="Como funciona",
+        help_text="Explicação, em texto livre, de como é o processo de inscrição/atendimento dessa agência.",
+    )
     contato =   models.CharField(max_length=100)
     telefone =  models.CharField(max_length=20)
     site = models.CharField(max_length=255)
