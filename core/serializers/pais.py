@@ -6,6 +6,7 @@ from core.models import Pais, Estado, Agencia, Programa
 
 class PaisSerializer(serializers.ModelSerializer):
     programas_count = serializers.SerializerMethodField()
+    agencia_destaque = serializers.SerializerMethodField()
 
     class Meta:
         model = Pais
@@ -15,6 +16,15 @@ class PaisSerializer(serializers.ModelSerializer):
         return Programa.objects.filter(
             plano__id_agencia__id_estado__id_pais=obj
         ).distinct().count()
+
+    def get_agencia_destaque(self, obj):
+        agencias = Agencia.objects.filter(id_estado__id_pais=obj, ativo=True).annotate(
+            nota_calc=Avg('avaliacao__nota')
+        ).order_by('-nota_calc', 'id')
+        agencia = agencias.first()
+        if not agencia:
+            return None
+        return AgenciaResumidaSerializer(agencia).data
 
 
 class CidadeResumidaSerializer(serializers.ModelSerializer):
