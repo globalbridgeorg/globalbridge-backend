@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from core.models import Agencia
-from core.serializers import AgenciaSerializer, AgenciaDetalheSerializer
+from core.serializers import AgenciaSerializer, AgenciaDetalheSerializer, AgenciaResumidaSerializer
 
 class AgenciaViewSet(ModelViewSet):
     queryset = Agencia.objects.all()
@@ -9,6 +9,8 @@ class AgenciaViewSet(ModelViewSet):
     def get_serializer_class(self):
         if self.action == 'retrieve':
             return AgenciaDetalheSerializer
+        if self.action == 'list':
+            return AgenciaResumidaSerializer
         return AgenciaSerializer
 
     def get_queryset(self):
