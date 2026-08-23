@@ -37,15 +37,23 @@ class CidadeResumidaSerializer(serializers.ModelSerializer):
 
 class AgenciaResumidaSerializer(serializers.ModelSerializer):
     cidade = serializers.SerializerMethodField()
+    pais = serializers.SerializerMethodField()
+    pais_nome_ingles = serializers.SerializerMethodField()
     nota_media = serializers.SerializerMethodField()
     tags = TagSerializer(many=True, read_only=True)
 
     class Meta:
         model = Agencia
-        fields = ['id', 'nome', 'descricao', 'cidade', 'nota_media', 'tags']
+        fields = ['id', 'nome', 'descricao', 'cidade', 'pais', 'pais_nome_ingles', 'nota_media', 'tags']
 
     def get_cidade(self, obj):
         return obj.id_estado.cidade_principal if obj.id_estado else None
+
+    def get_pais(self, obj):
+        return obj.id_estado.id_pais.nome if obj.id_estado else None
+
+    def get_pais_nome_ingles(self, obj):
+        return obj.id_estado.id_pais.nome_ingles if obj.id_estado else None
 
     def get_nota_media(self, obj):
         media = obj.avaliacao_set.aggregate(media=Avg('nota'))['media']
