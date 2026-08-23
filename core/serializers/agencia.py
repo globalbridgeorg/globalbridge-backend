@@ -34,6 +34,14 @@ class AvaliacaoResumidaSerializer(serializers.Serializer):
         file_field = usuario.avatar or usuario.foto
         if not file_field:
             return None
+
+        # Avatares enviados via /usuarios/me/avatar/ com uma URL do Cloudinary
+        # ficam salvos com essa URL absoluta como "name" do FieldFile — nesse
+        # caso file_field.url já vem certo (Cloudinary), sem passar por MEDIA_URL.
+        file_value = getattr(file_field, 'name', file_field)
+        if isinstance(file_value, str) and (file_value.startswith('http://') or file_value.startswith('https://')):
+            return file_value
+
         request = self.context.get('request')
         if request is not None:
             return request.build_absolute_uri(file_field.url)

@@ -1,7 +1,9 @@
+from django.db.models import Avg
+
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
-from core.models import User
+from core.models import Agencia, User
 
 
 class UserSerializer(ModelSerializer):
@@ -38,12 +40,66 @@ class UserSerializer(ModelSerializer):
 
 class PublicProfileSerializer(UserSerializer):
     """Perfil de OUTRO usuário, visto por quem está logado — só o que é
-    seguro mostrar publicamente (nome e foto). Nunca email, permissões
-    ou qualquer outro dado da conta."""
+    seguro mostrar publicamente. Nunca email, permissões ou qualquer
+    outro dado da conta. O conteúdo muda pelo tipo: estudante mostra as
+    avaliações que escreveu, agência mostra um resumo da agência vinculada."""
+
+    agencia = serializers.SerializerMethodField()
+    avaliacoes = serializers.SerializerMethodField()
+    total_avaliacoes = serializers.SerializerMethodField()
+    nota_media_dada = serializers.SerializerMethodField()
+    agencias_avaliadas = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'name', 'foto_url', 'avatar_url']
+        fields = [
+            'id', 'username', 'name', 'foto_url', 'avatar_url', 'tipo',
+            'agencia', 'avaliacoes', 'total_avaliacoes', 'nota_media_dada', 'agencias_avaliadas',
+        ]
+
+    def get_agencia(self, obj):
+        try:
+            agencia = obj.agencia
+        except Agencia.DoesNotExist:
+            return None
+        media = agencia.avaliacao_set.aggregate(media=Avg('nota'))['media']
+        return {
+            'id': agencia.id,
+            'nome': agencia.nome,
+            'descricao': agencia.descricao,
+            'cidade': agencia.id_estado.cidade_principal if agencia.id_estado else None,
+            'pais': agencia.id_estado.id_pais.nome if agencia.id_estado else None,
+            'nota_media': round(media, 1) if media is not None else None,
+            'total_avaliacoes': agencia.avaliacao_set.count(),
+            'total_programas': agencia.plano_set.count(),
+        }
+
+    def get_avaliacoes(self, obj):
+        if obj.tipo != 'estudante':
+            return []
+        avaliacoes = obj.avaliacao_set.select_related('id_agencia', 'id_agencia__id_estado__id_pais').order_by('-id')[:20]
+        return [
+            {
+                'id': a.id,
+                'nota': a.nota,
+                'comentario': a.comentario,
+                'agencia_id': a.id_agencia.id,
+                'agencia_nome': a.id_agencia.nome,
+                'agencia_cidade': a.id_agencia.id_estado.cidade_principal if a.id_agencia.id_estado else None,
+                'agencia_pais': a.id_agencia.id_estado.id_pais.nome if a.id_agencia.id_estado else None,
+            }
+            for a in avaliacoes
+        ]
+
+    def get_total_avaliacoes(self, obj):
+        return obj.avaliacao_set.count()
+
+    def get_nota_media_dada(self, obj):
+        media = obj.avaliacao_set.aggregate(media=Avg('nota'))['media']
+        return round(media, 1) if media is not None else None
+
+    def get_agencias_avaliadas(self, obj):
+        return obj.avaliacao_set.values('id_agencia').distinct().count()
 
 
 class UserRegistrationSerializer(ModelSerializer):
