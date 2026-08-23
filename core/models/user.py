@@ -40,7 +40,16 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     """User model in the system."""
 
+    TIPO_CHOICES = [
+        ('estudante', 'Estudante'),
+        ('agencia', 'Agência'),
+    ]
+
     email = models.EmailField(max_length=255, unique=True, verbose_name=_('email'), help_text=_('Email'))
+    tipo = models.CharField(
+        max_length=20, choices=TIPO_CHOICES, default='estudante',
+        verbose_name=_('tipo de conta'), help_text=_('Estudante ou agência de intercâmbio.'),
+    )
     name = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('name'), help_text=_('Username'))
     avatar = models.ImageField(
         upload_to='avatars/',

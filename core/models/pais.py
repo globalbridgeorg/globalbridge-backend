@@ -1,8 +1,18 @@
 from django.db import models
 
 class Pais(models.Model):
+    REGIAO_CHOICES = [
+        ('asia', 'Ásia'),
+        ('europa', 'Europa'),
+        ('america_norte', 'América do Norte'),
+        ('america_sul', 'América do Sul'),
+        ('oceania', 'Oceania'),
+        ('africa', 'África'),
+    ]
+
     nome = models.CharField(max_length=51)
     codigo_iso = models.CharField(max_length=2)
+    regiao = models.CharField(max_length=20, choices=REGIAO_CHOICES, blank=True)
     custo_de_vida = models.CharField(max_length=20)
     idioma = models.CharField(max_length=50)
     cultura = models.TextField()

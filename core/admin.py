@@ -72,9 +72,9 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Pais)
 class PaisAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'codigo_iso', 'ativo', 'universidades', 'intercambistas')
+    list_display = ('nome', 'codigo_iso', 'regiao', 'ativo', 'universidades', 'intercambistas')
     search_fields = ('nome', 'codigo_iso')
-    list_filter = ('ativo',)
+    list_filter = ('ativo', 'regiao')
 
 
 @admin.register(Estado)
@@ -86,9 +86,9 @@ class EstadoAdmin(admin.ModelAdmin):
 
 @admin.register(Agencia)
 class AgenciaAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'telefone', 'site', 'ativo')
+    list_display = ('nome', 'id_estado', 'telefone', 'site', 'ativo')
     search_fields = ('nome', 'contato', 'telefone')
-    list_filter = ('ativo',)
+    list_filter = ('ativo', 'id_estado__id_pais')
 
 
 @admin.register(Avaliacao)

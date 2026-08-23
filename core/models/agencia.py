@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 class Agencia(models.Model):
@@ -9,6 +10,12 @@ class Agencia(models.Model):
     endereco = models.TextField()
     data_cadastro = models.DateTimeField()
     ativo = models.BooleanField()
+    id_estado = models.ForeignKey(
+        'Estado', on_delete=models.SET_NULL, null=True, blank=True, related_name='agencias'
+    )
+    usuario = models.OneToOneField(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='agencia'
+    )
 
     def __str__(self):
         return f"{self.id} - {self.nome}"
