@@ -11,13 +11,21 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 
 from core.models import User
-from core.serializers import UserRegistrationSerializer, UserSerializer
+from core.serializers import UserRegistrationSerializer, UserSerializer, PublicProfileSerializer
 
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        # Ver o perfil de OUTRA pessoa (retrieve) nunca deve vazar email,
+        # permissões etc. — só o /usuarios/me/ (uma @action separada) usa
+        # o serializer completo pro próprio usuário.
+        if self.action == 'retrieve':
+            return PublicProfileSerializer
+        return UserSerializer
 
     @extend_schema(
         summary="Dados do usuário autenticado",

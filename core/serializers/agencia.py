@@ -25,6 +25,18 @@ class AvaliacaoResumidaSerializer(serializers.Serializer):
     nota = serializers.IntegerField()
     comentario = serializers.CharField()
     autor = serializers.CharField(source='id_usuario.name')
+    autor_id = serializers.IntegerField(source='id_usuario.id')
+    autor_foto = serializers.SerializerMethodField()
+
+    def get_autor_foto(self, obj):
+        usuario = obj.id_usuario
+        file_field = usuario.avatar or usuario.foto
+        if not file_field:
+            return None
+        request = self.context.get('request')
+        if request is not None:
+            return request.build_absolute_uri(file_field.url)
+        return file_field.url
 
 
 class AgenciaDetalheSerializer(serializers.ModelSerializer):
@@ -64,4 +76,4 @@ class AgenciaDetalheSerializer(serializers.ModelSerializer):
 
     def get_avaliacoes(self, obj):
         avaliacoes = obj.avaliacao_set.select_related('id_usuario').order_by('-id')[:10]
-        return AvaliacaoResumidaSerializer(avaliacoes, many=True).data
+        return AvaliacaoResumidaSerializer(avaliacoes, many=True, context=self.context).data

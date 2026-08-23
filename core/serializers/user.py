@@ -36,6 +36,16 @@ class UserSerializer(ModelSerializer):
         return file_value
 
 
+class PublicProfileSerializer(UserSerializer):
+    """Perfil de OUTRO usuário, visto por quem está logado — só o que é
+    seguro mostrar publicamente (nome e foto). Nunca email, permissões
+    ou qualquer outro dado da conta."""
+
+    class Meta:
+        model = User
+        fields = ['id', 'name', 'foto_url', 'avatar_url']
+
+
 class UserRegistrationSerializer(ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
 

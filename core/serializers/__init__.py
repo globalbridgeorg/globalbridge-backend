@@ -1,4 +1,4 @@
-from .user import UserRegistrationSerializer, UserSerializer
+from .user import UserRegistrationSerializer, UserSerializer, PublicProfileSerializer
 from .pais import PaisSerializer, PaisDetalheSerializer, AgenciaResumidaSerializer
 from .agencia import AgenciaSerializer, AgenciaDetalheSerializer
 from .avaliacao import AvaliacaoSerializer
