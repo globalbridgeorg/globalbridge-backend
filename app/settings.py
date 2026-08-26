@@ -76,7 +76,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",   # React padrão
     "http://127.0.0.1:3000",
     "http://localhost:5173",   # Vite (Vue/React) local dev
-    "https://globalbridge-frontend-production.up.railway.app",  # Railway production
+    "https://globalbridge-frontend-production-ea1b.up.railway.app",  # Railway production
 ]
 
 WSGI_APPLICATION = 'app.wsgi.application'
