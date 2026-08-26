@@ -114,6 +114,16 @@ USE_TZ = True
 
 # Configurações de arquivos estáticos
 STATIC_URL = 'static/'
+# Sem isso, o WhiteNoise (que já intercepta toda request de /static/ antes
+# de qualquer outra coisa, por causa do middleware) só sabe servir o que
+# tiver sido coletado em STATIC_ROOT via collectstatic — e no modo
+# DEVELOPMENT esse STATIC_ROOT nem existe. Resultado: o CSS/JS do admin do
+# Django (e de qualquer outro app) dava 404 e a página carregava sem
+# nenhum estilo. Com WHITENOISE_USE_FINDERS, ele passa a servir direto dos
+# diretórios estáticos de cada app (o mesmo mecanismo do runserver em
+# DEBUG), sem precisar rodar collectstatic — ideal pra dev; em produção
+# (MODE != DEVELOPMENT) o STATIC_ROOT normal continua sendo usado.
+WHITENOISE_USE_FINDERS = True
 
 # Configurações de arquivos de mídia (App Uploader)
 MEDIA_ENDPOINT = '/media/'
@@ -159,6 +169,29 @@ else:
             },
         }
         print('WARNING: CLOUDINARY_URL not set — usando armazenamento local para mídia')
+
+# Configurações de e-mail — 3 modos, na ordem de prioridade abaixo:
+# 1. BREVO_API_KEY definida: envia via API transacional do Brevo
+#    (core/email_backends.py) — o que este projeto usa em produção.
+# 2. Sem BREVO_API_KEY mas com EMAIL_HOST definido: SMTP genérico —
+#    funciona com qualquer provedor compatível (Gmail com senha de app,
+#    SendGrid, SES etc), útil se um dia trocar de provedor.
+# 3. Nenhum dos dois (padrão em DEVELOPMENT): backend de console — só
+#    imprime o e-mail no terminal, não envia de verdade.
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
+BREVO_API_KEY = os.getenv('BREVO_API_KEY', '')
+EMAIL_HOST = os.getenv('EMAIL_HOST', '')
+if BREVO_API_KEY:
+    EMAIL_BACKEND = 'core.email_backends.BrevoAPIBackend'
+elif EMAIL_HOST:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+    EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'GlobalBridge <no-reply@globalbridge.test>')
 
 # Tipo padrão de campo para chaves primárias
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

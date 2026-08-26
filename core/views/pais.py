@@ -7,6 +7,13 @@ from core.serializers import PaisSerializer, PaisDetalheSerializer
 class PaisViewSet(ModelViewSet):
     queryset = Pais.objects.all()
     serializer_class = PaisSerializer
+    # Lista de referência pequena (dezenas, não milhares) que várias telas
+    # esperam receber inteira de uma vez — Destinos conta por região,
+    # Região filtra e mostra todos os países dela, o globo do /mapview
+    # cruza cada um com as agências. Com paginação (padrão de 10 por
+    # página) essas contagens/telas silenciosamente cortavam o resto assim
+    # que o catálogo passou de 10 países. Mesmo tratamento já dado à Tag.
+    pagination_class = None
 
     def get_serializer_class(self):
         if self.action == 'retrieve':

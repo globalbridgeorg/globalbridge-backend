@@ -50,6 +50,18 @@ PROGRAMA_POR_AGENCIA = {
         'duracao_min': 1, 'duracao_max': 12,
         'preco': 9500,
     },
+    'Sogang University Korean Language Education Center': {
+        'nome': 'Curso de Coreano',
+        'descricao': 'Curso intensivo de coreano por níveis, ligado à Universidade Sogang, em Seul.',
+        'duracao_min': 3, 'duracao_max': 12,
+        'preco': 11000,
+    },
+    'British Council': {
+        'nome': 'Curso de Inglês',
+        'descricao': 'Curso de inglês geral ou preparatório para exames internacionais, com material do British Council.',
+        'duracao_min': 1, 'duracao_max': 12,
+        'preco': 8000,
+    },
 }
 
 

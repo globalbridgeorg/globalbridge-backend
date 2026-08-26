@@ -6,3 +6,8 @@ from .estado import Estado
 from .plano import Plano
 from .programa import Programa
 from .tag import Tag
+from .favorito import Favorito
+from .solicitacao_agencia import SolicitacaoAgencia
+from .codigo_login import CodigoLogin
+from .solicitacao_pais import SolicitacaoPaisAdicional
+from .imagem_galeria import ImagemGaleria

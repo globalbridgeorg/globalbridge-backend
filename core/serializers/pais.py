@@ -16,11 +16,11 @@ class PaisSerializer(serializers.ModelSerializer):
 
     def get_programas_count(self, obj):
         return Programa.objects.filter(
-            plano__id_agencia__id_estado__id_pais=obj
+            plano__id_agencia__paises_atendidos=obj
         ).distinct().count()
 
     def get_agencia_destaque(self, obj):
-        agencias = Agencia.objects.filter(id_estado__id_pais=obj, ativo=True).annotate(
+        agencias = Agencia.objects.filter(paises_atendidos=obj, ativo=True).annotate(
             nota_calc=Avg('avaliacao__nota')
         ).order_by('-nota_calc', 'id')
         agencia = agencias.first()
@@ -47,12 +47,25 @@ class AgenciaResumidaSerializer(serializers.ModelSerializer):
         fields = ['id', 'nome', 'descricao', 'cidade', 'pais', 'pais_nome_ingles', 'nota_media', 'tags']
 
     def get_cidade(self, obj):
+        # Numa listagem dentro de um país específico (get_agencias abaixo),
+        # só faz sentido mostrar a cidade quando ela É a sede — pra uma
+        # agência com unidades em vários países (ex.: EF Education), a
+        # cidade da sede não tem nada a ver com o país sendo exibido.
+        pais_contexto = self.context.get('pais_contexto')
+        if pais_contexto and (not obj.id_estado or obj.id_estado.id_pais_id != pais_contexto.id):
+            return None
         return obj.id_estado.cidade_principal if obj.id_estado else None
 
     def get_pais(self, obj):
+        pais_contexto = self.context.get('pais_contexto')
+        if pais_contexto:
+            return pais_contexto.nome
         return obj.id_estado.id_pais.nome if obj.id_estado else None
 
     def get_pais_nome_ingles(self, obj):
+        pais_contexto = self.context.get('pais_contexto')
+        if pais_contexto:
+            return pais_contexto.nome_ingles
         return obj.id_estado.id_pais.nome_ingles if obj.id_estado else None
 
     def get_nota_media(self, obj):
@@ -84,11 +97,11 @@ class PaisDetalheSerializer(serializers.ModelSerializer):
         ]
 
     def get_agencias(self, obj):
-        agencias = Agencia.objects.filter(id_estado__id_pais=obj, ativo=True)
-        return AgenciaResumidaSerializer(agencias, many=True).data
+        agencias = Agencia.objects.filter(paises_atendidos=obj, ativo=True).distinct()
+        return AgenciaResumidaSerializer(agencias, many=True, context={'pais_contexto': obj}).data
 
     def get_programas(self, obj):
         programas = Programa.objects.filter(
-            plano__id_agencia__id_estado__id_pais=obj
+            plano__id_agencia__paises_atendidos=obj
         ).distinct()
         return ProgramaCatalogoSerializer(programas, many=True).data

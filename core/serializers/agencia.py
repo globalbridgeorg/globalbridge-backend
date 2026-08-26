@@ -56,17 +56,47 @@ class AgenciaDetalheSerializer(serializers.ModelSerializer):
     pais = serializers.SerializerMethodField()
     pais_id = serializers.SerializerMethodField()
     regiao = serializers.SerializerMethodField()
+    outros_paises = serializers.SerializerMethodField()
     nota_media = serializers.SerializerMethodField()
     total_avaliacoes = serializers.SerializerMethodField()
     planos = serializers.SerializerMethodField()
     avaliacoes = serializers.SerializerMethodField()
+    imagem_capa_url = serializers.SerializerMethodField()
+    galeria = serializers.SerializerMethodField()
 
     class Meta:
         model = Agencia
         fields = [
             'id', 'nome', 'descricao', 'como_funciona', 'contato', 'telefone', 'site', 'endereco',
-            'ativo', 'cidade', 'pais', 'pais_id', 'regiao', 'nota_media', 'total_avaliacoes', 'planos', 'avaliacoes',
+            'ativo', 'cidade', 'pais', 'pais_id', 'regiao', 'outros_paises',
+            'nota_media', 'total_avaliacoes', 'planos', 'avaliacoes', 'layout', 'imagem_capa_url',
+            'imagem_capa_foco_x', 'imagem_capa_foco_y', 'conteudo_blocos', 'galeria',
         ]
+
+    def get_galeria(self, obj):
+        request = self.context.get('request')
+        imagens = []
+        for img in obj.galeria.all():
+            file_value = getattr(img.imagem, 'name', img.imagem)
+            if isinstance(file_value, str) and (file_value.startswith('http://') or file_value.startswith('https://')):
+                url = file_value
+            elif request is not None:
+                url = request.build_absolute_uri(img.imagem.url)
+            else:
+                url = img.imagem.url
+            imagens.append({'id': img.id, 'url': url})
+        return imagens
+
+    def get_imagem_capa_url(self, obj):
+        if not obj.imagem_capa:
+            return None
+        file_value = getattr(obj.imagem_capa, 'name', obj.imagem_capa)
+        if isinstance(file_value, str) and (file_value.startswith('http://') or file_value.startswith('https://')):
+            return file_value
+        request = self.context.get('request')
+        if request is not None:
+            return request.build_absolute_uri(obj.imagem_capa.url)
+        return obj.imagem_capa.url
 
     def get_cidade(self, obj):
         return obj.id_estado.cidade_principal if obj.id_estado else None
@@ -79,6 +109,15 @@ class AgenciaDetalheSerializer(serializers.ModelSerializer):
 
     def get_regiao(self, obj):
         return obj.id_estado.id_pais.regiao if obj.id_estado else None
+
+    def get_outros_paises(self, obj):
+        # Todos os países atendidos, exceto o da sede (que já aparece em
+        # "pais") — pra mostrar "também atende: X, Y, Z" quando a agência
+        # opera em mais de um lugar (ex.: EF Education).
+        sede_id = obj.id_estado.id_pais_id if obj.id_estado else None
+        return list(
+            obj.paises_atendidos.exclude(id=sede_id).values_list('nome', flat=True).order_by('nome')
+        )
 
     def get_nota_media(self, obj):
         media = obj.avaliacao_set.aggregate(media=Avg('nota'))['media']

@@ -1,19 +1,32 @@
+import logging
+
 from django.db.models import Avg
 
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
+from core.emails import enviar_boas_vindas
 from core.models import Agencia, User
+
+logger = logging.getLogger(__name__)
 
 
 class UserSerializer(ModelSerializer):
     avatar_url = serializers.SerializerMethodField()
     foto_url = serializers.SerializerMethodField()
+    agencia_id = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'name', 'foto', 'foto_url', 'avatar', 'avatar_url', 'is_active', 'is_staff', 'is_superuser', 'last_login', 'groups']
+        fields = ['id', 'username', 'email', 'name', 'tipo', 'agencia_id', 'foto', 'foto_url', 'avatar', 'avatar_url', 'is_active', 'is_staff', 'is_superuser', 'last_login', 'groups']
         depth = 1
+
+    def get_agencia_id(self, obj):
+        # Só existe pra contas business (tipo=agencia) já vinculadas a uma
+        # agência de verdade — front usa isso pra saber qual página abrir
+        # no editor sem precisar de outra chamada.
+        agencia = getattr(obj, 'agencia', None)
+        return agencia.id if agencia else None
 
     def get_avatar_url(self, obj):
         return self._build_file_url(obj.avatar)
@@ -110,4 +123,9 @@ class UserRegistrationSerializer(ModelSerializer):
         fields = ['id', 'email', 'name', 'password', 'foto']
 
     def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+        usuario = User.objects.create_user(**validated_data)
+        try:
+            enviar_boas_vindas(usuario)
+        except Exception:
+            logger.exception('Falha ao enviar e-mail de boas-vindas para %s', usuario.email)
+        return usuario

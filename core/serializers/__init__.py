@@ -6,3 +6,5 @@ from .estado import EstadoSerializer
 from .plano import PlanoSerializer
 from .programa import ProgramaSerializer
 from .tag import TagSerializer
+from .favorito import FavoritoSerializer
+from .solicitacao_agencia import SolicitacaoAgenciaCreateSerializer, SolicitacaoAgenciaStatusSerializer

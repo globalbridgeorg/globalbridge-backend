@@ -57,6 +57,96 @@ AGENCIAS_POR_ISO = {
         'descricao': 'Escola de inglês no centro de Dublin, com preparação para exames Cambridge e IELTS.',
         'site': 'https://www.kaplaninternational.com',
     },
+    'PT': {
+        'nome': 'EF Education',
+        'cidade': 'Lisboa',
+        'descricao': 'Cursos de português para estrangeiros e programas de imersão cultural em Lisboa.',
+        'site': 'https://www.ef.com',
+    },
+    'ES': {
+        'nome': 'EF Education',
+        'cidade': 'Barcelona',
+        'descricao': 'Cursos de espanhol em imersão em Barcelona, com certificação internacional reconhecida.',
+        'site': 'https://www.ef.com',
+    },
+    'FR': {
+        'nome': 'EF Education',
+        'cidade': 'Nice',
+        'descricao': 'Cursos de francês em imersão na Riviera Francesa, do nível iniciante ao avançado.',
+        'site': 'https://www.ef.com',
+    },
+    'IT': {
+        'nome': 'EF Education',
+        'cidade': 'Roma',
+        'descricao': 'Cursos de italiano em imersão no centro de Roma, com atividades culturais incluídas.',
+        'site': 'https://www.ef.com',
+    },
+    'NL': {
+        'nome': 'EF Education',
+        'cidade': 'Amsterdã',
+        'descricao': 'Cursos de inglês e holandês em Amsterdã, com forte comunidade internacional de estudantes.',
+        'site': 'https://www.ef.com',
+    },
+    'MT': {
+        'nome': 'EF Education',
+        'cidade': "St. Julian's",
+        'descricao': 'Cursos de inglês à beira-mar em Malta, um dos destinos mais em conta da Europa.',
+        'site': 'https://www.ef.com',
+    },
+    'JP': {
+        'nome': 'EF Education',
+        'cidade': 'Tóquio',
+        'descricao': 'Cursos de japonês em imersão em Tóquio, com atividades de cultura e tecnologia.',
+        'site': 'https://www.ef.com',
+    },
+    'MX': {
+        'nome': 'EF Education',
+        'cidade': 'Playa del Carmen',
+        'descricao': 'Cursos de espanhol em imersão no Caribe mexicano, com custo mais baixo que a Europa.',
+        'site': 'https://www.ef.com',
+    },
+    'AR': {
+        'nome': 'EF Education',
+        'cidade': 'Buenos Aires',
+        'descricao': 'Cursos de espanhol em imersão em Buenos Aires, próximo o suficiente pra quem já fala português.',
+        'site': 'https://www.ef.com',
+    },
+    'ZA': {
+        'nome': 'EF Education',
+        'cidade': 'Cidade do Cabo',
+        'descricao': 'Cursos de inglês em imersão na Cidade do Cabo, com atividades de natureza e vida selvagem.',
+        'site': 'https://www.ef.com',
+    },
+    'KR': {
+        'nome': 'Sogang University Korean Language Education Center',
+        'cidade': 'Seul',
+        'descricao': 'Um dos centros de coreano mais tradicionais do país, ligado à Universidade Sogang, em Seul.',
+        'site': 'https://klec.sogang.ac.kr',
+    },
+    'SG': {
+        'nome': 'British Council',
+        'cidade': 'Singapura',
+        'descricao': 'Cursos de inglês e preparação para exames internacionais, com a credibilidade do British Council.',
+        'site': 'https://www.britishcouncil.sg',
+    },
+    'CL': {
+        'nome': 'British Council',
+        'cidade': 'Santiago',
+        'descricao': 'Cursos de inglês em Santiago, com professores certificados e material do British Council.',
+        'site': 'https://www.britishcouncil.cl',
+    },
+    'CO': {
+        'nome': 'British Council',
+        'cidade': 'Bogotá',
+        'descricao': 'Cursos de inglês em Bogotá, com foco em preparação para exames internacionais.',
+        'site': 'https://www.britishcouncil.co',
+    },
+    'MA': {
+        'nome': 'CIEE',
+        'cidade': 'Rabat',
+        'descricao': 'Programas de imersão cultural e árabe em Rabat, em parceria com universidades locais.',
+        'site': 'https://www.ciee.org',
+    },
 }
 
 
