@@ -49,20 +49,33 @@ class UserViewSet(ModelViewSet):
 
     @extend_schema(
         summary="Dados do usuário autenticado",
-        description="Retorna os dados do usuário autenticado.",
-        responses={200: UserSerializer, 401: None},
+        description="Retorna os dados do usuário autenticado. DELETE apaga a conta permanentemente.",
+        responses={200: UserSerializer, 204: None, 401: None},
     )
     @action(
         detail=False,
-        methods=['get', 'patch'],
+        methods=['get', 'patch', 'delete'],
         permission_classes=[IsAuthenticated],
         parser_classes=[MultiPartParser, FormParser],
     )
     def me(self, request):
         """Retorna os dados do usuário autenticado.
 
-        Também aceita PATCH para atualizar a foto de perfil via /usuarios/me/.
+        Também aceita PATCH para atualizar a foto de perfil via /usuarios/me/,
+        e DELETE para o usuário apagar a própria conta.
         """
+        if request.method == 'DELETE':
+            user = request.user
+            # Conta business tem uma Agencia ligada por OneToOne (SET_NULL,
+            # não CASCADE) — sem isso a agência ficaria órfã no ar depois de
+            # apagar o usuário. Apagar a Agencia primeiro já leva junto (via
+            # CASCADE) avaliações, planos e galeria dela.
+            agencia = getattr(user, 'agencia', None)
+            if agencia is not None:
+                agencia.delete()
+            user.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
         if request.method == 'PATCH':
             user = request.user
             avatar = request.FILES.get('foto') or request.FILES.get('avatar')
