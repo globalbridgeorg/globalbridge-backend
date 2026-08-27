@@ -28,6 +28,14 @@ class UserViewSet(ModelViewSet):
             return PublicProfileSerializer
         return UserSerializer
 
+    def get_permissions(self):
+        # Perfil público (retrieve/by_username) precisa ser visível sem
+        # login — é o que aparece no link do autor de uma avaliação, por
+        # exemplo, e quem está só navegando o site ainda não logou.
+        if self.action in ('retrieve', 'by_username'):
+            return [AllowAny()]
+        return super().get_permissions()
+
     @extend_schema(
         summary="Perfil público por nome de usuário",
         description="Retorna nome e foto de um usuário a partir do seu username (usado na URL /usuarios/<username>).",
