@@ -9,5 +9,6 @@ from .tag import Tag
 from .favorito import Favorito
 from .solicitacao_agencia import SolicitacaoAgencia
 from .codigo_login import CodigoLogin
+from .codigo_verificacao_email import CodigoVerificacaoEmail
 from .solicitacao_pais import SolicitacaoPaisAdicional
 from .imagem_galeria import ImagemGaleria

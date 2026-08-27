@@ -179,6 +179,14 @@ class CodigoLoginAdmin(admin.ModelAdmin):
     readonly_fields = ('usuario', 'codigo', 'criado_em')
 
 
+@admin.register(models.CodigoVerificacaoEmail)
+class CodigoVerificacaoEmailAdmin(admin.ModelAdmin):
+    list_display = ('email', 'codigo', 'criado_em', 'verificado')
+    list_filter = ('verificado',)
+    search_fields = ('email', 'codigo')
+    readonly_fields = ('email', 'codigo', 'criado_em', 'usado', 'verificado', 'verificado_em')
+
+
 @admin.register(models.SolicitacaoAgencia)
 class SolicitacaoAgenciaAdmin(admin.ModelAdmin):
     """O User (tipo=agencia) já existe desde o momento do pedido — quem

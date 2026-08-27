@@ -4,6 +4,7 @@ import secrets
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.tokens import default_token_generator
 from django.core.exceptions import ValidationError as DjangoValidationError
+from django.utils import timezone
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from rest_framework.permissions import AllowAny
@@ -13,8 +14,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from django.conf import settings
 
-from core.emails import enviar_codigo_login, enviar_redefinir_senha
-from core.models import CodigoLogin, User
+from core.emails import enviar_codigo_cadastro, enviar_codigo_login, enviar_redefinir_senha
+from core.models import CodigoLogin, CodigoVerificacaoEmail, User
 
 logger = logging.getLogger(__name__)
 
@@ -123,3 +124,58 @@ class VerificarCodigoLoginView(APIView):
 
         refresh = RefreshToken.for_user(usuario)
         return Response({'access': str(refresh.access_token), 'refresh': str(refresh)})
+
+
+class SolicitarCodigoCadastroView(APIView):
+    """Manda um código de 6 dígitos pro e-mail informado no cadastro,
+    antes de criar a conta. Diferente do login por código, aqui avisamos
+    se o e-mail já tem conta — nesse ponto do formulário isso ajuda quem
+    está se cadastrando (evita preencher tudo pra falhar só no fim), não
+    é o mesmo risco de vazar dado sensível que seria no login."""
+
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        email = (request.data.get('email') or '').strip().lower()
+        if not email:
+            return Response({'detail': 'Informe um e-mail.'}, status=400)
+        if User.objects.filter(email=email).exists():
+            return Response({'detail': 'Este e-mail já está em uso.'}, status=400)
+
+        codigo = f'{secrets.randbelow(1_000_000):06d}'
+        CodigoVerificacaoEmail.objects.create(email=email, codigo=codigo)
+        try:
+            enviar_codigo_cadastro(email, codigo)
+        except Exception:
+            logger.exception('Falha ao enviar código de verificação de cadastro para %s', email)
+            return Response({'detail': 'Não conseguimos enviar o código agora. Tente novamente.'}, status=502)
+
+        return Response({'detail': 'Código enviado.'})
+
+
+class VerificarCodigoCadastroView(APIView):
+    """Confirma o código de verificação de cadastro. Não gera token —
+    só libera esse e-mail pra criar a conta de verdade em /registro/,
+    que confere de novo se existe um registro `verificado=True` recente
+    (ver CodigoVerificacaoEmail.email_verificado_recentemente)."""
+
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        email = (request.data.get('email') or '').strip().lower()
+        codigo = (request.data.get('codigo') or '').strip()
+
+        try:
+            registro = CodigoVerificacaoEmail.objects.filter(email=email, codigo=codigo).latest('criado_em')
+        except CodigoVerificacaoEmail.DoesNotExist:
+            return Response({'detail': 'Código inválido ou expirado.'}, status=400)
+
+        if not registro.valido():
+            return Response({'detail': 'Código inválido ou expirado.'}, status=400)
+
+        registro.usado = True
+        registro.verificado = True
+        registro.verificado_em = timezone.now()
+        registro.save(update_fields=['usado', 'verificado', 'verificado_em'])
+
+        return Response({'detail': 'E-mail verificado.'})

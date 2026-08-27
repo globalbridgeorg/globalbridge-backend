@@ -6,7 +6,7 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from core.emails import enviar_boas_vindas
-from core.models import Agencia, User
+from core.models import Agencia, CodigoVerificacaoEmail, User
 
 logger = logging.getLogger(__name__)
 
@@ -121,6 +121,12 @@ class UserRegistrationSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'name', 'password', 'foto']
+
+    def validate_email(self, value):
+        email = value.strip().lower()
+        if not CodigoVerificacaoEmail.email_verificado_recentemente(email):
+            raise serializers.ValidationError('Confirme seu e-mail antes de criar a conta.')
+        return email
 
     def create(self, validated_data):
         usuario = User.objects.create_user(**validated_data)

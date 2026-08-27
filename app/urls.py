@@ -30,6 +30,8 @@ from core.views import (
     RedefinirSenhaView,
     SolicitarCodigoLoginView,
     VerificarCodigoLoginView,
+    SolicitarCodigoCadastroView,
+    VerificarCodigoCadastroView,
 )
 
 from django.conf import settings
@@ -80,6 +82,9 @@ urlpatterns = [
     path('api/auth/redefinir-senha/', RedefinirSenhaView.as_view(), name='redefinir_senha'),
     path('api/auth/codigo/solicitar/', SolicitarCodigoLoginView.as_view(), name='codigo_login_solicitar'),
     path('api/auth/codigo/verificar/', VerificarCodigoLoginView.as_view(), name='codigo_login_verificar'),
+    # Confirmação de e-mail no cadastro (antes de existir usuário)
+    path('api/auth/cadastro/codigo/solicitar/', SolicitarCodigoCadastroView.as_view(), name='codigo_cadastro_solicitar'),
+    path('api/auth/cadastro/codigo/verificar/', VerificarCodigoCadastroView.as_view(), name='codigo_cadastro_verificar'),
     # API
     path('api/', include(router.urls)),
     path('', include(router.urls)),

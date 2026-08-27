@@ -242,6 +242,37 @@ def enviar_codigo_login(usuario, codigo):
     )
 
 
+def enviar_codigo_cadastro(email, codigo):
+    codigo_espacado = f'{codigo[:3]} {codigo[3:]}' if len(codigo) == 6 else codigo
+    html = _shell(
+        'Confirme seu e-mail', _MAGENTA,
+        'Confirme seu<br>e-mail',
+        (
+            _paragrafo('Use o código abaixo pra confirmar seu e-mail e concluir seu cadastro na GlobalBridge. '
+                       'Ele expira em 10 minutos.')
+            + f'<div style="background:{_CREME_CLARO};border-radius:14px;padding:22px;text-align:center;margin:0 0 20px;">'
+              f'<span style="font-family:\'Courier New\',monospace;font-weight:700;font-size:32px;letter-spacing:8px;'
+              f'color:{_ESCURO};">{codigo_espacado}</span></div>'
+            + f'<p style="margin:0;color:{_CINZA_CLARO};font-family:{_FONTE};font-size:13px;line-height:1.6;">'
+              f'Não pediu esse cadastro? Pode ignorar este e-mail — nenhuma conta será criada.</p>'
+        ),
+        'Por segurança, nunca compartilhe esse código — a GlobalBridge nunca vai pedir ele por telefone ou chat.',
+    )
+    _enviar(
+        email,
+        f'Seu código de confirmação: {codigo}',
+        (
+            f'Use o código abaixo pra confirmar seu e-mail e concluir seu '
+            f'cadastro na GlobalBridge. Ele expira em 10 minutos.\n\n'
+            f'{codigo}\n\n'
+            f'Não pediu esse cadastro? Pode ignorar este e-mail — nenhuma '
+            f'conta será criada.\n\n'
+            f'— Equipe GlobalBridge'
+        ),
+        html,
+    )
+
+
 def enviar_redefinir_senha(usuario, link):
     html = _shell(
         'Redefinição de senha', _AZUL,

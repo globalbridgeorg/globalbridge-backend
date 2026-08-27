@@ -14,4 +14,6 @@ from .auth import (
     RedefinirSenhaView,
     SolicitarCodigoLoginView,
     VerificarCodigoLoginView,
+    SolicitarCodigoCadastroView,
+    VerificarCodigoCadastroView,
 )
