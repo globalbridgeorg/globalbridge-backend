@@ -164,7 +164,14 @@ class Command(BaseCommand):
                 sem_mapeamento.append(f'{pais.nome} ({pais.codigo_iso})')
                 continue
 
-            if Agencia.objects.filter(nome=dados['nome'], id_estado__id_pais=pais).exists():
+            agencia = Agencia.objects.filter(nome=dados['nome'], id_estado__id_pais=pais).first()
+            if agencia is not None:
+                # Já existia — mas roda de novo mesmo assim, porque uma
+                # versão antiga deste comando criava a agência sem marcar
+                # `paises_atendidos` (o M2M que decide quais agências
+                # aparecem em cada país). Sem essa linha, a agência existe
+                # no banco mas some da página do país.
+                agencia.paises_atendidos.add(pais)
                 ja_existiam += 1
                 continue
 
@@ -172,7 +179,7 @@ class Command(BaseCommand):
                 cidade_principal=dados['cidade'], id_pais=pais,
                 defaults={'nome': dados['cidade']},
             )
-            Agencia.objects.create(
+            agencia = Agencia.objects.create(
                 nome=dados['nome'],
                 descricao=dados['descricao'],
                 contato='',
@@ -183,6 +190,7 @@ class Command(BaseCommand):
                 ativo=True,
                 id_estado=estado,
             )
+            agencia.paises_atendidos.add(pais)
             criadas += 1
 
         self.stdout.write(self.style.SUCCESS(f'{criadas} agência(s) criada(s), {ja_existiam} já existiam.'))

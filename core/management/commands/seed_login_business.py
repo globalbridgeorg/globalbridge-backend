@@ -21,8 +21,13 @@ class Command(BaseCommand):
                 ja_tinham += 1
                 continue
 
+            # Inclui o id da agência no e-mail — sem isso, duas agências com
+            # nome igual ou muito parecido (ex.: "Rota Global Educação" e
+            # outra variação) geram o mesmo slug, o get_or_create abaixo
+            # devolve o MESMO usuário pras duas, e a segunda falha ao salvar
+            # (usuario_id é único em Agencia).
             slug = slugify(agencia.nome)
-            email = f'negocios@{slug}.globalbridge.test'
+            email = f'negocios+{agencia.id}@{slug}.globalbridge.test'
 
             usuario, foi_criado = User.objects.get_or_create(
                 email=email,
