@@ -1,5 +1,25 @@
+import os
+
 from django.conf import settings
+from django.core.files.storage import default_storage
 from django.db import models
+
+
+def _storage_documento():
+    """O storage padrão do Cloudinary (STORAGES['default'] no settings.py)
+    manda tudo como resource_type="image" — funciona pros outros campos de
+    imagem do site, mas aqui o campo guarda o COMPROVANTE que a agência
+    envia (PDF, foto de documento, etc.), não uma imagem garantida. Subir
+    um PDF como "image" o Cloudinary recusa, e sem isso o pedido inteiro
+    quebrava com erro 500 sem nenhuma solicitação chegar a ser salva.
+    RawMediaCloudinaryStorage manda como resource_type="raw", que aceita
+    qualquer tipo de arquivo. Só troca pra ele quando o Cloudinary está de
+    fato configurado (mesma checagem do settings.py) — em dev sem
+    CLOUDINARY_URL, cai no storage padrão de sempre (arquivo local)."""
+    if os.getenv('CLOUDINARY_URL'):
+        from cloudinary_storage.storage import RawMediaCloudinaryStorage
+        return RawMediaCloudinaryStorage()
+    return default_storage
 
 
 class SolicitacaoAgencia(models.Model):
@@ -27,7 +47,7 @@ class SolicitacaoAgencia(models.Model):
     email_responsavel = models.EmailField()
 
     # Provas e contexto
-    documento = models.FileField(upload_to='solicitacoes_agencia/documentos/')
+    documento = models.FileField(upload_to='solicitacoes_agencia/documentos/', storage=_storage_documento)
     descricao = models.TextField(blank=True, help_text='Por que a agência deveria estar na GlobalBridge.')
 
     # Fluxo de aprovação
