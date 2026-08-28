@@ -6,7 +6,7 @@ from .tag import TagSerializer
 
 
 class PaisSerializer(serializers.ModelSerializer):
-    programas_count = serializers.SerializerMethodField()
+    agencias_count = serializers.SerializerMethodField()
     agencia_destaque = serializers.SerializerMethodField()
     tags = TagSerializer(many=True, read_only=True)
 
@@ -14,10 +14,13 @@ class PaisSerializer(serializers.ModelSerializer):
         model = Pais
         fields = '__all__'
 
-    def get_programas_count(self, obj):
-        return Programa.objects.filter(
-            plano__id_agencia__paises_atendidos=obj
-        ).distinct().count()
+    def get_agencias_count(self, obj):
+        # Antes contava Programa distinto (plano__id_agencia__paises_atendidos),
+        # mas Programa é um catálogo compartilhado entre agências (ex.: "Curso
+        # de Idiomas" é o mesmo registro pra várias) — duas agências diferentes
+        # oferecendo o mesmo tipo de programa contavam como 1 só. Contar
+        # agência é o número que realmente varia por país.
+        return Agencia.objects.filter(paises_atendidos=obj, ativo=True).distinct().count()
 
     def get_agencia_destaque(self, obj):
         agencias = Agencia.objects.filter(paises_atendidos=obj, ativo=True).annotate(
