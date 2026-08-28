@@ -72,7 +72,12 @@ class Command(BaseCommand):
         for dados in AGENCIAS_FICTICIAS:
             agencia = Agencia.objects.filter(nome=dados['nome']).first()
             if agencia is None:
-                sede = Pais.objects.filter(codigo_iso=dados['sede_iso']).first()
+                # Fallback pro primeiro país cadastrado se o país "ideal" da
+                # sede (ex.: Canadá pra Rota Global) não existir nesse
+                # ambiente — cada banco (local/produção) pode ter um
+                # catálogo de países diferente, e isso não deveria impedir
+                # a agência fictícia de ser criada em algum país válido.
+                sede = Pais.objects.filter(codigo_iso=dados['sede_iso']).first() or todos_paises.first()
                 estado, _ = Estado.objects.get_or_create(
                     cidade_principal=dados['cidade'], id_pais=sede,
                     defaults={'nome': dados['cidade']},
