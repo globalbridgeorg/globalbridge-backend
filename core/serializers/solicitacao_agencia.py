@@ -1,5 +1,6 @@
 import logging
 
+from django.db import transaction
 from rest_framework import serializers
 
 from core.emails import enviar_pedido_recebido
@@ -36,16 +37,23 @@ class SolicitacaoAgenciaCreateSerializer(serializers.ModelSerializer):
         senha = validated_data.pop('senha')
         paises_atendidos = validated_data.pop('paises_atendidos', [])
 
-        usuario = User.objects.create_user(
-            email=validated_data['email_responsavel'],
-            password=senha,
-            name=validated_data['nome_responsavel'],
-        )
-        usuario.tipo = 'agencia'
-        usuario.save(update_fields=['tipo'])
+        # Atômico: criar o User e falhar depois ao criar a SolicitacaoAgencia
+        # (upload do documento, campo obrigatório faltando etc.) deixava o
+        # usuário órfão salvo no banco sem pedido nenhum — quem tentasse de
+        # novo esbarrava em "e-mail já cadastrado" sem ter nenhum pedido pra
+        # mostrar. Com a transação, qualquer erro no meio desfaz tudo e a
+        # pessoa consegue tentar de novo com o mesmo e-mail.
+        with transaction.atomic():
+            usuario = User.objects.create_user(
+                email=validated_data['email_responsavel'],
+                password=senha,
+                name=validated_data['nome_responsavel'],
+            )
+            usuario.tipo = 'agencia'
+            usuario.save(update_fields=['tipo'])
 
-        solicitacao = SolicitacaoAgencia.objects.create(usuario_criado=usuario, **validated_data)
-        solicitacao.paises_atendidos.set(paises_atendidos)
+            solicitacao = SolicitacaoAgencia.objects.create(usuario_criado=usuario, **validated_data)
+            solicitacao.paises_atendidos.set(paises_atendidos)
 
         try:
             enviar_pedido_recebido(solicitacao)
