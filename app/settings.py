@@ -161,9 +161,17 @@ else:
             },
         }
     else:
-        # Fallback seguro: usa FileSystemStorage para uploads locais quando Cloudinary não estiver configurado
+        # Fallback seguro: usa FileSystemStorage para uploads locais quando Cloudinary não estiver configurado.
+        # A chave 'default' aqui é obrigatória a partir do Django 4.2/5.x — sem
+        # ela, qualquer código que resolva o storage padrão logo na inicialização
+        # (em vez de só na hora de salvar um arquivo) quebra com
+        # "Could not find config for 'default' in settings.STORAGES", porque o
+        # Django não usa mais DEFAULT_FILE_STORAGE pra preencher esse buraco.
         DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
         STORAGES = {
+            'default': {
+                'BACKEND': 'django.core.files.storage.FileSystemStorage',
+            },
             'staticfiles': {
                 'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
             },
