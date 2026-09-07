@@ -17,12 +17,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Segurança e configuração básica
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = ['*']
+
+# ALLOWED_HOSTS e CORS vêm de variável de ambiente em produção, com
+# fallback aberto só em DEBUG (dev local). Em produção, defina
+# ALLOWED_HOSTS e CORS_ALLOWED_ORIGINS no Render com os domínios reais
+# (o host do backend e a URL do frontend na Vercel) — assim o backend
+# para de aceitar requisição de qualquer origem/host.
+_allowed = os.getenv('ALLOWED_HOSTS', '')
+ALLOWED_HOSTS = [h.strip() for h in _allowed.split(',') if h.strip()] or (['*'] if DEBUG else [])
+
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',
 ]
-CORS_ALLOW_ALL_ORIGINS = True
+_cors = os.getenv('CORS_ALLOWED_ORIGINS', '')
+if _cors:
+    CORS_ALLOWED_ORIGINS = [o.strip() for o in _cors.split(',') if o.strip()]
+    CORS_ALLOW_ALL_ORIGINS = False
+    CSRF_TRUSTED_ORIGINS = CSRF_TRUSTED_ORIGINS + CORS_ALLOWED_ORIGINS
+else:
+    # Sem a variável configurada, mantém o comportamento antigo (aberto) pra
+    # não derrubar o site antes de você setar os domínios no Render.
+    CORS_ALLOW_ALL_ORIGINS = True
 
 # Aplicações instaladas
 INSTALLED_APPS = [
@@ -70,13 +86,6 @@ TEMPLATES = [
             ],
         },
     },
-]
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",   # React padrão
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",   # Vite (Vue/React) local dev
-    "https://globalbridge-frontend-production-ea1b.up.railway.app",  # Railway production
 ]
 
 WSGI_APPLICATION = 'app.wsgi.application'
@@ -217,6 +226,13 @@ AUTH_USER_MODEL = 'core.User'
 # Configurações do Django REST Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
+    # Sem isso, o padrão do DRF é AllowAny — qualquer um podia criar/editar/
+    # apagar em qualquer endpoint que não sobrescrevesse a permissão (era o
+    # caso de /programa/, /plano/, /estado/, que aceitavam escrita sem login
+    # nenhum). Com IsAuthenticatedOrReadOnly, GET continua público em todo
+    # lugar, mas escrever exige estar logado por padrão; cada ViewSet ainda
+    # pode apertar mais (ex.: só admin, só dono) por cima disso.
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
     'DEFAULT_PAGINATION_CLASS': 'app.pagination.CustomPagination',
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'PAGE_SIZE': 10,

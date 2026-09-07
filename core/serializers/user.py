@@ -19,6 +19,17 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'name', 'tipo', 'agencia_id', 'foto', 'foto_url', 'avatar', 'avatar_url', 'is_active', 'is_staff', 'is_superuser', 'last_login', 'groups']
+        # CRÍTICO: sem isso, um PATCH em /usuarios/<id>/ com
+        # {"is_superuser": true} promovia qualquer conta a superadmin — os
+        # campos estavam graváveis pela API. Aqui eles voltam a ser só de
+        # leitura (o front ainda lê `tipo`/`agencia_id` normalmente); mudar
+        # tipo/permissão/e-mail só pelo admin ou pelos fluxos próprios
+        # (verificação de agência, etc.). O usuário comum só edita `name` e a
+        # foto pela própria conta.
+        read_only_fields = [
+            'username', 'email', 'tipo', 'is_active', 'is_staff',
+            'is_superuser', 'last_login', 'groups',
+        ]
         depth = 1
 
     def get_agencia_id(self, obj):

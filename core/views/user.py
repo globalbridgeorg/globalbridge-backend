@@ -5,7 +5,8 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.generics import CreateAPIView
 from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.exceptions import PermissionDenied
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
@@ -34,7 +35,32 @@ class UserViewSet(ModelViewSet):
         # exemplo, e quem está só navegando o site ainda não logou.
         if self.action in ('retrieve', 'by_username'):
             return [AllowAny()]
+        # Listar TODOS os usuários vaza e-mail de todo mundo (LGPD) e não é
+        # usado por nenhuma tela do site — só admin. As demais ações
+        # (update/destroy) continuam exigindo login e ainda passam pela
+        # trava de "só o próprio dono" abaixo.
+        if self.action == 'list':
+            return [IsAdminUser()]
         return super().get_permissions()
+
+    def _garantir_dono_ou_admin(self):
+        # update/partial_update/destroy pela rota /usuarios/<id>/: sem essa
+        # trava, qualquer conta logada editava/apagava a conta de outra
+        # pessoa só trocando o id na URL. Admin ainda pode gerenciar todos.
+        obj = self.get_object()
+        user = self.request.user
+        if obj.id != user.id and not user.is_staff:
+            raise PermissionDenied('Você só pode alterar a sua própria conta.')
+
+    def perform_update(self, serializer):
+        self._garantir_dono_ou_admin()
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        user = self.request.user
+        if instance.id != user.id and not user.is_staff:
+            raise PermissionDenied('Você só pode apagar a sua própria conta.')
+        instance.delete()
 
     @extend_schema(
         summary="Perfil público por nome de usuário",
