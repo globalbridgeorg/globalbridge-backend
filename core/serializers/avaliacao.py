@@ -6,6 +6,9 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
     # fez a requisição (ver AvaliacaoViewSet.perform_create), senão
     # qualquer um poderia postar uma avaliação em nome de outra pessoa.
     usuario_nome = serializers.CharField(source='id_usuario.name', read_only=True)
+    # A nota é 1 a 5. Sem isso, a API aceitava qualquer inteiro (999, -5) e
+    # isso entrava na média da agência, corrompendo a reputação.
+    nota = serializers.IntegerField(min_value=1, max_value=5)
 
     class Meta:
         model = Avaliacao

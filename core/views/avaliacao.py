@@ -21,7 +21,21 @@ class AvaliacaoViewSet(ModelViewSet):
         return queryset.order_by('-id')
 
     def perform_create(self, serializer):
-        serializer.save(id_usuario=self.request.user)
+        # update_or_create: uma pessoa só tem UMA avaliação por agência.
+        # Sem isso, dava pra postar avaliações repetidas pra mesma agência e
+        # empilhar a média (manipulação de reputação). Reenviar agora
+        # atualiza a avaliação existente em vez de criar outra.
+        obj, _ = Avaliacao.objects.update_or_create(
+            id_usuario=self.request.user,
+            id_agencia=serializer.validated_data['id_agencia'],
+            defaults={
+                'nota': serializer.validated_data['nota'],
+                'comentario': serializer.validated_data['comentario'],
+            },
+        )
+        # Deixa o objeto salvo no serializer pra resposta 201 sair com id/nome
+        # corretos (a rota de create do DRF serializa serializer.instance).
+        serializer.instance = obj
 
     def _garantir_dono(self):
         # Sem isso, qualquer conta logada conseguia editar/apagar a
