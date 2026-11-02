@@ -13,7 +13,6 @@ from rest_framework_simplejwt.views import (
 )
 
 from core.views import (
-    UploadFotoPerfilView,
     UserRegistrationView,
     UserViewSet,
     PaisViewSet,
@@ -70,12 +69,6 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     # Registro de usuários
     path('api/registro/', UserRegistrationView.as_view(), name='user_registration'),
-    # Local dev root aliases (frontend may use base URL without /api)
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair_root'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh_root'),
-    path('token/verify/', TokenVerifyView.as_view(), name='token_verify_root'),
-    path('registro/', UserRegistrationView.as_view(), name='user_registration_root'),
-    path('perfil/foto/', UserViewSet.as_view({'patch': 'foto'}), name='perfil_foto'),
     path('api/estatisticas/', EstatisticasView.as_view(), name='estatisticas'),
     # Redefinição de senha e login por código
     path('api/auth/esqueci-senha/', SolicitarRedefinicaoSenhaView.as_view(), name='esqueci_senha'),
@@ -87,5 +80,4 @@ urlpatterns = [
     path('api/auth/cadastro/codigo/verificar/', VerificarCodigoCadastroView.as_view(), name='codigo_cadastro_verificar'),
     # API
     path('api/', include(router.urls)),
-    path('', include(router.urls)),
 ]
