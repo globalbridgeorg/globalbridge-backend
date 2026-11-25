@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.db.models import Avg
 
 from core.models import Pais, Estado, Agencia, Programa
+from core.storage import url_para_campo_arquivo
 from .tag import TagSerializer
 
 
@@ -15,11 +16,6 @@ class PaisSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_agencias_count(self, obj):
-        # Antes contava Programa distinto (plano__id_agencia__paises_atendidos),
-        # mas Programa é um catálogo compartilhado entre agências (ex.: "Curso
-        # de Idiomas" é o mesmo registro pra várias) — duas agências diferentes
-        # oferecendo o mesmo tipo de programa contavam como 1 só. Contar
-        # agência é o número que realmente varia por país.
         return Agencia.objects.filter(paises_atendidos=obj, ativo=True).distinct().count()
 
     def get_agencia_destaque(self, obj):
@@ -29,7 +25,7 @@ class PaisSerializer(serializers.ModelSerializer):
         agencia = agencias.first()
         if not agencia:
             return None
-        return AgenciaResumidaSerializer(agencia).data
+        return AgenciaResumidaSerializer(agencia, context=self.context).data
 
 
 class CidadeResumidaSerializer(serializers.ModelSerializer):
@@ -44,16 +40,19 @@ class AgenciaResumidaSerializer(serializers.ModelSerializer):
     pais_nome_ingles = serializers.SerializerMethodField()
     nota_media = serializers.SerializerMethodField()
     tags = TagSerializer(many=True, read_only=True)
+    imagem_capa_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Agencia
-        fields = ['id', 'nome', 'descricao', 'cidade', 'pais', 'pais_nome_ingles', 'nota_media', 'tags']
+        fields = [
+            'id', 'nome', 'descricao', 'cidade', 'pais', 'pais_nome_ingles',
+            'nota_media', 'tags', 'imagem_capa_url', 'imagem_capa_foco_x', 'imagem_capa_foco_y',
+        ]
+
+    def get_imagem_capa_url(self, obj):
+        return url_para_campo_arquivo(obj.imagem_capa, self.context.get('request'))
 
     def get_cidade(self, obj):
-        # Numa listagem dentro de um país específico (get_agencias abaixo),
-        # só faz sentido mostrar a cidade quando ela É a sede — pra uma
-        # agência com unidades em vários países (ex.: EF Education), a
-        # cidade da sede não tem nada a ver com o país sendo exibido.
         pais_contexto = self.context.get('pais_contexto')
         if pais_contexto and (not obj.id_estado or obj.id_estado.id_pais_id != pais_contexto.id):
             return None
@@ -101,7 +100,8 @@ class PaisDetalheSerializer(serializers.ModelSerializer):
 
     def get_agencias(self, obj):
         agencias = Agencia.objects.filter(paises_atendidos=obj, ativo=True).distinct()
-        return AgenciaResumidaSerializer(agencias, many=True, context={'pais_contexto': obj}).data
+        ctx = {**self.context, 'pais_contexto': obj}
+        return AgenciaResumidaSerializer(agencias, many=True, context=ctx).data
 
     def get_programas(self, obj):
         programas = Programa.objects.filter(

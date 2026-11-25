@@ -12,3 +12,4 @@ from .codigo_login import CodigoLogin
 from .codigo_verificacao_email import CodigoVerificacaoEmail
 from .solicitacao_pais import SolicitacaoPaisAdicional
 from .imagem_galeria import ImagemGaleria
+from .mensagem_contato import MensagemContato

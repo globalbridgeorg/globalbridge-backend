@@ -10,14 +10,16 @@ logger = logging.getLogger(__name__)
 
 
 class SolicitacaoAgenciaCreateSerializer(serializers.ModelSerializer):
-    """Usado só na criação (POST) — aceita tudo que o formulário manda.
+    """Cria uma solicitação de conta business.
 
-    Cria o User (tipo=agencia, sem Agencia vinculada ainda) NA HORA do
-    pedido, não só quando aprova — assim quem pediu já sai com login
-    próprio pra acompanhar o status depois, em vez de depender de um link
-    salvo no navegador (que some se trocar de aparelho/limpar dados)."""
+    Suporta dois fluxos:
+    1. Usuário já autenticado (ex.: cadastro criado na etapa anterior do formulário):
+       vincula a solicitação ao próprio usuário e marca `tipo = 'agencia'`.
+    2. Usuário anônimo (ex.: envio direto via API/Swagger com campo `senha`):
+       cria o `User(tipo='agencia')` e a `SolicitacaoAgencia` atomicamente.
+    """
 
-    senha = serializers.CharField(write_only=True, min_length=8)
+    senha = serializers.CharField(write_only=True, min_length=8, required=False, allow_blank=True)
 
     class Meta:
         model = SolicitacaoAgencia
@@ -28,48 +30,67 @@ class SolicitacaoAgenciaCreateSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id']
 
-    def validate_email_responsavel(self, value):
-        if User.objects.filter(email=value).exists():
-            raise serializers.ValidationError('Já existe uma conta com esse e-mail — faça login em vez de enviar um novo pedido.')
-        return value
+    def validate(self, attrs):
+        request = self.context.get('request')
+        user = getattr(request, 'user', None)
+        autenticado = bool(user and user.is_authenticated)
+
+        if autenticado:
+            if SolicitacaoAgencia.objects.filter(usuario_criado=user).exists():
+                raise serializers.ValidationError({'detail': 'Você já possui uma solicitação de agência enviada.'})
+            attrs['email_responsavel'] = (attrs.get('email_responsavel') or user.email).strip().lower()
+        else:
+            email = (attrs.get('email_responsavel') or '').strip().lower()
+            attrs['email_responsavel'] = email
+            if User.objects.filter(email=email).exists():
+                raise serializers.ValidationError({
+                    'email_responsavel': 'Já existe uma conta com esse e-mail — faça login em vez de enviar um novo pedido.'
+                })
+            if not attrs.get('senha'):
+                raise serializers.ValidationError({'senha': 'Informe uma senha com pelo menos 8 caracteres.'})
+
+        return attrs
 
     def create(self, validated_data):
-        senha = validated_data.pop('senha')
+        senha = validated_data.pop('senha', None)
         paises_atendidos = validated_data.pop('paises_atendidos', [])
+        request = self.context.get('request')
+        user = getattr(request, 'user', None)
 
-        # Atômico: criar o User e falhar depois ao criar a SolicitacaoAgencia
-        # (upload do documento, campo obrigatório faltando etc.) deixava o
-        # usuário órfão salvo no banco sem pedido nenhum — quem tentasse de
-        # novo esbarrava em "e-mail já cadastrado" sem ter nenhum pedido pra
-        # mostrar. Com a transação, qualquer erro no meio desfaz tudo e a
-        # pessoa consegue tentar de novo com o mesmo e-mail.
         with transaction.atomic():
-            usuario = User.objects.create_user(
-                email=validated_data['email_responsavel'],
-                password=senha,
-                name=validated_data['nome_responsavel'],
-            )
-            usuario.tipo = 'agencia'
-            usuario.save(update_fields=['tipo'])
+            if user and user.is_authenticated:
+                usuario = user
+                if usuario.tipo != 'agencia':
+                    usuario.tipo = 'agencia'
+                    usuario.save(update_fields=['tipo'])
+            else:
+                usuario = User.objects.create_user(
+                    email=validated_data['email_responsavel'],
+                    password=senha,
+                    name=validated_data['nome_responsavel'],
+                )
+                usuario.tipo = 'agencia'
+                usuario.save(update_fields=['tipo'])
 
             solicitacao = SolicitacaoAgencia.objects.create(usuario_criado=usuario, **validated_data)
-            solicitacao.paises_atendidos.set(paises_atendidos)
+            paises = list(paises_atendidos)
+            if solicitacao.pais_sede not in paises:
+                paises.append(solicitacao.pais_sede)
+            solicitacao.paises_atendidos.set(paises)
 
         try:
             enviar_pedido_recebido(solicitacao)
         except Exception:
-            # Não deixa uma falha de e-mail (provedor fora, etc.) derrubar
-            # o pedido em si — a pessoa já consegue ver o status logando.
             logger.exception('Falha ao enviar e-mail de "pedido recebido" para %s', solicitacao.email_responsavel)
 
         return solicitacao
 
 
 class SolicitacaoAgenciaStatusSerializer(serializers.ModelSerializer):
-    """Usado pra consultar status (GET) — só o que é seguro mostrar
-    publicamente, sem exigir login (quem manda o pedido ainda não tem
-    conta). Nada de e-mail/documento/dados sensíveis aqui."""
+    """Consulta de status da solicitação — sem expor dados sensíveis."""
+
+    agencia_criada_id = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = SolicitacaoAgencia
-        fields = ['id', 'nome', 'status', 'motivo_recusa', 'criado_em', 'revisado_em']
+        fields = ['id', 'nome', 'status', 'motivo_recusa', 'criado_em', 'revisado_em', 'agencia_criada_id']

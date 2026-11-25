@@ -1,16 +1,19 @@
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError as DjangoValidationError
 from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework.generics import CreateAPIView
-from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.generics import CreateAPIView
+from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from core.models import User
-from core.serializers import UserRegistrationSerializer, UserSerializer, PublicProfileSerializer
+from core.serializers import PublicProfileSerializer, UserRegistrationSerializer, UserSerializer
 
 
 class UserViewSet(ModelViewSet):
@@ -19,31 +22,18 @@ class UserViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
-        # Ver o perfil de OUTRA pessoa (retrieve/by_username) nunca deve
-        # vazar email, permissões etc. — só o /usuarios/me/ (uma @action
-        # separada) usa o serializer completo pro próprio usuário.
         if self.action in ('retrieve', 'by_username'):
             return PublicProfileSerializer
         return UserSerializer
 
     def get_permissions(self):
-        # Perfil público (retrieve/by_username) precisa ser visível sem
-        # login — é o que aparece no link do autor de uma avaliação, por
-        # exemplo, e quem está só navegando o site ainda não logou.
         if self.action in ('retrieve', 'by_username'):
             return [AllowAny()]
-        # Listar TODOS os usuários vaza e-mail de todo mundo (LGPD) e não é
-        # usado por nenhuma tela do site — só admin. As demais ações
-        # (update/destroy) continuam exigindo login e ainda passam pela
-        # trava de "só o próprio dono" abaixo.
         if self.action == 'list':
             return [IsAdminUser()]
         return super().get_permissions()
 
     def _garantir_dono_ou_admin(self):
-        # update/partial_update/destroy pela rota /usuarios/<id>/: sem essa
-        # trava, qualquer conta logada editava/apagava a conta de outra
-        # pessoa só trocando o id na URL. Admin ainda pode gerenciar todos.
         obj = self.get_object()
         user = self.request.user
         if obj.id != user.id and not user.is_staff:
@@ -61,7 +51,7 @@ class UserViewSet(ModelViewSet):
 
     @extend_schema(
         summary="Perfil público por nome de usuário",
-        description="Retorna nome e foto de um usuário a partir do seu username (usado na URL /usuarios/<username>).",
+        description="Retorna nome, foto e histórico público de um usuário a partir do seu username.",
         responses={200: PublicProfileSerializer, 404: None},
     )
     @action(detail=False, methods=['get'], url_path=r'u/(?P<username>[\w-]+)')
@@ -72,27 +62,18 @@ class UserViewSet(ModelViewSet):
 
     @extend_schema(
         summary="Dados do usuário autenticado",
-        description="Retorna os dados do usuário autenticado. DELETE apaga a conta permanentemente.",
+        description="GET retorna dados da conta; PATCH atualiza nome ou foto; DELETE apaga a conta permanentemente.",
         responses={200: UserSerializer, 204: None, 401: None},
     )
     @action(
         detail=False,
         methods=['get', 'patch', 'delete'],
         permission_classes=[IsAuthenticated],
-        parser_classes=[MultiPartParser, FormParser],
+        parser_classes=[JSONParser, MultiPartParser, FormParser],
     )
     def me(self, request):
-        """Retorna os dados do usuário autenticado.
-
-        Também aceita PATCH para atualizar a foto de perfil via /usuarios/me/,
-        e DELETE para o usuário apagar a própria conta.
-        """
         if request.method == 'DELETE':
             user = request.user
-            # Conta business tem uma Agencia ligada por OneToOne (SET_NULL,
-            # não CASCADE) — sem isso a agência ficaria órfã no ar depois de
-            # apagar o usuário. Apagar a Agencia primeiro já leva junto (via
-            # CASCADE) avaliações, planos e galeria dela.
             agencia = getattr(user, 'agencia', None)
             if agencia is not None:
                 agencia.delete()
@@ -101,22 +82,58 @@ class UserViewSet(ModelViewSet):
 
         if request.method == 'PATCH':
             user = request.user
+            campos = []
             avatar = request.FILES.get('foto') or request.FILES.get('avatar')
-            if not avatar:
-                return Response({'detail': 'Nenhuma imagem enviada.'}, status=status.HTTP_400_BAD_REQUEST)
+            if avatar:
+                user.avatar = avatar
+                campos.append('avatar')
 
-            user.avatar = avatar
-            user.save(update_fields=['avatar'])
+            if isinstance(request.data, dict):
+                if 'name' in request.data:
+                    user.name = str(request.data.get('name') or '').strip()
+                    campos.append('name')
+                avatar_url = request.data.get('avatar_url')
+                if isinstance(avatar_url, str) and avatar_url.startswith(('http://', 'https://')):
+                    user.avatar = avatar_url
+                    if 'avatar' not in campos:
+                        campos.append('avatar')
+
+            if not campos:
+                return Response({'detail': 'Nenhum campo válido enviado.'}, status=status.HTTP_400_BAD_REQUEST)
+
+            user.save(update_fields=campos)
             serializer = UserSerializer(user, context={'request': request})
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        user = request.user
-        serializer = UserSerializer(user, context={'request': request})
+        serializer = UserSerializer(request.user, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
-        summary="Atualizar foto via upload direto ou URL do Cloudinary",
-        description="Aceita um arquivo enviado em multipart ou uma URL do Cloudinary para atualizar o avatar do usuário.",
+        summary="Alterar senha do usuário autenticado",
+        description="Atualiza a senha da conta autenticada validando as regras de segurança do Django.",
+        responses={200: None, 400: None, 401: None},
+    )
+    @action(
+        detail=False,
+        methods=['post'],
+        url_path='me/senha',
+        permission_classes=[IsAuthenticated],
+        parser_classes=[JSONParser],
+    )
+    def alterar_senha(self, request):
+        nova_senha = request.data.get('nova_senha') or ''
+        try:
+            validate_password(nova_senha, user=request.user)
+        except DjangoValidationError as exc:
+            return Response({'detail': ' '.join(exc.messages)}, status=status.HTTP_400_BAD_REQUEST)
+
+        request.user.set_password(nova_senha)
+        request.user.save(update_fields=['password'])
+        return Response({'detail': 'Senha atualizada com sucesso.'}, status=status.HTTP_200_OK)
+
+    @extend_schema(
+        summary="Atualizar foto de perfil via upload ou URL",
+        description="Aceita um arquivo enviado em multipart ou uma URL válida para atualizar o avatar do usuário.",
         responses={200: UserSerializer, 400: None, 401: None},
     )
     @action(
@@ -127,7 +144,6 @@ class UserViewSet(ModelViewSet):
         parser_classes=[JSONParser, MultiPartParser, FormParser],
     )
     def avatar_cloudinary(self, request):
-        """Atualiza a foto de perfil do usuário com upload direto ou URL do Cloudinary."""
         user = request.user
 
         avatar_file = request.FILES.get('avatar') or request.FILES.get('foto')
@@ -170,8 +186,22 @@ class UserViewSet(ModelViewSet):
 
 
 class UserRegistrationView(CreateAPIView):
-    """Endpoint para registro de novos usuários."""
+    """Endpoint para registro de novos usuários — já devolve par JWT pronto para login."""
 
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
     permission_classes = [AllowAny]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        usuario = serializer.save()
+        refresh = RefreshToken.for_user(usuario)
+        return Response(
+            {
+                'user': UserSerializer(usuario, context={'request': request}).data,
+                'access': str(refresh.access_token),
+                'refresh': str(refresh),
+            },
+            status=status.HTTP_201_CREATED,
+        )

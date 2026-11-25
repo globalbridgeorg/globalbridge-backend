@@ -60,13 +60,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         upload_to='avatars/',
         blank=True,
         null=True,
+        max_length=500,
         verbose_name=_('foto de perfil'),
         help_text=_('Foto de perfil do usuário.'),
     )
     is_active = models.BooleanField(
         default=True, verbose_name=_('Usuário está ativo'), help_text=_('Indica que este usuário está ativo.')
     )
-    foto = models.ImageField(upload_to='perfil/', blank=True, null=True) 
+    foto = models.ImageField(upload_to='perfil/', blank=True, null=True, max_length=500)
     is_staff = models.BooleanField(
         default=False,
         verbose_name=_('Usuário é da equipe'),

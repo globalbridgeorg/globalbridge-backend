@@ -19,17 +19,22 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # ALLOWED_HOSTS e CORS vêm de variável de ambiente em produção, com
-# fallback aberto só em DEBUG (dev local). Em produção, defina
-# ALLOWED_HOSTS e CORS_ALLOWED_ORIGINS no Render com os domínios reais
-# (o host do backend e a URL do frontend na Vercel) — assim o backend
-# para de aceitar requisição de qualquer origem/host.
-_allowed = os.getenv('ALLOWED_HOSTS', '')
-ALLOWED_HOSTS = [h.strip() for h in _allowed.split(',') if h.strip()] or (['*'] if DEBUG else [])
+# fallback aberto só em DEBUG (dev local). Em produção no Render, o próprio
+# RENDER_EXTERNAL_HOSTNAME é adicionado automaticamente.
+_allowed = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',') if h.strip()]
+_render_host = os.getenv('RENDER_EXTERNAL_HOSTNAME', '').strip()
+if _render_host and _render_host not in _allowed:
+    _allowed.append(_render_host)
+ALLOWED_HOSTS = _allowed or (['*'] if DEBUG else [])
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
+    'http://localhost:5173',
     'http://localhost:8000',
 ]
+if _render_host:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{_render_host}')
+
 _cors = os.getenv('CORS_ALLOWED_ORIGINS', '')
 if _cors:
     CORS_ALLOWED_ORIGINS = [o.strip() for o in _cors.split(',') if o.strip()]
@@ -55,7 +60,7 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_spectacular',
     'rest_framework',
-    'core',
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -90,14 +95,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
-# Banco de dados
+# Banco de dados (SQLite local por padrão; PostgreSQL do Supabase via DATABASE_URL em produção)
+DB_SCHEMA = os.getenv('DB_SCHEMA', '').strip()
+_database_url = os.getenv('DATABASE_URL', '').strip()
+_is_tx_pooler = ':6543' in _database_url
+
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',
-        conn_max_age=600,
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=0 if _is_tx_pooler else 60,
         conn_health_checks=True,
     )
 }
+if DATABASES['default'].get('ENGINE') == 'django.db.backends.postgresql':
+    DATABASES['default']['DISABLE_SERVER_SIDE_CURSORS'] = True
+    _host = str(DATABASES['default'].get('HOST') or '')
+    if 'supabase.' in _host:
+        DATABASES['default'].setdefault('OPTIONS', {})
+        DATABASES['default']['OPTIONS'].setdefault('sslmode', 'require')
 
 # Validação de senhas
 AUTH_PASSWORD_VALIDATORS = [
@@ -123,79 +138,55 @@ USE_TZ = True
 
 # Configurações de arquivos estáticos
 STATIC_URL = 'static/'
-# Sem isso, o WhiteNoise (que já intercepta toda request de /static/ antes
-# de qualquer outra coisa, por causa do middleware) só sabe servir o que
-# tiver sido coletado em STATIC_ROOT via collectstatic — e no modo
-# DEVELOPMENT esse STATIC_ROOT nem existe. Resultado: o CSS/JS do admin do
-# Django (e de qualquer outro app) dava 404 e a página carregava sem
-# nenhum estilo. Com WHITENOISE_USE_FINDERS, ele passa a servir direto dos
-# diretórios estáticos de cada app (o mesmo mecanismo do runserver em
-# DEBUG), sem precisar rodar collectstatic — ideal pra dev; em produção
-# (MODE != DEVELOPMENT) o STATIC_ROOT normal continua sendo usado.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 WHITENOISE_USE_FINDERS = True
 
-# Configurações de arquivos de mídia (App Uploader)
+# Configurações de arquivos de mídia (Supabase Storage -> Cloudinary -> Local)
 MEDIA_ENDPOINT = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 FILE_UPLOAD_PERMISSIONS = 0o640
 
-# Configurações específicas para desenvolvimento, migração e produção
+SUPABASE_URL = os.getenv('SUPABASE_URL', '').strip().rstrip('/')
+SUPABASE_SERVICE_ROLE_KEY = os.getenv('SUPABASE_SERVICE_ROLE_KEY', '').strip()
 CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
+
+_staticfiles_storage = (
+    'django.contrib.staticfiles.storage.StaticFilesStorage'
+    if MODE == 'DEVELOPMENT'
+    else 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+)
 
 if MODE == 'DEVELOPMENT':
     MY_IP = os.getenv('MY_IP', '127.0.0.1')
     MEDIA_URL = 'http://127.0.0.1:8000/media/'
-    if CLOUDINARY_URL:
-        STORAGES = {
-            'default': {
-                'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
-            },
-            'staticfiles': {
-                'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
-            },
-        }
 else:
-    # Sempre expõe a mesma URL de mídia por padrão
     MEDIA_URL = '/media/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-    # Se CLOUDINARY_URL estiver configurado, usa o storage do Cloudinary para media
-    if CLOUDINARY_URL:
-        STORAGES = {
-            'default': {
-                'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
-            },
-            'staticfiles': {
-                'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
-            },
-        }
-    else:
-        # Fallback seguro: usa FileSystemStorage para uploads locais quando Cloudinary não estiver configurado.
-        # A chave 'default' aqui é obrigatória a partir do Django 4.2/5.x — sem
-        # ela, qualquer código que resolva o storage padrão logo na inicialização
-        # (em vez de só na hora de salvar um arquivo) quebra com
-        # "Could not find config for 'default' in settings.STORAGES", porque o
-        # Django não usa mais DEFAULT_FILE_STORAGE pra preencher esse buraco.
-        DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-        STORAGES = {
-            'default': {
-                'BACKEND': 'django.core.files.storage.FileSystemStorage',
-            },
-            'staticfiles': {
-                'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
-            },
-        }
-        print('WARNING: CLOUDINARY_URL not set — usando armazenamento local para mídia')
+if SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY:
+    STORAGES = {
+        'default': {'BACKEND': 'core.storage.SupabaseStorage'},
+        'staticfiles': {'BACKEND': _staticfiles_storage},
+    }
+elif CLOUDINARY_URL:
+    STORAGES = {
+        'default': {'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage'},
+        'staticfiles': {'BACKEND': _staticfiles_storage},
+    }
+else:
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+    STORAGES = {
+        'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
+        'staticfiles': {'BACKEND': _staticfiles_storage},
+    }
+    if MODE != 'DEVELOPMENT':
+        print('WARNING: SUPABASE_URL/CLOUDINARY_URL não configurados — usando armazenamento local para mídia')
 
 # Configurações de e-mail — 3 modos, na ordem de prioridade abaixo:
-# 1. BREVO_API_KEY definida: envia via API transacional do Brevo
-#    (core/email_backends.py) — o que este projeto usa em produção.
-# 2. Sem BREVO_API_KEY mas com EMAIL_HOST definido: SMTP genérico —
-#    funciona com qualquer provedor compatível (Gmail com senha de app,
-#    SendGrid, SES etc), útil se um dia trocar de provedor.
-# 3. Nenhum dos dois (padrão em DEVELOPMENT): backend de console — só
-#    imprime o e-mail no terminal, não envia de verdade.
+# 1. BREVO_API_KEY definida: envia via API transacional do Brevo (core/email_backends.py).
+# 2. Sem BREVO_API_KEY mas com EMAIL_HOST definido: SMTP genérico.
+# 3. Nenhum dos dois (padrão em DEVELOPMENT): backend de console.
 FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
+REQUIRE_EMAIL_VERIFICATION = os.getenv('REQUIRE_EMAIL_VERIFICATION', 'False') == 'True'
 BREVO_API_KEY = os.getenv('BREVO_API_KEY', '')
 EMAIL_HOST = os.getenv('EMAIL_HOST', '')
 if BREVO_API_KEY:
@@ -215,8 +206,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configurações do DRF e drf-spectacular (OpenAPI/Swagger)
 SPECTACULAR_SETTINGS = {
-    'TITLE': '<PROJETO> API',
-    'DESCRIPTION': 'API para o projeto <descreva aqui seu projeto>.',
+    'TITLE': 'GlobalBridge API',
+    'DESCRIPTION': 'API REST em Django + DRF da plataforma GlobalBridge de intercâmbios e agências verificadas.',
     'VERSION': '1.0.0',
 }
 
@@ -226,12 +217,6 @@ AUTH_USER_MODEL = 'core.User'
 # Configurações do Django REST Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
-    # Sem isso, o padrão do DRF é AllowAny — qualquer um podia criar/editar/
-    # apagar em qualquer endpoint que não sobrescrevesse a permissão (era o
-    # caso de /programa/, /plano/, /estado/, que aceitavam escrita sem login
-    # nenhum). Com IsAuthenticatedOrReadOnly, GET continua público em todo
-    # lugar, mas escrever exige estar logado por padrão; cada ViewSet ainda
-    # pode apertar mais (ex.: só admin, só dono) por cima disso.
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
     'DEFAULT_PAGINATION_CLASS': 'app.pagination.CustomPagination',
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
@@ -241,9 +226,6 @@ REST_FRAMEWORK = {
 # Configurações do Simple JWT
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=180),  # Tokens de acesso expiram em 3 horas
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Tokens de atualização expiram em 1 dia
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),      # Tokens de atualização expiram em 7 dias
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
-
-# Exibe as configurações principais para verificação
-print(f'{MODE = } \n{MEDIA_URL = } \n{DATABASES = }')

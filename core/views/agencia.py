@@ -4,8 +4,10 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+
 from core.models import Agencia, ImagemGaleria, Pais, SolicitacaoPaisAdicional
 from core.serializers import AgenciaSerializer, AgenciaDetalheSerializer, AgenciaResumidaSerializer
+from core.storage import url_para_campo_arquivo
 
 from .agencia_painel import montar_painel
 
@@ -13,9 +15,6 @@ from .agencia_painel import montar_painel
 class AgenciaViewSet(ModelViewSet):
     queryset = Agencia.objects.all()
     serializer_class = AgenciaSerializer
-    # Mesmo caso do PaisViewSet: o mapa (/mapview) busca /agencia/ inteiro
-    # de uma vez pra cruzar com país/tags, e paginar cortava silenciosamente
-    # o catálogo assim que passou de 10 agências.
     pagination_class = None
 
     def get_serializer_class(self):
@@ -26,21 +25,20 @@ class AgenciaViewSet(ModelViewSet):
         return AgenciaSerializer
 
     def get_permissions(self):
-        # Ver agência é público; criar/editar/apagar não tinha NENHUMA
-        # restrição antes disso (sem DEFAULT_PERMISSION_CLASSES no projeto,
-        # o padrão do DRF é liberar tudo) — qualquer um podia alterar
-        # qualquer agência via API. Editar a própria página (conta
-        # business) exige estar logado; quem realmente é "dono" daquela
-        # agência é conferido em perform_update.
         if self.action in ('list', 'retrieve'):
             return [AllowAny()]
         return [IsAuthenticated()]
 
-    def perform_update(self, serializer):
-        agencia = self.get_object()
-        if agencia.usuario_id != self.request.user.id:
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        if instance.usuario_id != request.user.id and not request.user.is_staff:
             raise PermissionDenied('Você só pode editar a página da sua própria agência.')
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
+        detalhe = AgenciaDetalheSerializer(instance, context={'request': request})
+        return Response(detalhe.data)
 
     def perform_create(self, serializer):
         raise PermissionDenied('Conta de agência só é criada depois da verificação pelo time da GlobalBridge.')
@@ -50,13 +48,15 @@ class AgenciaViewSet(ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        if self.action == 'list':
+            queryset = queryset.filter(ativo=True)
         pais_id = self.request.query_params.get('pais')
         regiao = self.request.query_params.get('regiao')
         if pais_id:
             queryset = queryset.filter(paises_atendidos__id=pais_id)
         if regiao:
             queryset = queryset.filter(paises_atendidos__regiao=regiao)
-        return queryset.distinct()
+        return queryset.distinct().order_by('id')
 
     @action(
         detail=True, methods=['patch'], url_path='capa',
@@ -66,7 +66,7 @@ class AgenciaViewSet(ModelViewSet):
         """Sobe a imagem de capa da agência (editor da conta business) — só
         o dono da agência pode trocar."""
         agencia = self.get_object()
-        if agencia.usuario_id != request.user.id:
+        if agencia.usuario_id != request.user.id and not request.user.is_staff:
             raise PermissionDenied('Você só pode editar a página da sua própria agência.')
 
         arquivo = request.FILES.get('imagem_capa')
@@ -82,28 +82,31 @@ class AgenciaViewSet(ModelViewSet):
         permission_classes=[IsAuthenticated], parser_classes=[MultiPartParser, FormParser],
     )
     def galeria_upload(self, request, pk=None):
-        """Adiciona uma foto na galeria — cada chamada sobe uma imagem;
-        o front chama isso uma vez por arquivo selecionado."""
+        """Adiciona uma foto na galeria — cada chamada sobe uma imagem."""
         agencia = self.get_object()
-        if agencia.usuario_id != request.user.id:
+        if agencia.usuario_id != request.user.id and not request.user.is_staff:
             raise PermissionDenied('Você só pode editar a página da sua própria agência.')
 
         arquivo = request.FILES.get('imagem')
         if not arquivo:
             return Response({'detail': 'Envie uma imagem no campo imagem.'}, status=400)
 
-        ordem = agencia.galeria.count()
+        ordem_param = request.data.get('ordem')
+        try:
+            ordem = int(ordem_param) if ordem_param is not None else agencia.galeria.count()
+        except (TypeError, ValueError):
+            ordem = agencia.galeria.count()
+
         img = ImagemGaleria.objects.create(agencia=agencia, ordem=ordem)
         img.imagem.save(arquivo.name, arquivo, save=True)
 
-        file_value = getattr(img.imagem, 'name', img.imagem)
-        url = file_value if file_value.startswith('http') else request.build_absolute_uri(img.imagem.url)
-        return Response({'id': img.id, 'url': url}, status=201)
+        url = url_para_campo_arquivo(img.imagem, request)
+        return Response({'id': img.id, 'agencia_id': agencia.id, 'url': url, 'ordem': img.ordem}, status=201)
 
     @action(detail=True, methods=['delete'], url_path=r'galeria/(?P<imagem_id>\d+)', permission_classes=[IsAuthenticated])
     def galeria_remover(self, request, pk=None, imagem_id=None):
         agencia = self.get_object()
-        if agencia.usuario_id != request.user.id:
+        if agencia.usuario_id != request.user.id and not request.user.is_staff:
             raise PermissionDenied('Você só pode editar a página da sua própria agência.')
 
         try:
@@ -111,6 +114,11 @@ class AgenciaViewSet(ModelViewSet):
         except ImagemGaleria.DoesNotExist:
             return Response({'detail': 'Imagem não encontrada.'}, status=404)
 
+        if img.imagem:
+            try:
+                img.imagem.delete(save=False)
+            except Exception:
+                pass
         img.delete()
         return Response(status=204)
 
@@ -118,16 +126,16 @@ class AgenciaViewSet(ModelViewSet):
     def painel(self, request, pk=None):
         """Dados agregados do dashboard da conta business (ver agencia_painel.montar_painel)."""
         agencia = self.get_object()
-        if agencia.usuario_id != request.user.id:
+        if agencia.usuario_id != request.user.id and not request.user.is_staff:
             raise PermissionDenied('Você só pode ver o painel da sua própria agência.')
         return Response(montar_painel(agencia))
 
     @action(detail=True, methods=['post'], url_path='paises/solicitar', permission_classes=[IsAuthenticated])
     def solicitar_pais(self, request, pk=None):
         """A agência pede pra passar a atender mais um país — fica
-        pendente até o time aprovar (ver SolicitacaoPaisAdicionalAdmin)."""
+        pendente até o time aprovar."""
         agencia = self.get_object()
-        if agencia.usuario_id != request.user.id:
+        if agencia.usuario_id != request.user.id and not request.user.is_staff:
             raise PermissionDenied('Você só pode pedir países pra sua própria agência.')
 
         pais_id = request.data.get('pais')

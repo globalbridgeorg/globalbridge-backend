@@ -1,0 +1,5029 @@
+{
+  "paises": [
+    {
+      "id": 1,
+      "nome": "Reino Unido",
+      "nome_ingles": "United Kingdom",
+      "codigo_iso": "GB",
+      "regiao": "europa",
+      "custo_de_vida": "Alto",
+      "idioma": "Inglês",
+      "cultura": "Tradição, pontualidade e vida acadêmica centenária.",
+      "descricao": "Universidades renomadas e forte cena cultural, de Londres a Manchester.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/960px-Flag_of_the_United_Kingdom_%281-2%29.svg.png",
+      "intercambistas": 894,
+      "universidades": 480,
+      "ativo": true
+    },
+    {
+      "id": 2,
+      "nome": "China",
+      "nome_ingles": "China",
+      "codigo_iso": "CN",
+      "regiao": "asia",
+      "custo_de_vida": "Médio",
+      "idioma": "Mandarim",
+      "cultura": "Ritmo acelerado, tecnologia e milênios de história.",
+      "descricao": "Crescimento rápido de programas de intercâmbio em Xangai e Pequim.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/960px-Flag_of_the_People%27s_Republic_of_China.svg.png",
+      "intercambistas": 816,
+      "universidades": 792,
+      "ativo": true
+    },
+    {
+      "id": 3,
+      "nome": "Alemanha",
+      "nome_ingles": "Germany",
+      "codigo_iso": "DE",
+      "regiao": "europa",
+      "custo_de_vida": "Médio",
+      "idioma": "Alemão",
+      "cultura": "Precisão, engenharia e universidades públicas de peso.",
+      "descricao": "Berlim e Munique concentram forte oferta de programas técnicos.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/960px-Flag_of_Germany.svg.png",
+      "intercambistas": 854,
+      "universidades": 703,
+      "ativo": true
+    },
+    {
+      "id": 4,
+      "nome": "Estados Unidos",
+      "nome_ingles": "United States of America",
+      "codigo_iso": "US",
+      "regiao": "america_norte",
+      "custo_de_vida": "Alto",
+      "idioma": "Inglês",
+      "cultura": "Diversidade cultural e vida de campus intensa.",
+      "descricao": "Nova York e Boston lideram a procura por Study & Work.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Flag_of_the_United_States_%28DDD-F-416E_specifications%29.svg/960px-Flag_of_the_United_States_%28DDD-F-416E_specifications%29.svg.png",
+      "intercambistas": 723,
+      "universidades": 641,
+      "ativo": true
+    },
+    {
+      "id": 5,
+      "nome": "Canadá",
+      "nome_ingles": "Canada",
+      "codigo_iso": "CA",
+      "regiao": "america_norte",
+      "custo_de_vida": "Médio",
+      "idioma": "Inglês e Francês",
+      "cultura": "Acolhedor, multicultural e com natureza próxima das cidades.",
+      "descricao": "Toronto e Vancouver com boas regras de trabalho pra estudantes.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/960px-Flag_of_Canada_%28Pantone%29.svg.png",
+      "intercambistas": 756,
+      "universidades": 378,
+      "ativo": true
+    },
+    {
+      "id": 6,
+      "nome": "Austrália",
+      "nome_ingles": "Australia",
+      "codigo_iso": "AU",
+      "regiao": "oceania",
+      "custo_de_vida": "Alto",
+      "idioma": "Inglês",
+      "cultura": "Ar livre, praia e um jeito mais informal de viver.",
+      "descricao": "Sydney e Melbourne combinam ensino de qualidade com qualidade de vida.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/960px-Flag_of_Australia_%28converted%29.svg.png",
+      "intercambistas": 377,
+      "universidades": 240,
+      "ativo": true
+    },
+    {
+      "id": 7,
+      "nome": "Nova Zelândia",
+      "nome_ingles": "New Zealand",
+      "codigo_iso": "NZ",
+      "regiao": "oceania",
+      "custo_de_vida": "Alto",
+      "idioma": "Inglês",
+      "cultura": "Natureza preservada e comunidades pequenas e receptivas.",
+      "descricao": "Auckland e Wellington, ótimas para quem busca tranquilidade.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Flag_of_New_Zealand.svg/960px-Flag_of_New_Zealand.svg.png",
+      "intercambistas": 322,
+      "universidades": 210,
+      "ativo": true
+    },
+    {
+      "id": 8,
+      "nome": "Irlanda",
+      "nome_ingles": "Ireland",
+      "codigo_iso": "IE",
+      "regiao": "europa",
+      "custo_de_vida": "Médio",
+      "idioma": "Inglês",
+      "cultura": "Hospitalidade, música ao vivo e história viva nos pubs e ruas.",
+      "descricao": "Dublin e Cork com boa relação custo-benefício pra cursos de idioma.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Flag_of_Ireland.svg/960px-Flag_of_Ireland.svg.png",
+      "intercambistas": 224,
+      "universidades": 130,
+      "ativo": true
+    },
+    {
+      "id": 9,
+      "nome": "Portugal",
+      "nome_ingles": "Portugal",
+      "codigo_iso": "PT",
+      "regiao": "europa",
+      "custo_de_vida": "Médio",
+      "idioma": "Português",
+      "cultura": "Fado, gastronomia à base de bacalhau e frutos do mar, e uma rotina bem mais tranquila que a de outras capitais europeias.",
+      "descricao": "Destino cada vez mais procurado por brasileiros pela língua compartilhada, custo de vida menor que o resto da Europa Ocidental e facilidade de cidadania.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Flag_of_Portugal_%28official%29.svg/960px-Flag_of_Portugal_%28official%29.svg.png",
+      "intercambistas": 512,
+      "universidades": 240,
+      "ativo": true
+    },
+    {
+      "id": 10,
+      "nome": "Espanha",
+      "nome_ingles": "Spain",
+      "codigo_iso": "ES",
+      "regiao": "europa",
+      "custo_de_vida": "Médio",
+      "idioma": "Espanhol",
+      "cultura": "Flamenco, gastronomia regional (tapas, paella) e uma vida noturna que começa tarde e vai até o amanhecer.",
+      "descricao": "Um dos destinos mais procurados do mundo pra aprender espanhol, com forte tradição universitária e vida cultural intensa.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/960px-Flag_of_Spain.svg.png",
+      "intercambistas": 631,
+      "universidades": 310,
+      "ativo": true
+    },
+    {
+      "id": 11,
+      "nome": "França",
+      "nome_ingles": "France",
+      "codigo_iso": "FR",
+      "regiao": "europa",
+      "custo_de_vida": "Alto",
+      "idioma": "Francês",
+      "cultura": "Arte, gastronomia refinada e uma vida cultural com museus e centros de moda entre os mais influentes do mundo.",
+      "descricao": "Berço do ensino formal de idiomas (Alliance Française) e de uma das tradições acadêmicas mais respeitadas da Europa.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png",
+      "intercambistas": 498,
+      "universidades": 289,
+      "ativo": true
+    },
+    {
+      "id": 12,
+      "nome": "Itália",
+      "nome_ingles": "Italy",
+      "codigo_iso": "IT",
+      "regiao": "europa",
+      "custo_de_vida": "Médio",
+      "idioma": "Italiano",
+      "cultura": "Arte renascentista, culinária regional e uma relação com comida e família que atravessa qualquer conversa.",
+      "descricao": "História e patrimônio artístico em cada esquina, com cursos de idioma e gastronomia muito procurados por quem já fala português.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/960px-Flag_of_Italy.svg.png",
+      "intercambistas": 407,
+      "universidades": 198,
+      "ativo": true
+    },
+    {
+      "id": 13,
+      "nome": "Holanda",
+      "nome_ingles": "Netherlands",
+      "codigo_iso": "NL",
+      "regiao": "europa",
+      "custo_de_vida": "Alto",
+      "idioma": "Holandês",
+      "cultura": "Bicicletas em vez de carro, mentalidade aberta e uma vida ao ar livre mesmo com o clima nem sempre favorável.",
+      "descricao": "Universidades bem ranqueadas com cursos inteiros em inglês, o que facilita muito a vida de quem ainda não fala holandês.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/960px-Flag_of_the_Netherlands.svg.png",
+      "intercambistas": 289,
+      "universidades": 176,
+      "ativo": true
+    },
+    {
+      "id": 14,
+      "nome": "Malta",
+      "nome_ingles": "Malta",
+      "codigo_iso": "MT",
+      "regiao": "europa",
+      "custo_de_vida": "Médio",
+      "idioma": "Inglês e maltês",
+      "cultura": "Ilha pequena, história marcada por fenícios, romanos e cavaleiros, e praias a poucos minutos de qualquer escola.",
+      "descricao": "Um dos destinos mais em conta da Europa pra estudar inglês, com clima mediterrâneo o ano todo.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flag_of_Malta.svg/960px-Flag_of_Malta.svg.png",
+      "intercambistas": 214,
+      "universidades": 42,
+      "ativo": true
+    },
+    {
+      "id": 15,
+      "nome": "Japão",
+      "nome_ingles": "Japan",
+      "codigo_iso": "JP",
+      "regiao": "asia",
+      "custo_de_vida": "Alto",
+      "idioma": "Japonês",
+      "cultura": "Etiqueta bem definida, pontualidade quase religiosa e uma culinária que vai muito além do que chega no Brasil.",
+      "descricao": "Tecnologia de ponta ao lado de tradições milenares, com forte apelo pra quem se interessa por cultura pop japonesa.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/960px-Flag_of_Japan.svg.png",
+      "intercambistas": 356,
+      "universidades": 287,
+      "ativo": true
+    },
+    {
+      "id": 16,
+      "nome": "Coreia do Sul",
+      "nome_ingles": "South Korea",
+      "codigo_iso": "KR",
+      "regiao": "asia",
+      "custo_de_vida": "Médio",
+      "idioma": "Coreano",
+      "cultura": "K-pop, k-dramas e uma gastronomia picante que já conquistou fãs no mundo todo.",
+      "descricao": "Popularidade crescente puxada pela cultura pop coreana, com universidades fortes em tecnologia e design.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_South_Korea.svg/960px-Flag_of_South_Korea.svg.png",
+      "intercambistas": 298,
+      "universidades": 191,
+      "ativo": true
+    },
+    {
+      "id": 17,
+      "nome": "Singapura",
+      "nome_ingles": "Singapore",
+      "codigo_iso": "SG",
+      "regiao": "asia",
+      "custo_de_vida": "Alto",
+      "idioma": "Inglês",
+      "cultura": "Mistura de tradições chinesa, malaia e indiana, cidade extremamente organizada e gastronomia de rua premiada.",
+      "descricao": "Hub educacional multicultural da Ásia, com ensino em inglês e universidades tecnológicas de referência.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Flag_of_Singapore.svg/960px-Flag_of_Singapore.svg.png",
+      "intercambistas": 187,
+      "universidades": 34,
+      "ativo": true
+    },
+    {
+      "id": 18,
+      "nome": "México",
+      "nome_ingles": "Mexico",
+      "codigo_iso": "MX",
+      "regiao": "america_norte",
+      "custo_de_vida": "Baixo",
+      "idioma": "Espanhol",
+      "cultura": "Herança pré-colombiana viva no dia a dia, gastronomia riquíssima e festividades que tomam as ruas o ano inteiro.",
+      "descricao": "Proximidade cultural com o Brasil e custo baixo tornam o país uma porta de entrada popular pra cursos intensivos de espanhol.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/960px-Flag_of_Mexico.svg.png",
+      "intercambistas": 276,
+      "universidades": 165,
+      "ativo": true
+    },
+    {
+      "id": 19,
+      "nome": "Argentina",
+      "nome_ingles": "Argentina",
+      "codigo_iso": "AR",
+      "regiao": "america_sul",
+      "custo_de_vida": "Baixo",
+      "idioma": "Espanhol",
+      "cultura": "Tango, futebol como religião e uma cultura de café e conversa que lembra bastante o Brasil.",
+      "descricao": "Vizinho de fronteira com universidades tradicionais e custo de vida baixo pra quem já entende um pouco de espanhol.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/960px-Flag_of_Argentina.svg.png",
+      "intercambistas": 341,
+      "universidades": 128,
+      "ativo": true
+    },
+    {
+      "id": 20,
+      "nome": "Chile",
+      "nome_ingles": "Chile",
+      "codigo_iso": "CL",
+      "regiao": "america_sul",
+      "custo_de_vida": "Médio",
+      "idioma": "Espanhol",
+      "cultura": "Vinhos reconhecidos internacionalmente, forte cena musical e uma geografia que muda completamente a cada poucas horas de viagem.",
+      "descricao": "Estabilidade econômica na região, com paisagens que vão do deserto do Atacama à Patagônia.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Flag_of_Chile.svg/960px-Flag_of_Chile.svg.png",
+      "intercambistas": 198,
+      "universidades": 94,
+      "ativo": true
+    },
+    {
+      "id": 21,
+      "nome": "Colômbia",
+      "nome_ingles": "Colombia",
+      "codigo_iso": "CO",
+      "regiao": "america_sul",
+      "custo_de_vida": "Baixo",
+      "idioma": "Espanhol",
+      "cultura": "Música (salsa, cumbia), café de qualidade internacional e uma biodiversidade entre as maiores do planeta.",
+      "descricao": "Popularidade crescente pra intercâmbio de espanhol, com custo acessível e cidades cada vez mais procuradas por estrangeiros.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/960px-Flag_of_Colombia.svg.png",
+      "intercambistas": 176,
+      "universidades": 88,
+      "ativo": true
+    },
+    {
+      "id": 22,
+      "nome": "África do Sul",
+      "nome_ingles": "South Africa",
+      "codigo_iso": "ZA",
+      "regiao": "africa",
+      "custo_de_vida": "Baixo",
+      "idioma": "Inglês",
+      "cultura": "País com 11 línguas oficiais, forte diversidade étnica e uma história recente marcada pelo fim do apartheid.",
+      "descricao": "Ensino em inglês com custo de vida baixo e uma natureza exuberante, cada vez mais procurada por quem quer fugir do óbvio.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Flag_of_South_Africa.svg/960px-Flag_of_South_Africa.svg.png",
+      "intercambistas": 143,
+      "universidades": 71,
+      "ativo": true
+    },
+    {
+      "id": 23,
+      "nome": "Marrocos",
+      "nome_ingles": "Morocco",
+      "codigo_iso": "MA",
+      "regiao": "africa",
+      "custo_de_vida": "Baixo",
+      "idioma": "Árabe e francês",
+      "cultura": "Souks, arquitetura mourisca e uma gastronomia de especiarias que marca qualquer visitante.",
+      "descricao": "Mistura de culturas árabe, berbere e francesa bem na porta de entrada do continente africano com a Europa.",
+      "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/960px-Flag_of_Morocco.svg.png",
+      "intercambistas": 96,
+      "universidades": 53,
+      "ativo": true
+    }
+  ],
+  "estados": [
+    {
+      "id": 5,
+      "nome": "Londres",
+      "cidade_principal": "Londres",
+      "pais_id": 1
+    },
+    {
+      "id": 6,
+      "nome": "Xangai",
+      "cidade_principal": "Xangai",
+      "pais_id": 2
+    },
+    {
+      "id": 7,
+      "nome": "Berlim",
+      "cidade_principal": "Berlim",
+      "pais_id": 3
+    },
+    {
+      "id": 8,
+      "nome": "Shanghai",
+      "cidade_principal": "Shanghai",
+      "pais_id": 4
+    },
+    {
+      "id": 9,
+      "nome": "Toronto",
+      "cidade_principal": "Toronto",
+      "pais_id": 5
+    },
+    {
+      "id": 10,
+      "nome": "Perth",
+      "cidade_principal": "Perth",
+      "pais_id": 6
+    },
+    {
+      "id": 11,
+      "nome": "Auckland",
+      "cidade_principal": "Auckland",
+      "pais_id": 7
+    },
+    {
+      "id": 12,
+      "nome": "Dublin",
+      "cidade_principal": "Dublin",
+      "pais_id": 8
+    },
+    {
+      "id": 13,
+      "nome": "Lisboa",
+      "cidade_principal": "Lisboa",
+      "pais_id": 9
+    },
+    {
+      "id": 14,
+      "nome": "Barcelona",
+      "cidade_principal": "Barcelona",
+      "pais_id": 10
+    },
+    {
+      "id": 15,
+      "nome": "Nice",
+      "cidade_principal": "Nice",
+      "pais_id": 11
+    },
+    {
+      "id": 16,
+      "nome": "Roma",
+      "cidade_principal": "Roma",
+      "pais_id": 12
+    },
+    {
+      "id": 17,
+      "nome": "Amsterdã",
+      "cidade_principal": "Amsterdã",
+      "pais_id": 13
+    },
+    {
+      "id": 18,
+      "nome": "St. Julian's",
+      "cidade_principal": "St. Julian's",
+      "pais_id": 14
+    },
+    {
+      "id": 19,
+      "nome": "Tóquio",
+      "cidade_principal": "Tóquio",
+      "pais_id": 15
+    },
+    {
+      "id": 20,
+      "nome": "Seul",
+      "cidade_principal": "Seul",
+      "pais_id": 16
+    },
+    {
+      "id": 21,
+      "nome": "Singapura",
+      "cidade_principal": "Singapura",
+      "pais_id": 17
+    },
+    {
+      "id": 22,
+      "nome": "Playa del Carmen",
+      "cidade_principal": "Playa del Carmen",
+      "pais_id": 18
+    },
+    {
+      "id": 23,
+      "nome": "Buenos Aires",
+      "cidade_principal": "Buenos Aires",
+      "pais_id": 19
+    },
+    {
+      "id": 24,
+      "nome": "Santiago",
+      "cidade_principal": "Santiago",
+      "pais_id": 20
+    },
+    {
+      "id": 25,
+      "nome": "Bogotá",
+      "cidade_principal": "Bogotá",
+      "pais_id": 21
+    },
+    {
+      "id": 26,
+      "nome": "Cidade do Cabo",
+      "cidade_principal": "Cidade do Cabo",
+      "pais_id": 22
+    },
+    {
+      "id": 27,
+      "nome": "Rabat",
+      "cidade_principal": "Rabat",
+      "pais_id": 23
+    }
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "categoria": "emprego",
+      "valor": "tech",
+      "label": "Tecnologia"
+    },
+    {
+      "id": 2,
+      "categoria": "emprego",
+      "valor": "saude",
+      "label": "Saúde"
+    },
+    {
+      "id": 3,
+      "categoria": "emprego",
+      "valor": "engenharia",
+      "label": "Engenharia"
+    },
+    {
+      "id": 4,
+      "categoria": "emprego",
+      "valor": "financas",
+      "label": "Finanças"
+    },
+    {
+      "id": 5,
+      "categoria": "emprego",
+      "valor": "educacao",
+      "label": "Educação"
+    },
+    {
+      "id": 6,
+      "categoria": "emprego",
+      "valor": "artes",
+      "label": "Artes & Design"
+    },
+    {
+      "id": 7,
+      "categoria": "universidade",
+      "valor": "top100",
+      "label": "Top 100 Mundial"
+    },
+    {
+      "id": 8,
+      "categoria": "universidade",
+      "valor": "bolsas",
+      "label": "Oferece Bolsas"
+    },
+    {
+      "id": 9,
+      "categoria": "universidade",
+      "valor": "intercambio",
+      "label": "Intercâmbio"
+    },
+    {
+      "id": 10,
+      "categoria": "universidade",
+      "valor": "publicas",
+      "label": "Públicas"
+    },
+    {
+      "id": 11,
+      "categoria": "universidade",
+      "valor": "privadas",
+      "label": "Privadas"
+    },
+    {
+      "id": 12,
+      "categoria": "universidade",
+      "valor": "ead",
+      "label": "EAD / Online"
+    },
+    {
+      "id": 13,
+      "categoria": "idioma",
+      "valor": "ingles",
+      "label": "Inglês"
+    },
+    {
+      "id": 14,
+      "categoria": "idioma",
+      "valor": "espanhol",
+      "label": "Espanhol"
+    },
+    {
+      "id": 15,
+      "categoria": "idioma",
+      "valor": "frances",
+      "label": "Francês"
+    },
+    {
+      "id": 16,
+      "categoria": "idioma",
+      "valor": "alemao",
+      "label": "Alemão"
+    },
+    {
+      "id": 17,
+      "categoria": "idioma",
+      "valor": "mandarin",
+      "label": "Mandarim"
+    },
+    {
+      "id": 18,
+      "categoria": "idioma",
+      "valor": "japones",
+      "label": "Japonês"
+    },
+    {
+      "id": 19,
+      "categoria": "idioma",
+      "valor": "portugues",
+      "label": "Português"
+    },
+    {
+      "id": 20,
+      "categoria": "cultura",
+      "valor": "gastronomia",
+      "label": "Gastronomia"
+    },
+    {
+      "id": 21,
+      "categoria": "cultura",
+      "valor": "musica",
+      "label": "Música"
+    },
+    {
+      "id": 22,
+      "categoria": "cultura",
+      "valor": "esportes",
+      "label": "Esportes"
+    },
+    {
+      "id": 23,
+      "categoria": "cultura",
+      "valor": "religiao",
+      "label": "Diversidade Religiosa"
+    },
+    {
+      "id": 24,
+      "categoria": "cultura",
+      "valor": "festivais",
+      "label": "Festivais"
+    },
+    {
+      "id": 25,
+      "categoria": "cultura",
+      "valor": "natureza",
+      "label": "Natureza & Aventura"
+    }
+  ],
+  "pais_tags": [
+    {
+      "pais_id": 1,
+      "tag_id": 1
+    },
+    {
+      "pais_id": 1,
+      "tag_id": 2
+    },
+    {
+      "pais_id": 1,
+      "tag_id": 4
+    },
+    {
+      "pais_id": 1,
+      "tag_id": 5
+    },
+    {
+      "pais_id": 1,
+      "tag_id": 7
+    },
+    {
+      "pais_id": 1,
+      "tag_id": 9
+    },
+    {
+      "pais_id": 1,
+      "tag_id": 13
+    },
+    {
+      "pais_id": 1,
+      "tag_id": 20
+    },
+    {
+      "pais_id": 1,
+      "tag_id": 21
+    },
+    {
+      "pais_id": 1,
+      "tag_id": 24
+    },
+    {
+      "pais_id": 2,
+      "tag_id": 1
+    },
+    {
+      "pais_id": 2,
+      "tag_id": 3
+    },
+    {
+      "pais_id": 2,
+      "tag_id": 4
+    },
+    {
+      "pais_id": 2,
+      "tag_id": 7
+    },
+    {
+      "pais_id": 2,
+      "tag_id": 10
+    },
+    {
+      "pais_id": 2,
+      "tag_id": 17
+    },
+    {
+      "pais_id": 2,
+      "tag_id": 20
+    },
+    {
+      "pais_id": 2,
+      "tag_id": 24
+    },
+    {
+      "pais_id": 3,
+      "tag_id": 1
+    },
+    {
+      "pais_id": 3,
+      "tag_id": 2
+    },
+    {
+      "pais_id": 3,
+      "tag_id": 3
+    },
+    {
+      "pais_id": 3,
+      "tag_id": 7
+    },
+    {
+      "pais_id": 3,
+      "tag_id": 8
+    },
+    {
+      "pais_id": 3,
+      "tag_id": 10
+    },
+    {
+      "pais_id": 3,
+      "tag_id": 16
+    },
+    {
+      "pais_id": 3,
+      "tag_id": 20
+    },
+    {
+      "pais_id": 3,
+      "tag_id": 21
+    },
+    {
+      "pais_id": 3,
+      "tag_id": 24
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 1
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 2
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 3
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 4
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 5
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 6
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 7
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 9
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 11
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 13
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 20
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 21
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 22
+    },
+    {
+      "pais_id": 4,
+      "tag_id": 24
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 1
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 2
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 3
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 5
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 7
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 8
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 9
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 13
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 15
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 22
+    },
+    {
+      "pais_id": 5,
+      "tag_id": 25
+    },
+    {
+      "pais_id": 6,
+      "tag_id": 1
+    },
+    {
+      "pais_id": 6,
+      "tag_id": 2
+    },
+    {
+      "pais_id": 6,
+      "tag_id": 3
+    },
+    {
+      "pais_id": 6,
+      "tag_id": 8
+    },
+    {
+      "pais_id": 6,
+      "tag_id": 9
+    },
+    {
+      "pais_id": 6,
+      "tag_id": 13
+    },
+    {
+      "pais_id": 6,
+      "tag_id": 22
+    },
+    {
+      "pais_id": 6,
+      "tag_id": 25
+    },
+    {
+      "pais_id": 7,
+      "tag_id": 2
+    },
+    {
+      "pais_id": 7,
+      "tag_id": 5
+    },
+    {
+      "pais_id": 7,
+      "tag_id": 8
+    },
+    {
+      "pais_id": 7,
+      "tag_id": 9
+    },
+    {
+      "pais_id": 7,
+      "tag_id": 13
+    },
+    {
+      "pais_id": 7,
+      "tag_id": 22
+    },
+    {
+      "pais_id": 7,
+      "tag_id": 25
+    },
+    {
+      "pais_id": 8,
+      "tag_id": 1
+    },
+    {
+      "pais_id": 8,
+      "tag_id": 4
+    },
+    {
+      "pais_id": 8,
+      "tag_id": 9
+    },
+    {
+      "pais_id": 8,
+      "tag_id": 13
+    },
+    {
+      "pais_id": 8,
+      "tag_id": 21
+    },
+    {
+      "pais_id": 8,
+      "tag_id": 24
+    }
+  ],
+  "programas": [
+    {
+      "id": 3,
+      "nome": "Curso de Idiomas",
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "duracao_min": 2,
+      "duracao_max": 48
+    },
+    {
+      "id": 4,
+      "nome": "Intercâmbio Acadêmico",
+      "descricao": "Programas de graduação parcial e imersão cultural em universidades parceiras.",
+      "duracao_min": 3,
+      "duracao_max": 12
+    },
+    {
+      "id": 5,
+      "nome": "Bolsa de Graduação e Pós",
+      "descricao": "Assessoria e bolsa integral para graduação, mestrado ou doutorado em universidades públicas alemãs.",
+      "duracao_min": 12,
+      "duracao_max": 48
+    },
+    {
+      "id": 6,
+      "nome": "Curso de Inglês",
+      "descricao": "Inglês geral ou acadêmico em Toronto ou Vancouver, com opção de estágio remunerado.",
+      "duracao_min": 1,
+      "duracao_max": 12
+    },
+    {
+      "id": 7,
+      "nome": "Pathway Universitário",
+      "descricao": "Programa de acesso que prepara e garante vaga em universidades australianas parceiras.",
+      "duracao_min": 6,
+      "duracao_max": 18
+    },
+    {
+      "id": 8,
+      "nome": "Inglês Geral",
+      "descricao": "Curso de inglês em Auckland, do nível iniciante ao avançado, com preparação para Cambridge.",
+      "duracao_min": 1,
+      "duracao_max": 12
+    },
+    {
+      "id": 9,
+      "nome": "Inglês + Preparação para Exames",
+      "descricao": "Curso de inglês geral com módulo de preparação para IELTS ou Cambridge, em Dublin.",
+      "duracao_min": 1,
+      "duracao_max": 12
+    },
+    {
+      "id": 10,
+      "nome": "Curso de Coreano",
+      "descricao": "Curso intensivo de coreano por níveis, ligado à Universidade Sogang, em Seul.",
+      "duracao_min": 3,
+      "duracao_max": 12
+    },
+    {
+      "id": 11,
+      "nome": "Intercâmbio Cultural (Au Pair)",
+      "descricao": "Vivência com família anfitriã no exterior, com carga horária reduzida de atividades e bolsa mensal.",
+      "duracao_min": 6,
+      "duracao_max": 12
+    },
+    {
+      "id": 12,
+      "nome": "Ano Letivo no Exterior (High School)",
+      "descricao": "Um ano letivo completo em escola no exterior, com acompanhamento de família anfitriã e suporte local.",
+      "duracao_min": 10,
+      "duracao_max": 12
+    },
+    {
+      "id": 13,
+      "nome": "Voluntariado Internacional",
+      "descricao": "Trabalho voluntário no exterior em projetos sociais ou ambientais, com hospedagem incluída.",
+      "duracao_min": 1,
+      "duracao_max": 6
+    }
+  ],
+  "agencias": [
+    {
+      "id": 5,
+      "nome": "EF Education",
+      "descricao": "Cursos de idiomas em mais de 50 países com certificação internacional reconhecida.",
+      "como_funciona": "Começamos com um diagnóstico do seu nível de inglês e do seu objetivo em Londres. Em seguida montamos seu plano de estudos, cuidamos da matrícula na escola, orientamos no visto britânico e garantimos acomodação antes do embarque — com suporte presencial desde o primeiro dia no campus.",
+      "contato": "londres@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "Londres, Reino Unido",
+      "data_cadastro": "2026-08-23T15:23:23.43842+00:00",
+      "ativo": true,
+      "estado_id": 5,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "contato_whatsapp"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/London_Skyline_%28125508655%29.jpeg/1280px-London_Skyline_%28125508655%29.jpeg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 45,
+      "conteudo_blocos": {
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "British Council Accredited",
+              "descricao": "Reconhecimento oficial de excelência no ensino de inglês no Reino Unido."
+            },
+            {
+              "nome": "EAQUALS Quality Certified",
+              "descricao": "Auditoria europeia de padrão acadêmico e suporte estudantil."
+            },
+            {
+              "nome": "BELTA Parceira",
+              "descricao": "Selo de transparência e boas práticas para estudantes brasileiros."
+            }
+          ]
+        },
+        "contato_whatsapp": {
+          "numero": "+44 20 7946 0510",
+          "mensagem": "Olá! Vi a EF Londres na GlobalBridge e quero saber sobre os programas."
+        }
+      }
+    },
+    {
+      "id": 6,
+      "nome": "CIEE",
+      "descricao": "Programas de imersão em chinês e negócios no campus da East China Normal University, em Xangai.",
+      "como_funciona": "1. Conversa inicial para escolher entre semestre acadêmico, verão ou imersão em mandarim em Xangai.\\n2. Envio da documentação universitária e emissão da carta oficial para visto estudantil (X1/X2).\\n3. Pré-embarque com orientação cultural, reserva da residência estudantil e recepção da equipe local na chegada.",
+      "contato": "shanghai@ciee.org",
+      "telefone": "",
+      "site": "https://www.ciee.org",
+      "endereco": "Xangai, China",
+      "data_cadastro": "2026-08-23T15:23:23.452828+00:00",
+      "ativo": true,
+      "estado_id": 6,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "foto"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "lista"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "faq"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "compacta"
+        },
+        {
+          "tipo": "localizacao"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Huangpu_Park_20124-Shanghai_%2832208802494%29.jpg/1280px-Huangpu_Park_20124-Shanghai_%2832208802494%29.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 42,
+      "conteudo_blocos": {
+        "faq": {
+          "perguntas": [
+            {
+              "pergunta": "Preciso falar mandarim antes de embarcar para Xangai?",
+              "resposta": "Não. Oferecemos módulos de mandarim desde o nível iniciante integrados às disciplinas em inglês."
+            },
+            {
+              "pergunta": "A moradia estudantil fica próxima ao campus?",
+              "resposta": "Sim, trabalhamos com residências parceiras a menos de 20 minutos de metrô da universidade."
+            },
+            {
+              "pergunta": "Vocês orientam no visto estudantil chinês (X1/X2)?",
+              "resposta": "Emitimos toda a carta JW202/DQ e acompanhamos o agendamento consular passo a passo."
+            }
+          ]
+        },
+        "localizacao": {
+          "link_mapa": "https://www.google.com/maps/search/?api=1&query=Shanghai+China+University+District"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "nome": "DAAD Brasil",
+      "descricao": "Serviço Alemão de Intercâmbio Acadêmico, com bolsas para universidades alemãs.",
+      "como_funciona": "Acompanhamos toda a candidatura às universidades alemãs e bolsas de estudo: validação do histórico escolar, escolha dos cursos compatíveis com seu perfil, preparação para proficiência (TestDaF/IELTS), carta de motivação e orientações para conta bloqueada e visto de estudante em Berlim.",
+      "contato": "info@daad.org.br",
+      "telefone": "",
+      "site": "https://www.daad.org.br",
+      "endereco": "Berlim, Alemanha",
+      "data_cadastro": "2026-08-23T15:23:23.464816+00:00",
+      "ativo": true,
+      "estado_id": 7,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "equipe"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "lista"
+        },
+        {
+          "tipo": "faq"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "redes_sociais"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Brandenburger_Tor_abends.jpg/1280px-Brandenburger_Tor_abends.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 48,
+      "conteudo_blocos": {
+        "faq": {
+          "perguntas": [
+            {
+              "pergunta": "As universidades públicas na Alemanha realmente não cobram mensalidade?",
+              "resposta": "Na grande maioria dos estados alemães não há mensalidade de curso, apenas taxa semestral administrativa que inclui transporte."
+            },
+            {
+              "pergunta": "Existem programas totalmente em inglês?",
+              "resposta": "Sim, especialmente mestrados e cursos de verão de curta duração."
+            }
+          ]
+        },
+        "equipe": {
+          "membros": [
+            {
+              "foto": "https://randomuser.me/api/portraits/women/31.jpg",
+              "nome": "Helena Schneider",
+              "cargo": "Orientadora de Bolsas e Pós-Graduação"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/men/32.jpg",
+              "nome": "Bruno Klink",
+              "cargo": "Consultor de Graduação na Alemanha"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/33.jpg",
+              "nome": "Clara Mendes",
+              "cargo": "Apoio de Documentação e Visto"
+            }
+          ]
+        },
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "Rede DAAD Oficial",
+              "descricao": "Representação institucional para intercâmbio acadêmico e bolsas na Alemanha."
+            },
+            {
+              "nome": "TestDaF & DSH Orientação",
+              "descricao": "Suporte para exames oficiais de proficiência exigidos por universidades alemãs."
+            },
+            {
+              "nome": "Parceria Universidades Públicas",
+              "descricao": "Acesso a programas com isenção de mensalidade em instituições alemãs."
+            }
+          ]
+        },
+        "redes_sociais": {
+          "youtube": "https://youtube.com/@daadbrasil",
+          "linkedin": "https://linkedin.com/company/daad",
+          "instagram": "https://instagram.com/daadbrasil"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "nome": "ILAC",
+      "descricao": "International Language Academy of Canada — escola de inglês com unidades em Toronto e Vancouver.",
+      "como_funciona": "Do teste de nivelamento gratuito ao primeiro dia de aula em Toronto, nosso time cuida da matrícula, do plano Pathway para colleges canadenses, da reserva de homestay ou residência estudantil e do cronograma completo de documentação e visto.",
+      "contato": "toronto@ilac.com",
+      "telefone": "",
+      "site": "https://ilac.com",
+      "endereco": "Toronto, Canadá",
+      "data_cadastro": "2026-08-23T15:23:23.492564+00:00",
+      "ativo": true,
+      "estado_id": 9,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "equipe"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "contato_whatsapp"
+        },
+        {
+          "tipo": "redes_sociais"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Toronto_Skyline_from_Snake_Island%2C_September_11_2026_%2801%29.jpg/1280px-Toronto_Skyline_from_Snake_Island%2C_September_11_2026_%2801%29.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 55,
+      "conteudo_blocos": {
+        "equipe": {
+          "membros": [
+            {
+              "foto": "https://randomuser.me/api/portraits/women/34.jpg",
+              "nome": "Camila Andrade",
+              "cargo": "Consultora Pathway & College"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/men/35.jpg",
+              "nome": "Daniel Brooks",
+              "cargo": "Coordenador de Estudantes Internacionais"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/men/36.jpg",
+              "nome": "Thiago Nogueira",
+              "cargo": "Especialista em Acomodação Toronto"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/37.jpg",
+              "nome": "Maya Patel",
+              "cargo": "Orientadora Acadêmica IELTS"
+            }
+          ]
+        },
+        "redes_sociais": {
+          "tiktok": "https://tiktok.com/@ilac_canada",
+          "youtube": "https://youtube.com/@ilaccanada",
+          "instagram": "https://instagram.com/ilac_canada"
+        },
+        "contato_whatsapp": {
+          "numero": "+1 416 555 0194",
+          "mensagem": "Olá! Quero receber o orçamento de inglês e Pathway em Toronto."
+        }
+      }
+    },
+    {
+      "id": 10,
+      "nome": "Navitas",
+      "descricao": "Provedora de programas de acesso (pathway) em parceria com universidades australianas.",
+      "como_funciona": "Planejamos sua rota acadêmica na Austrália passo a passo: avaliamos seu histórico, emitimos a carta de oferta (CoE) para visto estudantil em Perth, organizamos o seguro obrigatório OSHC e acompanhamos sua chegada ao campus.",
+      "contato": "perth@navitas.com",
+      "telefone": "",
+      "site": "https://www.navitas.com",
+      "endereco": "Perth, Austrália",
+      "data_cadastro": "2026-08-23T15:23:23.506022+00:00",
+      "ativo": true,
+      "estado_id": 10,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "foto"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "localizacao"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "compacta"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Perth_%28AU%29%2C_Elizabeth_Quay_Bridge_--_2019_--_0375-9.jpg/1280px-Perth_%28AU%29%2C_Elizabeth_Quay_Bridge_--_2019_--_0375-9.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 52,
+      "conteudo_blocos": {
+        "localizacao": {
+          "link_mapa": "https://www.google.com/maps/search/?api=1&query=Perth+Western+Australia+Campus"
+        },
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "NEAS Quality Endorsed",
+              "descricao": "Qualidade auditada para centros de inglês e educação superior na Austrália."
+            },
+            {
+              "nome": "CRICOS Registered",
+              "descricao": "Registro governamental australiano para emissão de CoE e visto estudantil."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 11,
+      "nome": "Languages International",
+      "descricao": "Escola de inglês fundada em 1978, uma das mais tradicionais da Nova Zelândia.",
+      "como_funciona": "1. Consulta personalizada para definir a duração do curso em Auckland e a possibilidade de trabalhar durante os estudos.\\n2. Matrícula direta na escola no Albert Park, reserva de homestay selecionada e checklist do visto neozelandês.\\n3. Recepção no aeroporto, teste oral de turma e mentoria contínua em português.",
+      "contato": "admissions@languages.ac.nz",
+      "telefone": "",
+      "site": "https://www.languages.ac.nz",
+      "endereco": "Auckland, Nova Zelândia",
+      "data_cadastro": "2026-08-23T15:23:23.519734+00:00",
+      "ativo": true,
+      "estado_id": 11,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "equipe"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "lista"
+        },
+        {
+          "tipo": "faq"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "contato_whatsapp"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Auckland_skyline_from_Bridge.jpg/1280px-Auckland_skyline_from_Bridge.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 48,
+      "conteudo_blocos": {
+        "faq": {
+          "perguntas": [
+            {
+              "pergunta": "Posso trabalhar enquanto estudo inglês em Auckland?",
+              "resposta": "Em cursos a partir de 14 semanas em escola Categoria 1 NZQA, o visto estudantil permite trabalho de até 20h semanais."
+            },
+            {
+              "pergunta": "Onde fica o campus?",
+              "resposta": "Em prédios históricos dentro do Albert Park, no coração universitário de Auckland."
+            }
+          ]
+        },
+        "equipe": {
+          "membros": [
+            {
+              "foto": "https://randomuser.me/api/portraits/women/38.jpg",
+              "nome": "Hannah Wilson",
+              "cargo": "Diretora Acadêmica em Auckland"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/men/39.jpg",
+              "nome": "Lucas Prado",
+              "cargo": "Atendimento em Português (Brasil)"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/40.jpg",
+              "nome": "Aroha Clarke",
+              "cargo": "Coordenadora de Homestay"
+            }
+          ]
+        },
+        "contato_whatsapp": {
+          "numero": "+64 9 309 0615",
+          "mensagem": "Oi! Gostaria de informações sobre estudar inglês em Auckland."
+        }
+      }
+    },
+    {
+      "id": 12,
+      "nome": "Kaplan International Languages",
+      "descricao": "Escola de inglês no centro de Dublin, com preparação para exames Cambridge e IELTS.",
+      "como_funciona": "Você escolhe a carga horária e o foco do seu curso em Dublin — inglês geral, negócios ou preparatório IELTS/Cambridge. Nós cuidamos da matrícula oficial para visto Stamp 2, da acomodação nas primeiras semanas e do suporte local para abertura de conta e adaptação na Irlanda.",
+      "contato": "dublin@kaplaninternational.com",
+      "telefone": "",
+      "site": "https://www.kaplaninternational.com",
+      "endereco": "Dublin, Irlanda",
+      "data_cadastro": "2026-08-23T15:23:23.533767+00:00",
+      "ativo": true,
+      "estado_id": 12,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "faq"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "localizacao"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Trinity_college_library.jpg/1280px-Trinity_college_library.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 45,
+      "conteudo_blocos": {
+        "faq": {
+          "perguntas": [
+            {
+              "pergunta": "O curso de 25 semanas dá direito ao visto Stamp 2 para trabalhar?",
+              "resposta": "Sim! O programa Academic Year inclui 25 semanas de aula + 8 semanas de férias com permissão de trabalho legal."
+            },
+            {
+              "pergunta": "Vocês ajudam com a acomodação nas primeiras semanas?",
+              "resposta": "Oferecemos tanto casas de família selecionadas quanto residências estudantis no centro de Dublin."
+            }
+          ]
+        },
+        "localizacao": {
+          "link_mapa": "https://www.google.com/maps/search/?api=1&query=Temple+Bar+Dublin+Ireland"
+        },
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "ACELS / QQI Reconhecida",
+              "descricao": "Certificação oficial do governo irlandês para cursos de idioma de longa duração."
+            },
+            {
+              "nome": "MEI — Marketing English in Ireland",
+              "descricao": "Proteção estudantil garantida para cursos Stamp 2 de 25 semanas."
+            },
+            {
+              "nome": "Cambridge Exam Prep Centre",
+              "descricao": "Centro preparatório especializado em IELTS e Cambridge FCE/CAE."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 20,
+      "nome": "Sogang University Korean Language Education Center",
+      "descricao": "Um dos centros de coreano mais tradicionais do país, ligado à Universidade Sogang, em Seul.",
+      "como_funciona": "O ingresso na Sogang KLEC funciona por trimestres acadêmicos em Seul. Orientamos na escolha do período, conferência dos documentos para visto D-4, pagamento da matrícula universitária, busca de dormitório ou goshiwon próximo ao campus e teste de nivelamento na chegada.",
+      "contato": "klec@sogang.ac.kr",
+      "telefone": "",
+      "site": "https://klec.sogang.ac.kr",
+      "endereco": "Seul, Coreia do Sul",
+      "data_cadastro": "2026-08-24T23:14:25.238712+00:00",
+      "ativo": true,
+      "estado_id": 20,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "foto"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "compacta"
+        },
+        {
+          "tipo": "redes_sociais"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/%EA%B4%91%ED%99%94%EB%AC%B8_%EC%9B%94%EB%8C%80.jpg/1280px-%EA%B4%91%ED%99%94%EB%AC%B8_%EC%9B%94%EB%8C%80.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 45,
+      "conteudo_blocos": {
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "Sogang University KLEC",
+              "descricao": "Metodologia referência mundial focada em conversação real em coreano."
+            },
+            {
+              "nome": "IEQAS Certified University",
+              "descricao": "Selo do Ministério da Educação da Coreia do Sul para suporte a estrangeiros."
+            }
+          ]
+        },
+        "redes_sociais": {
+          "youtube": "https://youtube.com/@soganguniversity",
+          "instagram": "https://instagram.com/sogang_klec"
+        }
+      }
+    },
+    {
+      "id": 21,
+      "nome": "British Council",
+      "descricao": "Cursos de inglês e preparação para exames internacionais, com a credibilidade do British Council.",
+      "como_funciona": "Alinhamos seu objetivo profissional ou acadêmico em Singapura com turmas de inglês geral, executivo ou preparatório oficial IELTS. Nossa equipe acompanha o nivelamento, a inscrição no curso, orientações de estadia e a integração na unidade local.",
+      "contato": "contact@britishcouncil.sg",
+      "telefone": "",
+      "site": "https://www.britishcouncil.sg",
+      "endereco": "Singapura, Singapura",
+      "data_cadastro": "2026-08-24T23:14:25.249718+00:00",
+      "ativo": true,
+      "estado_id": 21,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "lista"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "localizacao"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Marina_Bay_Singapore-3499.jpg/1280px-Marina_Bay_Singapore-3499.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 50,
+      "conteudo_blocos": {
+        "localizacao": {
+          "link_mapa": "https://www.google.com/maps/search/?api=1&query=Napier+Road+Singapore+British+Council"
+        },
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "EduTrust Certified (Singapura)",
+              "descricao": "Padrão de excelência acadêmica e financeira exigido pelo governo de Singapura."
+            },
+            {
+              "nome": "IELTS Co-Owner",
+              "descricao": "Preparação oficial direta com a instituição co-criadora do exame IELTS."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 33,
+      "nome": "Horizonte Intercâmbios",
+      "descricao": "Agência com atuação em mais de 20 países, especializada em imersão cultural de longa duração.",
+      "como_funciona": "Cuidamos de todo o seu projeto em Portugal sem burocracia: análise de perfil e candidatura universitária ou de idiomas em Lisboa, orientação para apostila de Haia e visto de residência estudantil, reserva de moradia e acolhimento presencial na chegada.",
+      "contato": "contato@horizonteintercambios.com.br",
+      "telefone": "",
+      "site": "https://www.horizonteintercambios.com.br",
+      "endereco": "Lisboa, Portugal",
+      "data_cadastro": "2026-08-27T14:36:58.890876+00:00",
+      "ativo": true,
+      "estado_id": 13,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "equipe"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "contato_whatsapp"
+        },
+        {
+          "tipo": "redes_sociais"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Lisbon_%2836831596786%29_%28cropped%29.jpg/1280px-Lisbon_%2836831596786%29_%28cropped%29.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 48,
+      "conteudo_blocos": {
+        "equipe": {
+          "membros": [
+            {
+              "foto": "https://randomuser.me/api/portraits/women/41.jpg",
+              "nome": "Mariana Esteves",
+              "cargo": "Diretora de Operações Europa"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/men/42.jpg",
+              "nome": "João Pedro Lima",
+              "cargo": "Consultor de Graduação e Mestrado"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/43.jpg",
+              "nome": "Inês Carvalho",
+              "cargo": "Acolhimento Local em Lisboa"
+            }
+          ]
+        },
+        "redes_sociais": {
+          "linkedin": "https://linkedin.com/company/horizonte-intercambios",
+          "instagram": "https://instagram.com/horizonteintercambios"
+        },
+        "contato_whatsapp": {
+          "numero": "+351 21 555 0148",
+          "mensagem": "Olá Horizonte! Quero conversar sobre intercâmbio e graduação em Portugal."
+        }
+      }
+    },
+    {
+      "id": 34,
+      "nome": "Rota Global Educação",
+      "descricao": "Rede de assessoria educacional presente em mais de 20 países, com foco em programas de longa duração.",
+      "como_funciona": "Nosso atendimento começa ouvindo seu orçamento e seu plano de carreira no Canadá. Montamos propostas transparentes sem taxas escondidas, acompanhamos a aplicação para College ou Study & Work em Toronto e seguimos ao seu lado depois do embarque.",
+      "contato": "contato@rotaglobaleducacao.com.br",
+      "telefone": "",
+      "site": "https://www.rotaglobaleducacao.com.br",
+      "endereco": "Toronto, Canadá",
+      "data_cadastro": "2026-08-27T14:36:58.913329+00:00",
+      "ativo": true,
+      "estado_id": 9,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "foto"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "equipe"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "faq"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "contato_whatsapp"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/University_of_Toronto%2C_Main_Building%2C_2008.jpg/1280px-University_of_Toronto%2C_Main_Building%2C_2008.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 46,
+      "conteudo_blocos": {
+        "faq": {
+          "perguntas": [
+            {
+              "pergunta": "Posso usar o Co-op para trabalhar na minha área no Canadá?",
+              "resposta": "Sim! Os programas de College com Co-op combinam estudo e estágio remunerado em empresas canadenses."
+            },
+            {
+              "pergunta": "Qual a antecedência ideal para começar o planejamento?",
+              "resposta": "Recomendamos iniciar de 6 a 9 meses antes do embarque para garantir vagas e visto com tranquilidade."
+            }
+          ]
+        },
+        "equipe": {
+          "membros": [
+            {
+              "foto": "https://randomuser.me/api/portraits/women/44.jpg",
+              "nome": "Fernanda Rangel",
+              "cargo": "Consultora Sênior Canadá"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/men/45.jpg",
+              "nome": "Gabriel Soares",
+              "cargo": "Especialista Study & Work"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/46.jpg",
+              "nome": "Aline Costa",
+              "cargo": "Apoio Pré-Embarque e Visto"
+            }
+          ]
+        },
+        "contato_whatsapp": {
+          "numero": "+55 11 97420 3310",
+          "mensagem": "Oi Rota Global! Vi o perfil de vocês na GlobalBridge e quero planejar meu Canadá."
+        }
+      }
+    },
+    {
+      "id": 35,
+      "nome": "Vértice Study Abroad",
+      "descricao": "Agência voltada a programas de curta e média duração, com parcerias em universidades e ONGs pelo mundo.",
+      "como_funciona": "1. Sessão de planejamento para comparar escolas, bairros e custo de vida em Dublin.\\n2. Fechamento direto da matrícula, seguro governamental, comprovação financeira e acomodação inicial.\\n3. Grupo exclusivo de pré-embarque e suporte presencial na Irlanda para IRP, PPS e primeiras entrevistas de trabalho.",
+      "contato": "atendimento@verticestudyabroad.com.br",
+      "telefone": "",
+      "site": "https://www.verticestudyabroad.com.br",
+      "endereco": "Dublin, Irlanda",
+      "data_cadastro": "2026-08-27T14:36:58.92002+00:00",
+      "ativo": true,
+      "estado_id": 12,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "lista"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "equipe"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "compacta"
+        },
+        {
+          "tipo": "contato_whatsapp"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Irland_260_-_Ha%27_Penny_Bridge_1.JPG/1280px-Irland_260_-_Ha%27_Penny_Bridge_1.JPG",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 50,
+      "conteudo_blocos": {
+        "equipe": {
+          "membros": [
+            {
+              "foto": "https://randomuser.me/api/portraits/men/47.jpg",
+              "nome": "Rodrigo Tavares",
+              "cargo": "Fundador e Mentor de Intercâmbio"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/48.jpg",
+              "nome": "Bianca Almeida",
+              "cargo": "Suporte Local em Dublin"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/men/49.jpg",
+              "nome": "Seán Murphy",
+              "cargo": "Parcerias Escolares Irlanda"
+            }
+          ]
+        },
+        "contato_whatsapp": {
+          "numero": "+353 1 555 0182",
+          "mensagem": "Olá Vértice! Quero tirar dúvidas sobre intercâmbio em Dublin."
+        }
+      }
+    },
+    {
+      "id": 36,
+      "nome": "CIEE",
+      "descricao": "Organização americana de intercâmbio acadêmico, com programas de graduação e imersão em parceria com universidades locais.",
+      "como_funciona": "1. Escolha do programa nos Estados Unidos (intercâmbio universitário, férias ou estágio cultural J-1).\\n2. Orientação completa de documentos, emissão do formulário DS-2019 ou I-20 e preparo para a entrevista consular.\\n3. Suporte 24h durante toda a estadia em Nova York e integração com estudantes internacionais.",
+      "contato": "usa@ciee.org",
+      "telefone": "",
+      "site": "https://www.ciee.org",
+      "endereco": "Nova York, Estados Unidos",
+      "data_cadastro": "2026-08-27T18:23:47.415096+00:00",
+      "ativo": true,
+      "estado_id": 8,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "redes_sociais"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/1280px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 40,
+      "conteudo_blocos": {
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "U.S. Dept. of State Sponsor",
+              "descricao": "Patrocinador oficial autorizado para programas de intercâmbio cultural J-1."
+            },
+            {
+              "nome": "CSIET Listed",
+              "descricao": "Avaliação anual independente de segurança e acolhimento estudantil nos EUA."
+            }
+          ]
+        },
+        "redes_sociais": {
+          "youtube": "https://youtube.com/@ciee",
+          "facebook": "https://facebook.com/ciee",
+          "instagram": "https://instagram.com/cieestudyabroad"
+        }
+      }
+    },
+    {
+      "id": 37,
+      "nome": "EF Education",
+      "descricao": "Cursos de português para estrangeiros e programas de imersão cultural em Lisboa.",
+      "como_funciona": "1. Definição do formato de imersão em Lisboa (curta duração, semestre ou ano acadêmico).\\n2. Nivelamento online, matrícula garantida e escolha entre residência estudantil ou casa de família.\\n3. Acompanhamento pré-embarque e programação semanal de atividades culturais pela capital portuguesa.",
+      "contato": "lisboa@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "Lisboa, Portugal",
+      "data_cadastro": "2026-08-27T18:23:47.426137+00:00",
+      "ativo": true,
+      "estado_id": 13,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "foto"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "lista"
+        },
+        {
+          "tipo": "localizacao"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Torre_Bel%C3%A9m_April_2009-4a.jpg/1280px-Torre_Bel%C3%A9m_April_2009-4a.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 48,
+      "conteudo_blocos": {
+        "localizacao": {
+          "link_mapa": "https://www.google.com/maps/search/?api=1&query=Avenida+da+Liberdade+Lisboa+Portugal"
+        }
+      }
+    },
+    {
+      "id": 38,
+      "nome": "EF Education",
+      "descricao": "Cursos de espanhol em imersão em Barcelona, com certificação internacional reconhecida.",
+      "como_funciona": "Em Barcelona você combina aulas práticas de espanhol com vivência real na cidade. Nossa equipe organiza sua matrícula, orienta sobre visto de longa duração quando necessário, reserva a acomodação e acompanha seu progresso semana a semana até o certificado final.",
+      "contato": "barcelona@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "Barcelona, Espanha",
+      "data_cadastro": "2026-08-27T18:23:47.434144+00:00",
+      "ativo": true,
+      "estado_id": 14,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "faq"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "redes_sociais"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Sagrada_Familia%2C_Barcelona_%28P1170690%29.jpg/1280px-Sagrada_Familia%2C_Barcelona_%28P1170690%29.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 45,
+      "conteudo_blocos": {
+        "faq": {
+          "perguntas": [
+            {
+              "pergunta": "As aulas em Barcelona são em espanhol ou catalão?",
+              "resposta": "Os programas para estrangeiros são 100% em espanhol (castelhano), com vivência cultural completa pela cidade."
+            },
+            {
+              "pergunta": "Vocês preparam para o exame oficial DELE?",
+              "resposta": "Sim, temos módulos específicos de preparação para o DELE do Instituto Cervantes."
+            }
+          ]
+        },
+        "redes_sociais": {
+          "tiktok": "https://tiktok.com/@efeducationfirst",
+          "instagram": "https://instagram.com/efbarcelona"
+        }
+      }
+    },
+    {
+      "id": 39,
+      "nome": "EF Education",
+      "descricao": "Cursos de francês em imersão na Riviera Francesa, do nível iniciante ao avançado.",
+      "como_funciona": "Planejamos sua imersão de francês na Côte d'Azur do início ao fim: teste de nível, reserva do curso e da moradia em Nice, orientações para o Espaço Schengen ou visto estudantil francês e calendário cultural com passeios pela Riviera.",
+      "contato": "nice@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "Nice, França",
+      "data_cadastro": "2026-08-27T18:23:47.441498+00:00",
+      "ativo": true,
+      "estado_id": 15,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "foto"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "compacta"
+        },
+        {
+          "tipo": "localizacao"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Nice-night-view-with-blurred-cars_1200x900.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 55,
+      "conteudo_blocos": {
+        "localizacao": {
+          "link_mapa": "https://www.google.com/maps/search/?api=1&query=Promenade+des+Anglais+Nice+France"
+        },
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "Label Qualité FLE",
+              "descricao": "Selo oficial dos Ministérios franceses para excelência no ensino de Francês Língua Estrangeira."
+            },
+            {
+              "nome": "Campus France Parceira",
+              "descricao": "Alinhamento com projetos acadêmicos para ingresso em universidades francesas."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 40,
+      "nome": "EF Education",
+      "descricao": "Cursos de italiano em imersão no centro de Roma, com atividades culturais incluídas.",
+      "como_funciona": "1. Atendimento inicial para escolher entre italiano geral, intensivo ou módulos de cultura e gastronomia em Roma.\\n2. Matrícula, carta de aceitação para visto (em cursos acima de 90 dias) e reserva de acomodação central.\\n3. Boas-vindas presenciais no campus, nivelamento e acompanhamento completo na Itália.",
+      "contato": "roma@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "Roma, Itália",
+      "data_cadastro": "2026-08-27T18:23:47.448818+00:00",
+      "ativo": true,
+      "estado_id": 16,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "lista"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "equipe"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "localizacao"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/1280px-Colosseo_2020.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 46,
+      "conteudo_blocos": {
+        "equipe": {
+          "membros": [
+            {
+              "foto": "https://randomuser.me/api/portraits/women/50.jpg",
+              "nome": "Giulia Moretti",
+              "cargo": "Coordenadora Cultural em Roma"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/men/51.jpg",
+              "nome": "Matteo Conti",
+              "cargo": "Professor Líder de Italiano"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/52.jpg",
+              "nome": "Paula Farias",
+              "cargo": "Consultora Brasil–Itália"
+            }
+          ]
+        },
+        "localizacao": {
+          "link_mapa": "https://www.google.com/maps/search/?api=1&query=Centro+Storico+Roma+Italia"
+        }
+      }
+    },
+    {
+      "id": 41,
+      "nome": "EF Education",
+      "descricao": "Cursos de inglês e holandês em Amsterdã, com forte comunidade internacional de estudantes.",
+      "como_funciona": "Estruturamos seu intercâmbio em Amsterdã com foco em autonomia e vivência internacional: definição do curso em inglês ou holandês, matrícula, orientação de moradia estudantil, seguro viagem e dicas práticas de mobilidade e rotina na Holanda.",
+      "contato": "amsterda@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "Amsterdã, Holanda",
+      "data_cadastro": "2026-08-27T18:23:47.456798+00:00",
+      "ativo": true,
+      "estado_id": 17,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "faq"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "compacta"
+        },
+        {
+          "tipo": "contato_whatsapp"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Houses_and_canals_in_Amsterdam_%2825674673723%29.jpg/1280px-Houses_and_canals_in_Amsterdam_%2825674673723%29.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 50,
+      "conteudo_blocos": {
+        "faq": {
+          "perguntas": [
+            {
+              "pergunta": "É possível estudar em inglês na Holanda?",
+              "resposta": "Sim! A Holanda tem uma das maiores ofertas de programas em inglês da Europa continental."
+            },
+            {
+              "pergunta": "O deslocamento de bicicleta faz parte da rotina?",
+              "resposta": "Totalmente — incluímos orientação de mobilidade urbana e aluguel de bike para estudantes."
+            }
+          ]
+        },
+        "contato_whatsapp": {
+          "numero": "+31 20 555 0199",
+          "mensagem": "Olá! Quero saber mais sobre os programas em Amsterdã."
+        }
+      }
+    },
+    {
+      "id": 42,
+      "nome": "EF Education",
+      "descricao": "Cursos de inglês à beira-mar em Malta, um dos destinos mais em conta da Europa.",
+      "como_funciona": "1. Escolha do período e da intensidade das aulas em St. Julian's — com opção de começar sem visto prévio para até 12 semanas.\\n2. Reserva do curso e da residência estudantil a poucos minutos da escola e da praia.\\n3. Traslado na chegada, teste de nivelamento e apoio local se decidir estender a estadia em Malta.",
+      "contato": "malta@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "St. Julian's, Malta",
+      "data_cadastro": "2026-08-27T18:23:47.463963+00:00",
+      "ativo": true,
+      "estado_id": 18,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "foto"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "faq"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "contato_whatsapp"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Malta_Valletta_BW_2011-10-07_10-41-05.JPG/1280px-Malta_Valletta_BW_2011-10-07_10-41-05.JPG",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 52,
+      "conteudo_blocos": {
+        "faq": {
+          "perguntas": [
+            {
+              "pergunta": "Brasileiros precisam de visto para cursos de até 90 dias em Malta?",
+              "resposta": "Não! Para até 12 semanas o brasileiro entra como turista no Espaço Schengen; acima disso cuidamos da extensão local."
+            }
+          ]
+        },
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "FELTOM Accredited",
+              "descricao": "Federação oficial de escolas de ensino de inglês em Malta."
+            },
+            {
+              "nome": "ELT Council Licensed",
+              "descricao": "Licença governamental maltesa com auditoria pedagógica periódica."
+            }
+          ]
+        },
+        "contato_whatsapp": {
+          "numero": "+356 2138 0190",
+          "mensagem": "Oi! Quero receber valores para estudar inglês em Malta."
+        }
+      }
+    },
+    {
+      "id": 43,
+      "nome": "EF Education",
+      "descricao": "Cursos de japonês em imersão em Tóquio, com atividades de cultura e tecnologia.",
+      "como_funciona": "Você pode começar japonês do absoluto zero em Tóquio. Cuidamos da inscrição no campus de Shibuya, do processo de Certificate of Eligibility (CoE) para cursos longos, da reserva de moradia e do acompanhamento cultural durante toda a experiência no Japão.",
+      "contato": "toquio@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "Tóquio, Japão",
+      "data_cadastro": "2026-08-27T18:23:47.471371+00:00",
+      "ativo": true,
+      "estado_id": 19,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "equipe"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "faq"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "redes_sociais"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 45,
+      "conteudo_blocos": {
+        "faq": {
+          "perguntas": [
+            {
+              "pergunta": "Posso começar japonês do absoluto zero em Tóquio?",
+              "resposta": "Sim! Temos turmas iniciantes todos os meses ensinando hiragana, katakana e conversação prática desde a primeira semana."
+            },
+            {
+              "pergunta": "Vocês oferecem preparação para o JLPT?",
+              "resposta": "Sim, dos níveis N5 ao N2 com simulados semanais."
+            }
+          ]
+        },
+        "equipe": {
+          "membros": [
+            {
+              "foto": "https://randomuser.me/api/portraits/men/53.jpg",
+              "nome": "Kenji Takahashi",
+              "cargo": "Diretor de Campus em Shibuya"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/54.jpg",
+              "nome": "Yuki Sato",
+              "cargo": "Mentora de Imersão Cultural"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/55.jpg",
+              "nome": "Renata Tanaka",
+              "cargo": "Suporte a Estudantes Brasileiros"
+            }
+          ]
+        },
+        "redes_sociais": {
+          "tiktok": "https://tiktok.com/@eftokyo",
+          "youtube": "https://youtube.com/@eftokyo",
+          "instagram": "https://instagram.com/eftokyo"
+        }
+      }
+    },
+    {
+      "id": 44,
+      "nome": "EF Education",
+      "descricao": "Cursos de espanhol em imersão no Caribe mexicano, com custo mais baixo que a Europa.",
+      "como_funciona": "1. Escolha das datas e da carga horária de espanhol em Playa del Carmen.\\n2. Matrícula imediata, reserva da residência estudantil próxima à praia e orientações simples de entrada no México.\\n3. Recepção no campus, nivelamento no primeiro dia e programação de passeios pela Riviera Maya.",
+      "contato": "mexico@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "Playa del Carmen, México",
+      "data_cadastro": "2026-08-27T18:23:47.479434+00:00",
+      "ativo": true,
+      "estado_id": 22,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "lista"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "compacta"
+        },
+        {
+          "tipo": "contato_whatsapp"
+        },
+        {
+          "tipo": "localizacao"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Playa_de_Tulum_%28M%C3%A9xico%29.jpg/1280px-Playa_de_Tulum_%28M%C3%A9xico%29.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 55,
+      "conteudo_blocos": {
+        "localizacao": {
+          "link_mapa": "https://www.google.com/maps/search/?api=1&query=Playa+del+Carmen+Quintana+Roo+Mexico"
+        },
+        "contato_whatsapp": {
+          "numero": "+52 984 555 0144",
+          "mensagem": "Olá! Quero saber mais sobre intercâmbio de espanhol em Playa del Carmen."
+        }
+      }
+    },
+    {
+      "id": 45,
+      "nome": "EF Education",
+      "descricao": "Cursos de espanhol em imersão em Buenos Aires, próximo o suficiente pra quem já fala português.",
+      "como_funciona": "Aproveite a proximidade e a facilidade do Mercosul para fazer imersão em espanhol em Buenos Aires. Cuidamos da sua matrícula em Palermo, da escolha entre homestay ou residência estudantil e de toda a agenda cultural de boas-vindas na capital argentina.",
+      "contato": "buenosaires@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "Buenos Aires, Argentina",
+      "data_cadastro": "2026-08-27T18:23:47.486684+00:00",
+      "ativo": true,
+      "estado_id": 23,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "foto"
+        },
+        {
+          "tipo": "equipe"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "redes_sociais"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Puerto_Madero%2C_Buenos_Aires_%2840689219792%29_%28cropped%29.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 50,
+      "conteudo_blocos": {
+        "equipe": {
+          "membros": [
+            {
+              "foto": "https://randomuser.me/api/portraits/women/56.jpg",
+              "nome": "Valentina Gómez",
+              "cargo": "Coordenadora Acadêmica Palermo"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/men/57.jpg",
+              "nome": "Diego Herrera",
+              "cargo": "Atividades Culturais & Tango"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/58.jpg",
+              "nome": "Beatriz Rocha",
+              "cargo": "Atendimento Mercosul"
+            }
+          ]
+        },
+        "redes_sociais": {
+          "linkedin": "https://linkedin.com/company/ef-education-first",
+          "instagram": "https://instagram.com/efbuenosaires"
+        }
+      }
+    },
+    {
+      "id": 46,
+      "nome": "British Council",
+      "descricao": "Cursos de inglês em Santiago, com professores certificados e material do British Council.",
+      "como_funciona": "1. Teste diagnóstico gratuito para encaixar você na turma ideal em Santiago.\\n2. Matrícula em cursos de idiomas ou preparatórios oficiais IELTS com flexibilidade de horários.\\n3. Orientação sobre documentação do Mercosul, bairros seguros para morar e acompanhamento acadêmico contínuo.",
+      "contato": "santiago@britishcouncil.cl",
+      "telefone": "",
+      "site": "https://www.britishcouncil.cl",
+      "endereco": "Santiago, Chile",
+      "data_cadastro": "2026-08-27T18:23:47.49454+00:00",
+      "ativo": true,
+      "estado_id": 24,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "localizacao"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "compacta"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gran_Santiago_Tower%2C_Views_from_San_Crit%C3%B3bal_Hill_-_Santiago_-_Chile_01.jpg/1280px-Gran_Santiago_Tower%2C_Views_from_San_Crit%C3%B3bal_Hill_-_Santiago_-_Chile_01.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 45,
+      "conteudo_blocos": {
+        "localizacao": {
+          "link_mapa": "https://www.google.com/maps/search/?api=1&query=Providencia+Santiago+Chile"
+        },
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "British Council Chile",
+              "descricao": "Mais de 80 anos conectando educação internacional na América Latina."
+            },
+            {
+              "nome": "Centro Aplicador IELTS",
+              "descricao": "Exames oficiais aplicados diretamente na unidade de Santiago."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 47,
+      "nome": "British Council",
+      "descricao": "Cursos de inglês em Bogotá, com foco em preparação para exames internacionais.",
+      "como_funciona": "Combinamos ensino certificado com suporte próximo em Bogotá: realizamos o nivelamento, orientamos sobre estadia e rotina na capital colombiana e acompanhamos cada etapa do curso para garantir evolução consistente na fluência.",
+      "contato": "bogota@britishcouncil.co",
+      "telefone": "",
+      "site": "https://www.britishcouncil.co",
+      "endereco": "Bogotá, Colômbia",
+      "data_cadastro": "2026-08-27T18:23:47.501994+00:00",
+      "ativo": true,
+      "estado_id": 25,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "foto"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "lista"
+        },
+        {
+          "tipo": "faq"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "redes_sociais"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/BOGOTA_CITY.jpg/1280px-BOGOTA_CITY.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 48,
+      "conteudo_blocos": {
+        "faq": {
+          "perguntas": [
+            {
+              "pergunta": "Por que escolher Bogotá para aperfeiçoar o espanhol?",
+              "resposta": "O espanhol colombiano é reconhecido pela clareza na pronúncia e pela excelente relação custo-benefício para brasileiros."
+            },
+            {
+              "pergunta": "Há suporte de seguro e orientação na chegada?",
+              "resposta": "Sim, realizamos sessão de boas-vindas presencial e acompanhamento durante toda a estadia."
+            }
+          ]
+        },
+        "redes_sociais": {
+          "linkedin": "https://linkedin.com/company/british-council",
+          "instagram": "https://instagram.com/britishcouncilco"
+        }
+      }
+    },
+    {
+      "id": 48,
+      "nome": "EF Education",
+      "descricao": "Cursos de inglês em imersão na Cidade do Cabo, com atividades de natureza e vida selvagem.",
+      "como_funciona": "Unimos inglês intensivo, excelente custo-benefício e qualidade de vida na Cidade do Cabo. Nossa equipe cuida da matrícula, da acomodação próxima à escola, das orientações de visto sul-africano (acima de 90 dias) e do suporte presencial desde o aeroporto.",
+      "contato": "capetown@ef.com",
+      "telefone": "",
+      "site": "https://www.ef.com",
+      "endereco": "Cidade do Cabo, África do Sul",
+      "data_cadastro": "2026-08-27T18:23:47.509945+00:00",
+      "ativo": true,
+      "estado_id": 26,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "banner"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "grade"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "destaque"
+        },
+        {
+          "tipo": "equipe"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "grade"
+        },
+        {
+          "tipo": "contato_whatsapp"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Table_Mountain_DanieVDM.jpg/1280px-Table_Mountain_DanieVDM.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 50,
+      "conteudo_blocos": {
+        "equipe": {
+          "membros": [
+            {
+              "foto": "https://randomuser.me/api/portraits/men/59.jpg",
+              "nome": "Thabo Mokoena",
+              "cargo": "Coordenador de Vida Estudantil"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/women/60.jpg",
+              "nome": "Claire van der Berg",
+              "cargo": "Diretora de Ensino em Cape Town"
+            },
+            {
+              "foto": "https://randomuser.me/api/portraits/men/61.jpg",
+              "nome": "Felipe Duarte",
+              "cargo": "Consultor para Brasileiros"
+            }
+          ]
+        },
+        "contato_whatsapp": {
+          "numero": "+27 21 555 0167",
+          "mensagem": "Oi! Quero conhecer os planos de intercâmbio na Cidade do Cabo."
+        }
+      }
+    },
+    {
+      "id": 49,
+      "nome": "CIEE",
+      "descricao": "Programas de imersão cultural e árabe em Rabat, em parceria com universidades locais.",
+      "como_funciona": "1. Entrevista acadêmica para alinhar disciplinas, idiomas (francês e árabe) e validação de créditos em Rabat.\\n2. Emissão de cartas oficiais, reserva de moradia e sessões de preparação intercultural antes da viagem.\\n3. Orientação presencial no Marrocos e suporte 24h da equipe residente durante todo o semestre.",
+      "contato": "rabat@ciee.org",
+      "telefone": "",
+      "site": "https://www.ciee.org",
+      "endereco": "Rabat, Marrocos",
+      "data_cadastro": "2026-08-27T18:23:47.5178+00:00",
+      "ativo": true,
+      "estado_id": 27,
+      "usuario_id": null,
+      "layout": [
+        {
+          "tipo": "hero",
+          "variante": "foto"
+        },
+        {
+          "tipo": "galeria"
+        },
+        {
+          "tipo": "como_funciona",
+          "variante": "texto"
+        },
+        {
+          "tipo": "catalogo",
+          "variante": "lista"
+        },
+        {
+          "tipo": "certificacoes"
+        },
+        {
+          "tipo": "avaliacoes",
+          "variante": "compacta"
+        },
+        {
+          "tipo": "localizacao"
+        }
+      ],
+      "imagem_capa_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Soccer_match_by_the_gate_of_the_Kasbah_%28Kasbah_of_the_Udayas%2C_Rabat%2C_Morocco%29_%2815748035002%29.jpg/1280px-Soccer_match_by_the_gate_of_the_Kasbah_%28Kasbah_of_the_Udayas%2C_Rabat%2C_Morocco%29_%2815748035002%29.jpg",
+      "imagem_capa_foco_x": 50,
+      "imagem_capa_foco_y": 48,
+      "conteudo_blocos": {
+        "localizacao": {
+          "link_mapa": "https://www.google.com/maps/search/?api=1&query=Rabat+Agdal+Morocco"
+        },
+        "certificacoes": {
+          "itens": [
+            {
+              "nome": "CIEE Global Institute",
+              "descricao": "Imersão acadêmica em estudos mediterrâneos, francês e árabe com créditos universitários."
+            },
+            {
+              "nome": "Suporte 24h no Destino",
+              "descricao": "Equipe residente em Rabat dedicada à segurança e adaptação cultural."
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "agencia_tags": [
+    {
+      "agencia_id": 5,
+      "tag_id": 9
+    },
+    {
+      "agencia_id": 5,
+      "tag_id": 13
+    },
+    {
+      "agencia_id": 5,
+      "tag_id": 15
+    },
+    {
+      "agencia_id": 5,
+      "tag_id": 16
+    },
+    {
+      "agencia_id": 6,
+      "tag_id": 7
+    },
+    {
+      "agencia_id": 6,
+      "tag_id": 9
+    },
+    {
+      "agencia_id": 6,
+      "tag_id": 13
+    },
+    {
+      "agencia_id": 7,
+      "tag_id": 7
+    },
+    {
+      "agencia_id": 7,
+      "tag_id": 8
+    },
+    {
+      "agencia_id": 7,
+      "tag_id": 10
+    },
+    {
+      "agencia_id": 7,
+      "tag_id": 16
+    },
+    {
+      "agencia_id": 9,
+      "tag_id": 13
+    },
+    {
+      "agencia_id": 10,
+      "tag_id": 9
+    },
+    {
+      "agencia_id": 10,
+      "tag_id": 11
+    },
+    {
+      "agencia_id": 11,
+      "tag_id": 13
+    },
+    {
+      "agencia_id": 12,
+      "tag_id": 13
+    },
+    {
+      "agencia_id": 51,
+      "tag_id": 9
+    },
+    {
+      "agencia_id": 51,
+      "tag_id": 13
+    }
+  ],
+  "agencia_paises_atendidos": [
+    {
+      "agencia_id": 5,
+      "pais_id": 1
+    },
+    {
+      "agencia_id": 5,
+      "pais_id": 9
+    },
+    {
+      "agencia_id": 5,
+      "pais_id": 10
+    },
+    {
+      "agencia_id": 5,
+      "pais_id": 11
+    },
+    {
+      "agencia_id": 5,
+      "pais_id": 12
+    },
+    {
+      "agencia_id": 5,
+      "pais_id": 13
+    },
+    {
+      "agencia_id": 5,
+      "pais_id": 14
+    },
+    {
+      "agencia_id": 5,
+      "pais_id": 15
+    },
+    {
+      "agencia_id": 5,
+      "pais_id": 18
+    },
+    {
+      "agencia_id": 5,
+      "pais_id": 19
+    },
+    {
+      "agencia_id": 5,
+      "pais_id": 22
+    },
+    {
+      "agencia_id": 6,
+      "pais_id": 2
+    },
+    {
+      "agencia_id": 6,
+      "pais_id": 4
+    },
+    {
+      "agencia_id": 6,
+      "pais_id": 23
+    },
+    {
+      "agencia_id": 7,
+      "pais_id": 3
+    },
+    {
+      "agencia_id": 9,
+      "pais_id": 5
+    },
+    {
+      "agencia_id": 10,
+      "pais_id": 6
+    },
+    {
+      "agencia_id": 11,
+      "pais_id": 7
+    },
+    {
+      "agencia_id": 12,
+      "pais_id": 8
+    },
+    {
+      "agencia_id": 20,
+      "pais_id": 16
+    },
+    {
+      "agencia_id": 21,
+      "pais_id": 17
+    },
+    {
+      "agencia_id": 21,
+      "pais_id": 20
+    },
+    {
+      "agencia_id": 21,
+      "pais_id": 21
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 1
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 2
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 3
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 4
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 5
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 6
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 7
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 8
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 9
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 10
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 11
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 12
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 13
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 14
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 15
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 16
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 17
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 18
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 19
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 20
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 21
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 22
+    },
+    {
+      "agencia_id": 33,
+      "pais_id": 23
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 1
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 2
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 3
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 4
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 5
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 6
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 7
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 8
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 9
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 10
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 11
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 12
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 13
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 14
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 15
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 16
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 17
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 18
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 19
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 20
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 21
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 22
+    },
+    {
+      "agencia_id": 34,
+      "pais_id": 23
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 1
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 2
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 3
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 4
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 5
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 6
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 7
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 8
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 9
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 10
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 11
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 12
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 13
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 14
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 15
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 16
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 17
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 18
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 19
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 20
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 21
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 22
+    },
+    {
+      "agencia_id": 35,
+      "pais_id": 23
+    },
+    {
+      "agencia_id": 36,
+      "pais_id": 4
+    },
+    {
+      "agencia_id": 37,
+      "pais_id": 9
+    },
+    {
+      "agencia_id": 38,
+      "pais_id": 10
+    },
+    {
+      "agencia_id": 39,
+      "pais_id": 11
+    },
+    {
+      "agencia_id": 40,
+      "pais_id": 12
+    },
+    {
+      "agencia_id": 41,
+      "pais_id": 13
+    },
+    {
+      "agencia_id": 42,
+      "pais_id": 14
+    },
+    {
+      "agencia_id": 43,
+      "pais_id": 15
+    },
+    {
+      "agencia_id": 44,
+      "pais_id": 18
+    },
+    {
+      "agencia_id": 45,
+      "pais_id": 19
+    },
+    {
+      "agencia_id": 46,
+      "pais_id": 20
+    },
+    {
+      "agencia_id": 47,
+      "pais_id": 21
+    },
+    {
+      "agencia_id": 48,
+      "pais_id": 22
+    },
+    {
+      "agencia_id": 49,
+      "pais_id": 23
+    },
+    {
+      "agencia_id": 51,
+      "pais_id": 1
+    },
+    {
+      "agencia_id": 51,
+      "pais_id": 3
+    }
+  ],
+  "planos": [
+    {
+      "id": 3,
+      "agencia_id": 5,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 4,
+      "agencia_id": 6,
+      "programa_id": 4,
+      "preco": 25000.0,
+      "descricao": "Programas de graduação parcial e imersão cultural em universidades parceiras.",
+      "inclui": ""
+    },
+    {
+      "id": 5,
+      "agencia_id": 7,
+      "programa_id": 5,
+      "preco": 0.0,
+      "descricao": "Assessoria e bolsa integral para graduação, mestrado ou doutorado em universidades públicas alemãs.",
+      "inclui": ""
+    },
+    {
+      "id": 6,
+      "agencia_id": 6,
+      "programa_id": 4,
+      "preco": 25000.0,
+      "descricao": "Programas de graduação parcial e imersão cultural em universidades parceiras.",
+      "inclui": ""
+    },
+    {
+      "id": 7,
+      "agencia_id": 9,
+      "programa_id": 6,
+      "preco": 9000.0,
+      "descricao": "Inglês geral ou acadêmico em Toronto ou Vancouver, com opção de estágio remunerado.",
+      "inclui": ""
+    },
+    {
+      "id": 8,
+      "agencia_id": 10,
+      "programa_id": 7,
+      "preco": 18000.0,
+      "descricao": "Programa de acesso que prepara e garante vaga em universidades australianas parceiras.",
+      "inclui": ""
+    },
+    {
+      "id": 9,
+      "agencia_id": 11,
+      "programa_id": 8,
+      "preco": 8500.0,
+      "descricao": "Curso de inglês em Auckland, do nível iniciante ao avançado, com preparação para Cambridge.",
+      "inclui": ""
+    },
+    {
+      "id": 10,
+      "agencia_id": 12,
+      "programa_id": 9,
+      "preco": 9500.0,
+      "descricao": "Curso de inglês geral com módulo de preparação para IELTS ou Cambridge, em Dublin.",
+      "inclui": ""
+    },
+    {
+      "id": 11,
+      "agencia_id": 5,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 18,
+      "agencia_id": 20,
+      "programa_id": 10,
+      "preco": 11000.0,
+      "descricao": "Curso intensivo de coreano por níveis, ligado à Universidade Sogang, em Seul.",
+      "inclui": ""
+    },
+    {
+      "id": 19,
+      "agencia_id": 21,
+      "programa_id": 6,
+      "preco": 8000.0,
+      "descricao": "Curso de inglês geral ou preparatório para exames internacionais, com material do British Council.",
+      "inclui": ""
+    },
+    {
+      "id": 26,
+      "agencia_id": 33,
+      "programa_id": 11,
+      "preco": 14000.0,
+      "descricao": "Vivência com família anfitriã no exterior, com carga horária reduzida de atividades e bolsa mensal.",
+      "inclui": ""
+    },
+    {
+      "id": 27,
+      "agencia_id": 34,
+      "programa_id": 12,
+      "preco": 32000.0,
+      "descricao": "Um ano letivo completo em escola no exterior, com acompanhamento de família anfitriã e suporte local.",
+      "inclui": ""
+    },
+    {
+      "id": 28,
+      "agencia_id": 35,
+      "programa_id": 13,
+      "preco": 9000.0,
+      "descricao": "Trabalho voluntário no exterior em projetos sociais ou ambientais, com hospedagem incluída.",
+      "inclui": ""
+    },
+    {
+      "id": 29,
+      "agencia_id": 36,
+      "programa_id": 4,
+      "preco": 25000.0,
+      "descricao": "Programas de graduação parcial e imersão cultural em universidades parceiras.",
+      "inclui": ""
+    },
+    {
+      "id": 30,
+      "agencia_id": 37,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 31,
+      "agencia_id": 38,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 32,
+      "agencia_id": 39,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 33,
+      "agencia_id": 40,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 34,
+      "agencia_id": 41,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 35,
+      "agencia_id": 42,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 36,
+      "agencia_id": 43,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 37,
+      "agencia_id": 44,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 38,
+      "agencia_id": 45,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 39,
+      "agencia_id": 46,
+      "programa_id": 6,
+      "preco": 8000.0,
+      "descricao": "Curso de inglês geral ou preparatório para exames internacionais, com material do British Council.",
+      "inclui": ""
+    },
+    {
+      "id": 40,
+      "agencia_id": 47,
+      "programa_id": 6,
+      "preco": 8000.0,
+      "descricao": "Curso de inglês geral ou preparatório para exames internacionais, com material do British Council.",
+      "inclui": ""
+    },
+    {
+      "id": 41,
+      "agencia_id": 48,
+      "programa_id": 3,
+      "preco": 12000.0,
+      "descricao": "Cursos de inglês, francês ou alemão em imersão, com certificação internacional.",
+      "inclui": ""
+    },
+    {
+      "id": 42,
+      "agencia_id": 49,
+      "programa_id": 4,
+      "preco": 25000.0,
+      "descricao": "Programas de graduação parcial e imersão cultural em universidades parceiras.",
+      "inclui": ""
+    },
+    {
+      "id": 44,
+      "agencia_id": 51,
+      "programa_id": 3,
+      "preco": 12900.0,
+      "descricao": "Curso intensivo com foco em conversação e preparo acadêmico.",
+      "inclui": "Matrícula, material didático, orientação de visto e transfer de chegada."
+    },
+    {
+      "id": 45,
+      "agencia_id": 51,
+      "programa_id": 4,
+      "preco": 18500.0,
+      "descricao": "Programa completo combinando aulas e permissão de trabalho.",
+      "inclui": "Curso, suporte para permissão de trabalho, seguro saúde e acomodação inicial."
+    }
+  ],
+  "imagens_galeria": [
+    {
+      "id": 2,
+      "agencia_id": 5,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Thames_Panorama%2C_London_-_June_2009.jpg/1280px-Thames_Panorama%2C_London_-_June_2009.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 3,
+      "agencia_id": 5,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Radcliffe_Camera%2C_Oxford.jpg/1280px-Radcliffe_Camera%2C_Oxford.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 4,
+      "agencia_id": 5,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/20130808_Kings_College_Chapel_Closeup_01.jpg/1280px-20130808_Kings_College_Chapel_Closeup_01.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 5,
+      "agencia_id": 5,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Skyline_of_Edinburgh.jpg/1280px-Skyline_of_Edinburgh.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 6,
+      "agencia_id": 6,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Pudong_Shanghai_November_2017_HDR_panorama.jpg/1280px-Pudong_Shanghai_November_2017_HDR_panorama.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 7,
+      "agencia_id": 6,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG/1280px-Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 8,
+      "agencia_id": 6,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg/1280px-Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 9,
+      "agencia_id": 6,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Myeongdong_at_night.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 10,
+      "agencia_id": 9,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Kensington_Market_Garden_Car%2C_Toronto_2026.jpg/1280px-Kensington_Market_Garden_Car%2C_Toronto_2026.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 11,
+      "agencia_id": 9,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Global_Citizen_Festival_Central_Park_New_York_City_from_NYonAir_%2815351915006%29.jpg/1280px-Global_Citizen_Festival_Central_Park_New_York_City_from_NYonAir_%2815351915006%29.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 12,
+      "agencia_id": 9,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg/1280px-Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 13,
+      "agencia_id": 9,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG/1280px-Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 14,
+      "agencia_id": 10,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Sydney_Opera_House_and_Harbour_Bridge_Dusk_%282%29_2019-06-21.jpg/1280px-Sydney_Opera_House_and_Harbour_Bridge_Dusk_%282%29_2019-06-21.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 15,
+      "agencia_id": 10,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG/1280px-Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 16,
+      "agencia_id": 10,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg/1280px-Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 17,
+      "agencia_id": 10,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Radcliffe_Camera%2C_Oxford.jpg/1280px-Radcliffe_Camera%2C_Oxford.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 18,
+      "agencia_id": 12,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/2008-05-23_The_Temple_Bar%2C_Dublin%2C_Ireland.jpg/1280px-2008-05-23_The_Temple_Bar%2C_Dublin%2C_Ireland.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 19,
+      "agencia_id": 12,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Newman_University_Church_Interior%2C_Dublin%2C_Ireland_-_Diliff.jpg/1280px-Newman_University_Church_Interior%2C_Dublin%2C_Ireland_-_Diliff.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 20,
+      "agencia_id": 12,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Radcliffe_Camera%2C_Oxford.jpg/1280px-Radcliffe_Camera%2C_Oxford.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 21,
+      "agencia_id": 12,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Skyline_of_Edinburgh.jpg/1280px-Skyline_of_Edinburgh.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 22,
+      "agencia_id": 20,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Myeongdong_at_night.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 23,
+      "agencia_id": 20,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/1280px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 24,
+      "agencia_id": 20,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Tokyo_Shibuya_Crossing_DSC_4036_%286262790023%29.jpg/1280px-Tokyo_Shibuya_Crossing_DSC_4036_%286262790023%29.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 25,
+      "agencia_id": 20,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG/1280px-Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 26,
+      "agencia_id": 21,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Singapore_Flower-Dome-and-Cloud-Forest-in-The-Gardens-01.jpg/1280px-Singapore_Flower-Dome-and-Cloud-Forest-in-The-Gardens-01.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 27,
+      "agencia_id": 21,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Pudong_Shanghai_November_2017_HDR_panorama.jpg/1280px-Pudong_Shanghai_November_2017_HDR_panorama.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 28,
+      "agencia_id": 21,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG/1280px-Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 29,
+      "agencia_id": 21,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg/1280px-Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 30,
+      "agencia_id": 33,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG/1280px-Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 31,
+      "agencia_id": 33,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Parc_guell_-_panoramio.jpg/1280px-Parc_guell_-_panoramio.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 32,
+      "agencia_id": 33,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Fontana_di_Trevi_di_notte.JPG/1280px-Fontana_di_Trevi_di_notte.JPG",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 33,
+      "agencia_id": 33,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg/1280px-Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 34,
+      "agencia_id": 34,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Kensington_Market_Garden_Car%2C_Toronto_2026.jpg/1280px-Kensington_Market_Garden_Car%2C_Toronto_2026.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 35,
+      "agencia_id": 34,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Prospect_Park_New_York_October_2015_003.jpg/1280px-Prospect_Park_New_York_October_2015_003.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 36,
+      "agencia_id": 34,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG/1280px-Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 37,
+      "agencia_id": 34,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/20130808_Kings_College_Chapel_Closeup_01.jpg/1280px-20130808_Kings_College_Chapel_Closeup_01.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 38,
+      "agencia_id": 35,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/2008-05-23_The_Temple_Bar%2C_Dublin%2C_Ireland.jpg/1280px-2008-05-23_The_Temple_Bar%2C_Dublin%2C_Ireland.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 39,
+      "agencia_id": 35,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Newman_University_Church_Interior%2C_Dublin%2C_Ireland_-_Diliff.jpg/1280px-Newman_University_Church_Interior%2C_Dublin%2C_Ireland_-_Diliff.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 40,
+      "agencia_id": 35,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Skyline_of_Edinburgh.jpg/1280px-Skyline_of_Edinburgh.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 41,
+      "agencia_id": 35,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Thames_Panorama%2C_London_-_June_2009.jpg/1280px-Thames_Panorama%2C_London_-_June_2009.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 42,
+      "agencia_id": 36,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Global_Citizen_Festival_Central_Park_New_York_City_from_NYonAir_%2815351915006%29.jpg/1280px-Global_Citizen_Festival_Central_Park_New_York_City_from_NYonAir_%2815351915006%29.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 43,
+      "agencia_id": 36,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Prospect_Park_New_York_October_2015_003.jpg/1280px-Prospect_Park_New_York_October_2015_003.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 44,
+      "agencia_id": 36,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG/1280px-Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 45,
+      "agencia_id": 36,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg/1280px-Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 46,
+      "agencia_id": 37,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG/1280px-Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 47,
+      "agencia_id": 37,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Mosaics_of_Park_G%C3%BCell_Barcelona_01.jpg/1280px-Mosaics_of_Park_G%C3%BCell_Barcelona_01.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 48,
+      "agencia_id": 37,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Old_canal_with_bridge_in_sunny_Fall_in_Amsterdam_city%2C_photo_2021_by_Fons_Heijnsbroek.jpg/1280px-Old_canal_with_bridge_in_sunny_Fall_in_Amsterdam_city%2C_photo_2021_by_Fons_Heijnsbroek.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 49,
+      "agencia_id": 37,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Berlin_Museumsinsel_Fernsehturm.jpg/1280px-Berlin_Museumsinsel_Fernsehturm.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 50,
+      "agencia_id": 38,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Parc_guell_-_panoramio.jpg/1280px-Parc_guell_-_panoramio.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 51,
+      "agencia_id": 38,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Mosaics_of_Park_G%C3%BCell_Barcelona_01.jpg/1280px-Mosaics_of_Park_G%C3%BCell_Barcelona_01.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 52,
+      "agencia_id": 38,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG/1280px-Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 53,
+      "agencia_id": 38,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Fontana_di_Trevi_di_notte.JPG/1280px-Fontana_di_Trevi_di_notte.JPG",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 54,
+      "agencia_id": 40,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Fontana_di_Trevi_di_notte.JPG/1280px-Fontana_di_Trevi_di_notte.JPG",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 55,
+      "agencia_id": 40,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG/1280px-Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 56,
+      "agencia_id": 40,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Parc_guell_-_panoramio.jpg/1280px-Parc_guell_-_panoramio.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 57,
+      "agencia_id": 40,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg/1280px-Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 58,
+      "agencia_id": 41,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Old_canal_with_bridge_in_sunny_Fall_in_Amsterdam_city%2C_photo_2021_by_Fons_Heijnsbroek.jpg/1280px-Old_canal_with_bridge_in_sunny_Fall_in_Amsterdam_city%2C_photo_2021_by_Fons_Heijnsbroek.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 59,
+      "agencia_id": 41,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Berlin_Museumsinsel_Fernsehturm.jpg/1280px-Berlin_Museumsinsel_Fernsehturm.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 60,
+      "agencia_id": 41,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Skyline_of_Edinburgh.jpg/1280px-Skyline_of_Edinburgh.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 61,
+      "agencia_id": 41,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg/1280px-Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 62,
+      "agencia_id": 43,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Tokyo_Shibuya_Crossing_DSC_4036_%286262790023%29.jpg/1280px-Tokyo_Shibuya_Crossing_DSC_4036_%286262790023%29.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 63,
+      "agencia_id": 43,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/1280px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 64,
+      "agencia_id": 43,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Myeongdong_at_night.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 65,
+      "agencia_id": 43,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG/1280px-Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 66,
+      "agencia_id": 48,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Cape_Town_%28ZA%29%2C_Waterfront%2C_Hafen%2C_Schiffe_--_2024_--_2878.jpg/1280px-Cape_Town_%28ZA%29%2C_Waterfront%2C_Hafen%2C_Schiffe_--_2024_--_2878.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 67,
+      "agencia_id": 48,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Sydney_Opera_House_and_Harbour_Bridge_Dusk_%282%29_2019-06-21.jpg/1280px-Sydney_Opera_House_and_Harbour_Bridge_Dusk_%282%29_2019-06-21.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 68,
+      "agencia_id": 48,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg/1280px-Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 69,
+      "agencia_id": 48,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG/1280px-Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 70,
+      "agencia_id": 49,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg/1280px-Paris_14e_Cit%C3%A9_internationale_universitaire_310.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 71,
+      "agencia_id": 49,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG/1280px-Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 72,
+      "agencia_id": 49,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG/1280px-Study_Hall_of_Central_Library_of_Iran_University_of_Science_and_Technology_01.JPG",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 73,
+      "agencia_id": 49,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Parc_guell_-_panoramio.jpg/1280px-Parc_guell_-_panoramio.jpg",
+      "storage_path": "",
+      "ordem": 3
+    },
+    {
+      "id": 74,
+      "agencia_id": 51,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Thames_Panorama%2C_London_-_June_2009.jpg/1280px-Thames_Panorama%2C_London_-_June_2009.jpg",
+      "storage_path": "",
+      "ordem": 0
+    },
+    {
+      "id": 75,
+      "agencia_id": 51,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Radcliffe_Camera%2C_Oxford.jpg/1280px-Radcliffe_Camera%2C_Oxford.jpg",
+      "storage_path": "",
+      "ordem": 1
+    },
+    {
+      "id": 76,
+      "agencia_id": 51,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/20130808_Kings_College_Chapel_Closeup_01.jpg/1280px-20130808_Kings_College_Chapel_Closeup_01.jpg",
+      "storage_path": "",
+      "ordem": 2
+    },
+    {
+      "id": 77,
+      "agencia_id": 51,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Skyline_of_Edinburgh.jpg/1280px-Skyline_of_Edinburgh.jpg",
+      "storage_path": "",
+      "ordem": 3
+    }
+  ],
+  "profiles": [
+    {
+      "id": "0b76eb52-2197-5fa9-9b12-9f52ee7b5ec1",
+      "auth_user_id": null,
+      "username": "amanda-pereira",
+      "name": "Amanda Pereira",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/17.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "f8d6a6b7-d9c3-56d6-ac6c-a8fd015a54dc",
+      "auth_user_id": null,
+      "username": "andre-ribeiro",
+      "name": "André Ribeiro",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/12.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "5ead1ce6-6666-5b6e-b6c1-33e81dc4089c",
+      "auth_user_id": null,
+      "username": "beatriz-nogueira",
+      "name": "Beatriz Nogueira",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/5.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "d10fd764-7525-5714-aa88-507db012193c",
+      "auth_user_id": null,
+      "username": "bruno-carvalho",
+      "name": "Bruno Carvalho",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/14.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "80544a66-1bd7-58e2-9e0f-ca8488cc7d5f",
+      "auth_user_id": null,
+      "username": "camila-duarte",
+      "name": "Camila Duarte",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/7.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "60d48173-79c4-54df-9428-777dbcc619a9",
+      "auth_user_id": null,
+      "username": "carolina-dias",
+      "name": "Carolina Dias",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/2.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "674354ea-c950-422b-a307-3bb2c5d9839b",
+      "auth_user_id": "674354ea-c950-422b-a307-3bb2c5d9839b",
+      "username": "caue",
+      "name": "caue",
+      "tipo": "estudante",
+      "avatar_url": null,
+      "created_at": "2026-11-24T10:02:01.198677+00:00"
+    },
+    {
+      "id": "1359d4bb-b391-59ae-84dc-51f664349495",
+      "auth_user_id": null,
+      "username": "diego-martins",
+      "name": "Diego Martins",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/16.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "ba32d246-1c5c-5317-a52a-4ceab2b21625",
+      "auth_user_id": null,
+      "username": "felipe-araujo",
+      "name": "Felipe Araújo",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/1.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "ff513557-0e2e-5ff9-a5bf-ed5b42665c5e",
+      "auth_user_id": null,
+      "username": "fernanda-rocha",
+      "name": "Fernanda Rocha",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/15.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "13418936-2e07-4958-9e9f-d8e327448430",
+      "auth_user_id": "13418936-2e07-4958-9e9f-d8e327448430",
+      "username": "filipe",
+      "name": "filipe",
+      "tipo": "estudante",
+      "avatar_url": null,
+      "created_at": "2026-11-24T10:02:38.647731+00:00"
+    },
+    {
+      "id": "2898684e-deef-4ec3-8cd7-8fd8d23174eb",
+      "auth_user_id": "2898684e-deef-4ec3-8cd7-8fd8d23174eb",
+      "username": "filipe-demo-ag-ncia",
+      "name": "Filipe (Demo Agência)",
+      "tipo": "agencia",
+      "avatar_url": null,
+      "created_at": "2026-11-24T21:26:45.848483+00:00"
+    },
+    {
+      "id": "96b600de-d487-5abe-93c0-02d353b767e6",
+      "auth_user_id": null,
+      "username": "gabriela-moura",
+      "name": "Gabriela Moura",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/6.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "2c312181-350c-514a-bac2-0a66a6e38f6e",
+      "auth_user_id": null,
+      "username": "gustavo-lima",
+      "name": "Gustavo Lima",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/8.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "1de53909-7247-5074-b15a-584e939558cb",
+      "auth_user_id": null,
+      "username": "isabela-ferreira",
+      "name": "Isabela Ferreira",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/9.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "d827b566-5c4d-50b7-a810-5017d30ede5e",
+      "auth_user_id": null,
+      "username": "juliana-castro",
+      "name": "Juliana Castro",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/13.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "21563160-85b1-552a-9eb8-bab60ba79cbe",
+      "auth_user_id": null,
+      "username": "larissa-mendes",
+      "name": "Larissa Mendes",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/11.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "6620592a-f183-55b5-be47-84754598e95f",
+      "auth_user_id": null,
+      "username": "leticia-santana",
+      "name": "Letícia Santana",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/4.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "327c5514-cd28-57a5-9a58-99b54c0e92bd",
+      "auth_user_id": null,
+      "username": "lucas-almeida",
+      "name": "Lucas Almeida",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/2.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "6abd2a7a-d28d-5c60-b350-bad58d54bd40",
+      "auth_user_id": null,
+      "username": "marina-torres",
+      "name": "Marina Torres",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/1.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "26ab9ef3-3655-5a34-9f1c-35bb734100a1",
+      "auth_user_id": null,
+      "username": "matheus-correia",
+      "name": "Matheus Correia",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/3.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "301bc787-2e26-5044-9ba1-b51ac6e119ef",
+      "auth_user_id": null,
+      "username": "natalia-gomes",
+      "name": "Natália Gomes",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/19.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "932996a4-af76-5fcc-b13e-231eeb8cdbc1",
+      "auth_user_id": null,
+      "username": "pedro-vasconcelos",
+      "name": "Pedro Vasconcelos",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/4.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "c0a84d6d-9bb1-5c3d-a3dc-7d4541320c81",
+      "auth_user_id": null,
+      "username": "rafael-souza",
+      "name": "Rafael Souza",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/6.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "bd06859e-be34-51c8-a243-dc9841858aed",
+      "auth_user_id": null,
+      "username": "rodrigo-teixeira",
+      "name": "Rodrigo Teixeira",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/5.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "2ff5c110-4ca2-550e-b151-0b83c7c8e515",
+      "auth_user_id": null,
+      "username": "sofia-kaneko",
+      "name": "Sofia Kaneko",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/women/3.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "2519744f-00f8-5424-8094-9bcb479c327e",
+      "auth_user_id": null,
+      "username": "thiago-barros",
+      "name": "Thiago Barros",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/10.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    },
+    {
+      "id": "650db29a-4bcd-5e8f-8d7f-dda62af305c7",
+      "auth_user_id": null,
+      "username": "vinicius-costa",
+      "name": "Vinícius Costa",
+      "tipo": "estudante",
+      "avatar_url": "https://randomuser.me/api/portraits/men/18.jpg",
+      "created_at": "2026-11-24T00:43:01.788357+00:00"
+    }
+  ],
+  "avaliacoes": [
+    {
+      "id": 106,
+      "nota": 5,
+      "comentario": "Processo todo tranquilo, do primeiro contato até o embarque. Recomendo demais pra quem está decidindo.",
+      "usuario_id": "d827b566-5c4d-50b7-a810-5017d30ede5e",
+      "agencia_id": 5,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 107,
+      "nota": 5,
+      "comentario": "Atendimento excelente, sempre responderam rápido e explicaram cada etapa com clareza. Valeu muito a pena.",
+      "usuario_id": "1359d4bb-b391-59ae-84dc-51f664349495",
+      "agencia_id": 5,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 108,
+      "nota": 5,
+      "comentario": "Fazer um semestre em Londres com a EF foi transformador. Desde o nivelamento até os passeios culturais de fim de semana, tudo funcionou exatamente como combinaram no fechamento.",
+      "usuario_id": "21563160-85b1-552a-9eb8-bab60ba79cbe",
+      "agencia_id": 5,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 109,
+      "nota": 5,
+      "comentario": "Processo todo tranquilo, do primeiro contato até o embarque. Recomendo demais pra quem está decidindo.",
+      "usuario_id": "bd06859e-be34-51c8-a243-dc9841858aed",
+      "agencia_id": 6,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 110,
+      "nota": 4,
+      "comentario": "Cumpriram o combinado, ficaram só devendo um retorno mais rápido em alguns e-mails.",
+      "usuario_id": "6620592a-f183-55b5-be47-84754598e95f",
+      "agencia_id": 6,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 111,
+      "nota": 4,
+      "comentario": "Experiência boa no geral. Demorou um pouco pra confirmar a matrícula, mas no fim deu tudo certo.",
+      "usuario_id": "2ff5c110-4ca2-550e-b151-0b83c7c8e515",
+      "agencia_id": 9,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 112,
+      "nota": 5,
+      "comentario": "Já indiquei pra dois amigos. Organização impecável e suporte mesmo depois que cheguei no destino.",
+      "usuario_id": "60d48173-79c4-54df-9428-777dbcc619a9",
+      "agencia_id": 9,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 113,
+      "nota": 5,
+      "comentario": "Equipe muito atenciosa, senti que realmente se importavam com a minha experiência, não só com a venda.",
+      "usuario_id": "80544a66-1bd7-58e2-9e0f-ca8488cc7d5f",
+      "agencia_id": 9,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 114,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "ff513557-0e2e-5ff9-a5bf-ed5b42665c5e",
+      "agencia_id": 10,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 115,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "80544a66-1bd7-58e2-9e0f-ca8488cc7d5f",
+      "agencia_id": 10,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 116,
+      "nota": 4,
+      "comentario": "Atendimento bom, só senti falta de mais contato durante a fase de adaptação lá fora.",
+      "usuario_id": "1de53909-7247-5074-b15a-584e939558cb",
+      "agencia_id": 11,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 117,
+      "nota": 4,
+      "comentario": "Atendimento bom, só senti falta de mais contato durante a fase de adaptação lá fora.",
+      "usuario_id": "26ab9ef3-3655-5a34-9f1c-35bb734100a1",
+      "agencia_id": 11,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 118,
+      "nota": 5,
+      "comentario": "Processo todo tranquilo, do primeiro contato até o embarque. Recomendo demais pra quem está decidindo.",
+      "usuario_id": "96b600de-d487-5abe-93c0-02d353b767e6",
+      "agencia_id": 11,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 119,
+      "nota": 4,
+      "comentario": "Atendimento bom, só senti falta de mais contato durante a fase de adaptação lá fora.",
+      "usuario_id": "f8d6a6b7-d9c3-56d6-ac6c-a8fd015a54dc",
+      "agencia_id": 11,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 120,
+      "nota": 5,
+      "comentario": "Equipe muito atenciosa, senti que realmente se importavam com a minha experiência, não só com a venda.",
+      "usuario_id": "932996a4-af76-5fcc-b13e-231eeb8cdbc1",
+      "agencia_id": 12,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 121,
+      "nota": 4,
+      "comentario": "Atendimento bom, só senti falta de mais contato durante a fase de adaptação lá fora.",
+      "usuario_id": "1de53909-7247-5074-b15a-584e939558cb",
+      "agencia_id": 12,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 122,
+      "nota": 5,
+      "comentario": "Comparei várias opções na Irlanda até fechar o curso intensivo com a Kaplan em Dublin. A equipe ajudou em cada passo do visto e da acomodação estudantil, e em seis meses meu inglês deslanchou de verdade.",
+      "usuario_id": "6620592a-f183-55b5-be47-84754598e95f",
+      "agencia_id": 12,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 123,
+      "nota": 5,
+      "comentario": "Processo todo tranquilo, do primeiro contato até o embarque. Recomendo demais pra quem está decidindo.",
+      "usuario_id": "650db29a-4bcd-5e8f-8d7f-dda62af305c7",
+      "agencia_id": 12,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 124,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "ba32d246-1c5c-5317-a52a-4ceab2b21625",
+      "agencia_id": 12,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 125,
+      "nota": 4,
+      "comentario": "Experiência boa no geral. Demorou um pouco pra confirmar a matrícula, mas no fim deu tudo certo.",
+      "usuario_id": "2519744f-00f8-5424-8094-9bcb479c327e",
+      "agencia_id": 20,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 126,
+      "nota": 3,
+      "comentario": "Cumpriu o que prometeu, mas o atendimento poderia ser mais próximo durante o processo.",
+      "usuario_id": "ba32d246-1c5c-5317-a52a-4ceab2b21625",
+      "agencia_id": 20,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 127,
+      "nota": 4,
+      "comentario": "Experiência boa no geral. Demorou um pouco pra confirmar a matrícula, mas no fim deu tudo certo.",
+      "usuario_id": "932996a4-af76-5fcc-b13e-231eeb8cdbc1",
+      "agencia_id": 20,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 128,
+      "nota": 5,
+      "comentario": "Atendimento excelente, sempre responderam rápido e explicaram cada etapa com clareza. Valeu muito a pena.",
+      "usuario_id": "21563160-85b1-552a-9eb8-bab60ba79cbe",
+      "agencia_id": 21,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 129,
+      "nota": 5,
+      "comentario": "Atendimento excelente, sempre responderam rápido e explicaram cada etapa com clareza. Valeu muito a pena.",
+      "usuario_id": "c0a84d6d-9bb1-5c3d-a3dc-7d4541320c81",
+      "agencia_id": 21,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 130,
+      "nota": 5,
+      "comentario": "Atendimento excelente, sempre responderam rápido e explicaram cada etapa com clareza. Valeu muito a pena.",
+      "usuario_id": "60d48173-79c4-54df-9428-777dbcc619a9",
+      "agencia_id": 21,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 131,
+      "nota": 4,
+      "comentario": "Atendimento bom, só senti falta de mais contato durante a fase de adaptação lá fora.",
+      "usuario_id": "5ead1ce6-6666-5b6e-b6c1-33e81dc4089c",
+      "agencia_id": 21,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 132,
+      "nota": 4,
+      "comentario": "Experiência boa no geral. Demorou um pouco pra confirmar a matrícula, mas no fim deu tudo certo.",
+      "usuario_id": "f8d6a6b7-d9c3-56d6-ac6c-a8fd015a54dc",
+      "agencia_id": 21,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 136,
+      "nota": 5,
+      "comentario": "A Horizonte resolveu até um imprevisto com a apostila de Haia da minha documentação universitária. Cheguei em Lisboa já matriculado e com o quarto reservado perto da faculdade.",
+      "usuario_id": "650db29a-4bcd-5e8f-8d7f-dda62af305c7",
+      "agencia_id": 33,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 137,
+      "nota": 3,
+      "comentario": "Cumpriu o que prometeu, mas o atendimento poderia ser mais próximo durante o processo.",
+      "usuario_id": "0b76eb52-2197-5fa9-9b12-9f52ee7b5ec1",
+      "agencia_id": 33,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 138,
+      "nota": 5,
+      "comentario": "Falei direto com três agências pela GlobalBridge e escolhi a Rota Global pela transparência nos custos de Toronto. Cheguei no Study & Work já com orientação completa de documentação e moradia.",
+      "usuario_id": "c0a84d6d-9bb1-5c3d-a3dc-7d4541320c81",
+      "agencia_id": 34,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 139,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "6620592a-f183-55b5-be47-84754598e95f",
+      "agencia_id": 34,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 140,
+      "nota": 5,
+      "comentario": "Atendimento excelente, sempre responderam rápido e explicaram cada etapa com clareza. Valeu muito a pena.",
+      "usuario_id": "d10fd764-7525-5714-aa88-507db012193c",
+      "agencia_id": 35,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 141,
+      "nota": 5,
+      "comentario": "Processo todo tranquilo, do primeiro contato até o embarque. Recomendo demais pra quem está decidindo.",
+      "usuario_id": "1359d4bb-b391-59ae-84dc-51f664349495",
+      "agencia_id": 35,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 142,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "5ead1ce6-6666-5b6e-b6c1-33e81dc4089c",
+      "agencia_id": 36,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 143,
+      "nota": 5,
+      "comentario": "Atendimento excelente, sempre responderam rápido e explicaram cada etapa com clareza. Valeu muito a pena.",
+      "usuario_id": "6620592a-f183-55b5-be47-84754598e95f",
+      "agencia_id": 36,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 144,
+      "nota": 4,
+      "comentario": "Experiência boa no geral. Demorou um pouco pra confirmar a matrícula, mas no fim deu tudo certo.",
+      "usuario_id": "26ab9ef3-3655-5a34-9f1c-35bb734100a1",
+      "agencia_id": 36,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 145,
+      "nota": 5,
+      "comentario": "Processo todo tranquilo, do primeiro contato até o embarque. Recomendo demais pra quem está decidindo.",
+      "usuario_id": "ff513557-0e2e-5ff9-a5bf-ed5b42665c5e",
+      "agencia_id": 36,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 146,
+      "nota": 4,
+      "comentario": "Atendimento bom, só senti falta de mais contato durante a fase de adaptação lá fora.",
+      "usuario_id": "2519744f-00f8-5424-8094-9bcb479c327e",
+      "agencia_id": 36,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 147,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "2ff5c110-4ca2-550e-b151-0b83c7c8e515",
+      "agencia_id": 37,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 148,
+      "nota": 5,
+      "comentario": "Superou minhas expectativas — resolveram até um imprevisto de documentação que eu não esperava.",
+      "usuario_id": "301bc787-2e26-5044-9ba1-b51ac6e119ef",
+      "agencia_id": 37,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 149,
+      "nota": 4,
+      "comentario": "Cumpriram o combinado, ficaram só devendo um retorno mais rápido em alguns e-mails.",
+      "usuario_id": "0b76eb52-2197-5fa9-9b12-9f52ee7b5ec1",
+      "agencia_id": 37,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 150,
+      "nota": 5,
+      "comentario": "Estudar espanhol em Barcelona perto da praia e com colegas de vinte países foi surreal. Já indiquei a equipe para dois amigos da faculdade pelo suporte incrível mesmo depois do embarque.",
+      "usuario_id": "1359d4bb-b391-59ae-84dc-51f664349495",
+      "agencia_id": 38,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 151,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "bd06859e-be34-51c8-a243-dc9841858aed",
+      "agencia_id": 38,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 152,
+      "nota": 4,
+      "comentario": "Cumpriram o combinado, ficaram só devendo um retorno mais rápido em alguns e-mails.",
+      "usuario_id": "96b600de-d487-5abe-93c0-02d353b767e6",
+      "agencia_id": 38,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 153,
+      "nota": 3,
+      "comentario": "Deu certo no fim, só achei o processo mais burocrático do que eu esperava.",
+      "usuario_id": "1359d4bb-b391-59ae-84dc-51f664349495",
+      "agencia_id": 39,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 154,
+      "nota": 3,
+      "comentario": "Deu certo no fim, só achei o processo mais burocrático do que eu esperava.",
+      "usuario_id": "2519744f-00f8-5424-8094-9bcb479c327e",
+      "agencia_id": 39,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 155,
+      "nota": 4,
+      "comentario": "Experiência boa no geral. Demorou um pouco pra confirmar a matrícula, mas no fim deu tudo certo.",
+      "usuario_id": "2c312181-350c-514a-bac2-0a66a6e38f6e",
+      "agencia_id": 39,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 156,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "650db29a-4bcd-5e8f-8d7f-dda62af305c7",
+      "agencia_id": 39,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 157,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "d827b566-5c4d-50b7-a810-5017d30ede5e",
+      "agencia_id": 40,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 158,
+      "nota": 5,
+      "comentario": "Superou minhas expectativas — resolveram até um imprevisto de documentação que eu não esperava.",
+      "usuario_id": "1de53909-7247-5074-b15a-584e939558cb",
+      "agencia_id": 40,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 159,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "0b76eb52-2197-5fa9-9b12-9f52ee7b5ec1",
+      "agencia_id": 40,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 160,
+      "nota": 5,
+      "comentario": "Já indiquei pra dois amigos. Organização impecável e suporte mesmo depois que cheguei no destino.",
+      "usuario_id": "96b600de-d487-5abe-93c0-02d353b767e6",
+      "agencia_id": 40,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 161,
+      "nota": 3,
+      "comentario": "Deu certo no fim, só achei o processo mais burocrático do que eu esperava.",
+      "usuario_id": "80544a66-1bd7-58e2-9e0f-ca8488cc7d5f",
+      "agencia_id": 40,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 162,
+      "nota": 3,
+      "comentario": "Cumpriu o que prometeu, mas o atendimento poderia ser mais próximo durante o processo.",
+      "usuario_id": "6abd2a7a-d28d-5c60-b350-bad58d54bd40",
+      "agencia_id": 41,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 163,
+      "nota": 5,
+      "comentario": "Equipe muito atenciosa, senti que realmente se importavam com a minha experiência, não só com a venda.",
+      "usuario_id": "932996a4-af76-5fcc-b13e-231eeb8cdbc1",
+      "agencia_id": 41,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 164,
+      "nota": 5,
+      "comentario": "Superou minhas expectativas — resolveram até um imprevisto de documentação que eu não esperava.",
+      "usuario_id": "d827b566-5c4d-50b7-a810-5017d30ede5e",
+      "agencia_id": 41,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 165,
+      "nota": 5,
+      "comentario": "Equipe muito atenciosa, senti que realmente se importavam com a minha experiência, não só com a venda.",
+      "usuario_id": "6620592a-f183-55b5-be47-84754598e95f",
+      "agencia_id": 41,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 166,
+      "nota": 5,
+      "comentario": "Processo todo tranquilo, do primeiro contato até o embarque. Recomendo demais pra quem está decidindo.",
+      "usuario_id": "c0a84d6d-9bb1-5c3d-a3dc-7d4541320c81",
+      "agencia_id": 41,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 167,
+      "nota": 5,
+      "comentario": "Atendimento excelente, sempre responderam rápido e explicaram cada etapa com clareza. Valeu muito a pena.",
+      "usuario_id": "6620592a-f183-55b5-be47-84754598e95f",
+      "agencia_id": 42,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 168,
+      "nota": 3,
+      "comentario": "Deu certo no fim, só achei o processo mais burocrático do que eu esperava.",
+      "usuario_id": "1359d4bb-b391-59ae-84dc-51f664349495",
+      "agencia_id": 42,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 169,
+      "nota": 4,
+      "comentario": "Cumpriram o combinado, ficaram só devendo um retorno mais rápido em alguns e-mails.",
+      "usuario_id": "bd06859e-be34-51c8-a243-dc9841858aed",
+      "agencia_id": 42,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 170,
+      "nota": 4,
+      "comentario": "Atendimento bom, só senti falta de mais contato durante a fase de adaptação lá fora.",
+      "usuario_id": "d827b566-5c4d-50b7-a810-5017d30ede5e",
+      "agencia_id": 42,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 171,
+      "nota": 5,
+      "comentario": "Já indiquei pra dois amigos. Organização impecável e suporte mesmo depois que cheguei no destino.",
+      "usuario_id": "d10fd764-7525-5714-aa88-507db012193c",
+      "agencia_id": 42,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 172,
+      "nota": 5,
+      "comentario": "Equipe muito atenciosa, senti que realmente se importavam com a minha experiência, não só com a venda.",
+      "usuario_id": "d10fd764-7525-5714-aa88-507db012193c",
+      "agencia_id": 43,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 173,
+      "nota": 4,
+      "comentario": "Cumpriram o combinado, ficaram só devendo um retorno mais rápido em alguns e-mails.",
+      "usuario_id": "ba32d246-1c5c-5317-a52a-4ceab2b21625",
+      "agencia_id": 43,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 174,
+      "nota": 5,
+      "comentario": "Eu não falava quase nada de japonês e achava que isso me barrava. Encontrei um programa com idioma integrado em Tóquio pela EF, comecei do zero e hoje estudo cercada de amigos do mundo todo.",
+      "usuario_id": "2ff5c110-4ca2-550e-b151-0b83c7c8e515",
+      "agencia_id": 43,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 175,
+      "nota": 5,
+      "comentario": "Equipe muito atenciosa, senti que realmente se importavam com a minha experiência, não só com a venda.",
+      "usuario_id": "2c312181-350c-514a-bac2-0a66a6e38f6e",
+      "agencia_id": 43,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 176,
+      "nota": 4,
+      "comentario": "Atendimento bom, só senti falta de mais contato durante a fase de adaptação lá fora.",
+      "usuario_id": "bd06859e-be34-51c8-a243-dc9841858aed",
+      "agencia_id": 44,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 177,
+      "nota": 4,
+      "comentario": "Cumpriram o combinado, ficaram só devendo um retorno mais rápido em alguns e-mails.",
+      "usuario_id": "2519744f-00f8-5424-8094-9bcb479c327e",
+      "agencia_id": 44,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 178,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "60d48173-79c4-54df-9428-777dbcc619a9",
+      "agencia_id": 44,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 179,
+      "nota": 5,
+      "comentario": "Atendimento excelente, sempre responderam rápido e explicaram cada etapa com clareza. Valeu muito a pena.",
+      "usuario_id": "d827b566-5c4d-50b7-a810-5017d30ede5e",
+      "agencia_id": 45,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 180,
+      "nota": 5,
+      "comentario": "Equipe muito atenciosa, senti que realmente se importavam com a minha experiência, não só com a venda.",
+      "usuario_id": "301bc787-2e26-5044-9ba1-b51ac6e119ef",
+      "agencia_id": 45,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 181,
+      "nota": 4,
+      "comentario": "Atendimento bom, só senti falta de mais contato durante a fase de adaptação lá fora.",
+      "usuario_id": "d827b566-5c4d-50b7-a810-5017d30ede5e",
+      "agencia_id": 46,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 182,
+      "nota": 3,
+      "comentario": "Deu certo no fim, só achei o processo mais burocrático do que eu esperava.",
+      "usuario_id": "650db29a-4bcd-5e8f-8d7f-dda62af305c7",
+      "agencia_id": 46,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 183,
+      "nota": 5,
+      "comentario": "Processo todo tranquilo, do primeiro contato até o embarque. Recomendo demais pra quem está decidindo.",
+      "usuario_id": "6620592a-f183-55b5-be47-84754598e95f",
+      "agencia_id": 46,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 184,
+      "nota": 4,
+      "comentario": "Cumpriram o combinado, ficaram só devendo um retorno mais rápido em alguns e-mails.",
+      "usuario_id": "2ff5c110-4ca2-550e-b151-0b83c7c8e515",
+      "agencia_id": 46,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 185,
+      "nota": 4,
+      "comentario": "Recomendo — teve uma comunicação meio lenta no início, mas depois melhorou bastante.",
+      "usuario_id": "96b600de-d487-5abe-93c0-02d353b767e6",
+      "agencia_id": 46,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 186,
+      "nota": 5,
+      "comentario": "Superou minhas expectativas — resolveram até um imprevisto de documentação que eu não esperava.",
+      "usuario_id": "301bc787-2e26-5044-9ba1-b51ac6e119ef",
+      "agencia_id": 47,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 187,
+      "nota": 5,
+      "comentario": "Superou minhas expectativas — resolveram até um imprevisto de documentação que eu não esperava.",
+      "usuario_id": "bd06859e-be34-51c8-a243-dc9841858aed",
+      "agencia_id": 47,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 188,
+      "nota": 4,
+      "comentario": "Cumpriram o combinado, ficaram só devendo um retorno mais rápido em alguns e-mails.",
+      "usuario_id": "d827b566-5c4d-50b7-a810-5017d30ede5e",
+      "agencia_id": 47,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 189,
+      "nota": 5,
+      "comentario": "Superou minhas expectativas — resolveram até um imprevisto de documentação que eu não esperava.",
+      "usuario_id": "60d48173-79c4-54df-9428-777dbcc619a9",
+      "agencia_id": 47,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 190,
+      "nota": 5,
+      "comentario": "Já indiquei pra dois amigos. Organização impecável e suporte mesmo depois que cheguei no destino.",
+      "usuario_id": "5ead1ce6-6666-5b6e-b6c1-33e81dc4089c",
+      "agencia_id": 48,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 191,
+      "nota": 4,
+      "comentario": "Cumpriram o combinado, ficaram só devendo um retorno mais rápido em alguns e-mails.",
+      "usuario_id": "327c5514-cd28-57a5-9a58-99b54c0e92bd",
+      "agencia_id": 48,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 192,
+      "nota": 4,
+      "comentario": "Experiência boa no geral. Demorou um pouco pra confirmar a matrícula, mas no fim deu tudo certo.",
+      "usuario_id": "1359d4bb-b391-59ae-84dc-51f664349495",
+      "agencia_id": 48,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 193,
+      "nota": 3,
+      "comentario": "Cumpriu o que prometeu, mas o atendimento poderia ser mais próximo durante o processo.",
+      "usuario_id": "21563160-85b1-552a-9eb8-bab60ba79cbe",
+      "agencia_id": 48,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 194,
+      "nota": 5,
+      "comentario": "Superou minhas expectativas — resolveram até um imprevisto de documentação que eu não esperava.",
+      "usuario_id": "c0a84d6d-9bb1-5c3d-a3dc-7d4541320c81",
+      "agencia_id": 48,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 195,
+      "nota": 5,
+      "comentario": "Atendimento excelente, sempre responderam rápido e explicaram cada etapa com clareza. Valeu muito a pena.",
+      "usuario_id": "2519744f-00f8-5424-8094-9bcb479c327e",
+      "agencia_id": 49,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    },
+    {
+      "id": 196,
+      "nota": 3,
+      "comentario": "Deu certo no fim, só achei o processo mais burocrático do que eu esperava.",
+      "usuario_id": "0b76eb52-2197-5fa9-9b12-9f52ee7b5ec1",
+      "agencia_id": 49,
+      "created_at": "2026-11-24T00:44:09.517949+00:00"
+    }
+  ]
+}

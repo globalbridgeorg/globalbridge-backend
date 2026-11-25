@@ -8,7 +8,7 @@ class ImagemGaleria(models.Model):
     e permitir apagar uma imagem sem reenviar as outras."""
 
     agencia = models.ForeignKey('Agencia', on_delete=models.CASCADE, related_name='galeria')
-    imagem = models.ImageField(upload_to='agencias/galeria/')
+    imagem = models.ImageField(upload_to='agencias/galeria/', max_length=500)
     ordem = models.PositiveIntegerField(default=0)
 
     class Meta:

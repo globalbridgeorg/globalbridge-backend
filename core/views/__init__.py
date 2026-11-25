@@ -1,6 +1,6 @@
 from .user import UserRegistrationView, UserViewSet
 from .pais import PaisViewSet
-from .agencia import AgenciaViewSet   
+from .agencia import AgenciaViewSet
 from .avaliacao import AvaliacaoViewSet
 from .estado import EstadoViewSet
 from .plano import PlanoViewSet
@@ -9,6 +9,16 @@ from .tag import TagViewSet
 from .estatisticas import EstatisticasView
 from .favorito import FavoritoViewSet
 from .solicitacao_agencia import SolicitacaoAgenciaViewSet
+from .contato import ContatoCreateView
+from .admin_painel import (
+    AdminDadosView,
+    AdminDocumentoUrlView,
+    AdminAprovarSolicitacaoAgenciaView,
+    AdminRecusarSolicitacaoAgenciaView,
+    AdminAprovarPaisAdicionalView,
+    AdminRecusarPaisAdicionalView,
+    AdminMensagemLidaView,
+)
 from .auth import (
     SolicitarRedefinicaoSenhaView,
     RedefinirSenhaView,

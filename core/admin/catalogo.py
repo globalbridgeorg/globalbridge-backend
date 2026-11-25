@@ -1,8 +1,8 @@
-"""Admin do catálogo: países, estados, programas e tags."""
+"""Admin do catálogo: países, estados, programas, tags e mensagens de contato."""
 
 from django.contrib import admin
 
-from core.models import Estado, Pais, Programa, Tag
+from core.models import Estado, MensagemContato, Pais, Programa, Tag
 
 
 @admin.register(Pais)
@@ -32,3 +32,10 @@ class TagAdmin(admin.ModelAdmin):
     list_filter = ('categoria',)
     search_fields = ('valor', 'label')
 
+
+@admin.register(MensagemContato)
+class MensagemContatoAdmin(admin.ModelAdmin):
+    list_display = ('assunto', 'nome', 'email', 'publico', 'lida', 'criado_em')
+    list_filter = ('lida', 'publico')
+    search_fields = ('nome', 'email', 'assunto', 'mensagem', 'nome_agencia')
+    readonly_fields = ('criado_em',)

@@ -1,12 +1,13 @@
 import logging
 
+from django.conf import settings
 from django.db.models import Avg
-
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from core.emails import enviar_boas_vindas
 from core.models import Agencia, CodigoVerificacaoEmail, User
+from core.storage import url_para_campo_arquivo
 
 logger = logging.getLogger(__name__)
 
@@ -15,17 +16,17 @@ class UserSerializer(ModelSerializer):
     avatar_url = serializers.SerializerMethodField()
     foto_url = serializers.SerializerMethodField()
     agencia_id = serializers.SerializerMethodField()
+    is_admin = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'name', 'tipo', 'agencia_id', 'foto', 'foto_url', 'avatar', 'avatar_url', 'is_active', 'is_staff', 'is_superuser', 'last_login', 'groups']
-        # CRÍTICO: sem isso, um PATCH em /usuarios/<id>/ com
-        # {"is_superuser": true} promovia qualquer conta a superadmin — os
-        # campos estavam graváveis pela API. Aqui eles voltam a ser só de
-        # leitura (o front ainda lê `tipo`/`agencia_id` normalmente); mudar
-        # tipo/permissão/e-mail só pelo admin ou pelos fluxos próprios
-        # (verificação de agência, etc.). O usuário comum só edita `name` e a
-        # foto pela própria conta.
+        fields = [
+            'id', 'username', 'email', 'name', 'tipo', 'agencia_id', 'is_admin',
+            'foto', 'foto_url', 'avatar', 'avatar_url', 'is_active', 'is_staff',
+            'is_superuser', 'last_login', 'groups',
+        ]
+        # CRÍTICO: campos de permissão são estritamente somente leitura para
+        # impedir escalada de privilégio via PATCH /usuarios/<id>/.
         read_only_fields = [
             'username', 'email', 'tipo', 'is_active', 'is_staff',
             'is_superuser', 'last_login', 'groups',
@@ -33,40 +34,22 @@ class UserSerializer(ModelSerializer):
         depth = 1
 
     def get_agencia_id(self, obj):
-        # Só existe pra contas business (tipo=agencia) já vinculadas a uma
-        # agência de verdade — front usa isso pra saber qual página abrir
-        # no editor sem precisar de outra chamada.
         agencia = getattr(obj, 'agencia', None)
         return agencia.id if agencia else None
 
+    def get_is_admin(self, obj):
+        return bool(obj.is_staff or obj.is_superuser)
+
     def get_avatar_url(self, obj):
-        return self._build_file_url(obj.avatar)
+        return url_para_campo_arquivo(obj.avatar or obj.foto, self.context.get('request'))
 
     def get_foto_url(self, obj):
-        return self._build_file_url(obj.foto)
-
-    def _build_file_url(self, file_field):
-        if not file_field:
-            return None
-
-        file_value = getattr(file_field, 'name', file_field)
-        if isinstance(file_value, str) and (file_value.startswith('http://') or file_value.startswith('https://')):
-            return file_value
-
-        if hasattr(file_field, 'url'):
-            request = self.context.get('request')
-            if request is not None:
-                return request.build_absolute_uri(file_field.url)
-            return file_field.url
-
-        return file_value
+        return url_para_campo_arquivo(obj.foto or obj.avatar, self.context.get('request'))
 
 
 class PublicProfileSerializer(UserSerializer):
-    """Perfil de OUTRO usuário, visto por quem está logado — só o que é
-    seguro mostrar publicamente. Nunca email, permissões ou qualquer
-    outro dado da conta. O conteúdo muda pelo tipo: estudante mostra as
-    avaliações que escreveu, agência mostra um resumo da agência vinculada."""
+    """Perfil de OUTRO usuário — só o que é seguro mostrar publicamente.
+    Nunca expõe email, permissões ou dados sensíveis."""
 
     agencia = serializers.SerializerMethodField()
     avaliacoes = serializers.SerializerMethodField()
@@ -91,6 +74,9 @@ class PublicProfileSerializer(UserSerializer):
             'id': agencia.id,
             'nome': agencia.nome,
             'descricao': agencia.descricao,
+            'imagem_capa_url': url_para_campo_arquivo(agencia.imagem_capa, self.context.get('request')),
+            'imagem_capa_foco_x': agencia.imagem_capa_foco_x,
+            'imagem_capa_foco_y': agencia.imagem_capa_foco_y,
             'cidade': agencia.id_estado.cidade_principal if agencia.id_estado else None,
             'pais': agencia.id_estado.id_pais.nome if agencia.id_estado else None,
             'nota_media': round(media, 1) if media is not None else None,
@@ -135,8 +121,11 @@ class UserRegistrationSerializer(ModelSerializer):
 
     def validate_email(self, value):
         email = value.strip().lower()
-        if not CodigoVerificacaoEmail.email_verificado_recentemente(email):
-            raise serializers.ValidationError('Confirme seu e-mail antes de criar a conta.')
+        if User.objects.filter(email=email).exists():
+            raise serializers.ValidationError('Este e-mail já está em uso.')
+        if getattr(settings, 'REQUIRE_EMAIL_VERIFICATION', False):
+            if not CodigoVerificacaoEmail.email_verificado_recentemente(email):
+                raise serializers.ValidationError('Confirme seu e-mail antes de criar a conta.')
         return email
 
     def create(self, validated_data):

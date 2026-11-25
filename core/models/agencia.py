@@ -2,17 +2,17 @@ from django.conf import settings
 from django.db import models
 
 class Agencia(models.Model):
-    nome = models.CharField(max_length=50)
+    nome = models.CharField(max_length=120)
     descricao = models.TextField()
     como_funciona = models.TextField(
         blank=True, default='',
         verbose_name="Como funciona",
         help_text="Explicação, em texto livre, de como é o processo de inscrição/atendimento dessa agência.",
     )
-    contato =   models.CharField(max_length=100)
-    telefone =  models.CharField(max_length=20)
-    site = models.CharField(max_length=255)
-    endereco = models.TextField()
+    contato = models.CharField(max_length=100, blank=True, default='')
+    telefone = models.CharField(max_length=30, blank=True, default='')
+    site = models.CharField(max_length=255, blank=True, default='')
+    endereco = models.TextField(blank=True, default='')
     data_cadastro = models.DateTimeField()
     ativo = models.BooleanField()
     id_estado = models.ForeignKey(
@@ -37,7 +37,7 @@ class Agencia(models.Model):
         help_text="Lista ordenada de seções e variantes escolhidas pela agência no editor de página (conta business). Vazio = layout padrão.",
     )
     imagem_capa = models.ImageField(
-        upload_to='agencias/capas/', blank=True, null=True,
+        upload_to='agencias/capas/', blank=True, null=True, max_length=500,
         verbose_name="Imagem de capa",
         help_text="Banner exibido no topo da página quando a variante \"banner cheio\" do hero está selecionada.",
     )
@@ -51,7 +51,7 @@ class Agencia(models.Model):
     # cada uma guarda seu próprio formato aqui em vez de ganhar uma coluna
     # (ou tabela) só pra si; a validação de formato fica por conta do
     # front, que é quem também lê isso de volta. Chaves possíveis:
-    # video ({url}), equipe ({membros:[{nome,cargo}]}),
+    # video ({url}), equipe ({membros:[{nome,cargo,foto}]}),
     # certificacoes ({itens:[{nome,descricao}]}),
     # faq ({perguntas:[{pergunta,resposta}]}),
     # localizacao ({link_mapa}),

@@ -2,22 +2,25 @@ from rest_framework import serializers
 from django.db.models import Avg
 
 from core.models import Agencia, Plano
+from core.storage import url_para_campo_arquivo
 
 
 class AgenciaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agencia
         fields = '__all__'
+        read_only_fields = ['id', 'usuario', 'ativo', 'data_cadastro']
 
 
 class PlanoCatalogoSerializer(serializers.ModelSerializer):
+    programa_id = serializers.IntegerField(source='id_programa_id', read_only=True)
     programa_nome = serializers.CharField(source='id_programa.nome')
     duracao_min = serializers.IntegerField(source='id_programa.duracao_min')
     duracao_max = serializers.IntegerField(source='id_programa.duracao_max')
 
     class Meta:
         model = Plano
-        fields = ['id', 'programa_nome', 'duracao_min', 'duracao_max', 'preco', 'descricao', 'inclui']
+        fields = ['id', 'programa_id', 'programa_nome', 'duracao_min', 'duracao_max', 'preco', 'descricao', 'inclui']
 
 
 class AvaliacaoResumidaSerializer(serializers.Serializer):
@@ -31,21 +34,7 @@ class AvaliacaoResumidaSerializer(serializers.Serializer):
 
     def get_autor_foto(self, obj):
         usuario = obj.id_usuario
-        file_field = usuario.avatar or usuario.foto
-        if not file_field:
-            return None
-
-        # Avatares enviados via /usuarios/me/avatar/ com uma URL do Cloudinary
-        # ficam salvos com essa URL absoluta como "name" do FieldFile — nesse
-        # caso file_field.url já vem certo (Cloudinary), sem passar por MEDIA_URL.
-        file_value = getattr(file_field, 'name', file_field)
-        if isinstance(file_value, str) and (file_value.startswith('http://') or file_value.startswith('https://')):
-            return file_value
-
-        request = self.context.get('request')
-        if request is not None:
-            return request.build_absolute_uri(file_field.url)
-        return file_field.url
+        return url_para_campo_arquivo(usuario.avatar or usuario.foto, self.context.get('request'))
 
 
 class AgenciaDetalheSerializer(serializers.ModelSerializer):
@@ -77,26 +66,12 @@ class AgenciaDetalheSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         imagens = []
         for img in obj.galeria.all():
-            file_value = getattr(img.imagem, 'name', img.imagem)
-            if isinstance(file_value, str) and (file_value.startswith('http://') or file_value.startswith('https://')):
-                url = file_value
-            elif request is not None:
-                url = request.build_absolute_uri(img.imagem.url)
-            else:
-                url = img.imagem.url
-            imagens.append({'id': img.id, 'url': url})
+            url = url_para_campo_arquivo(img.imagem, request)
+            imagens.append({'id': img.id, 'agencia_id': obj.id, 'url': url, 'ordem': img.ordem})
         return imagens
 
     def get_imagem_capa_url(self, obj):
-        if not obj.imagem_capa:
-            return None
-        file_value = getattr(obj.imagem_capa, 'name', obj.imagem_capa)
-        if isinstance(file_value, str) and (file_value.startswith('http://') or file_value.startswith('https://')):
-            return file_value
-        request = self.context.get('request')
-        if request is not None:
-            return request.build_absolute_uri(obj.imagem_capa.url)
-        return obj.imagem_capa.url
+        return url_para_campo_arquivo(obj.imagem_capa, self.context.get('request'))
 
     def get_cidade(self, obj):
         return obj.id_estado.cidade_principal if obj.id_estado else None
@@ -111,9 +86,6 @@ class AgenciaDetalheSerializer(serializers.ModelSerializer):
         return obj.id_estado.id_pais.regiao if obj.id_estado else None
 
     def get_outros_paises(self, obj):
-        # Todos os países atendidos, exceto o da sede (que já aparece em
-        # "pais") — pra mostrar "também atende: X, Y, Z" quando a agência
-        # opera em mais de um lugar (ex.: EF Education).
         sede_id = obj.id_estado.id_pais_id if obj.id_estado else None
         return list(
             obj.paises_atendidos.exclude(id=sede_id).values_list('nome', flat=True).order_by('nome')
@@ -127,9 +99,9 @@ class AgenciaDetalheSerializer(serializers.ModelSerializer):
         return obj.avaliacao_set.count()
 
     def get_planos(self, obj):
-        planos = Plano.objects.filter(id_agencia=obj).select_related('id_programa')
+        planos = Plano.objects.filter(id_agencia=obj).select_related('id_programa').order_by('id')
         return PlanoCatalogoSerializer(planos, many=True).data
 
     def get_avaliacoes(self, obj):
-        avaliacoes = obj.avaliacao_set.select_related('id_usuario').order_by('-id')[:10]
+        avaliacoes = obj.avaliacao_set.select_related('id_usuario').order_by('-id')[:20]
         return AvaliacaoResumidaSerializer(avaliacoes, many=True, context=self.context).data

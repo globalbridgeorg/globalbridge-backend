@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from drf_spectacular.views import (
@@ -13,28 +15,33 @@ from rest_framework_simplejwt.views import (
 )
 
 from core.views import (
-    UserRegistrationView,
-    UserViewSet,
-    PaisViewSet,
+    AdminAprovarPaisAdicionalView,
+    AdminAprovarSolicitacaoAgenciaView,
+    AdminDadosView,
+    AdminDocumentoUrlView,
+    AdminMensagemLidaView,
+    AdminRecusarPaisAdicionalView,
+    AdminRecusarSolicitacaoAgenciaView,
     AgenciaViewSet,
     AvaliacaoViewSet,
+    ContatoCreateView,
     EstadoViewSet,
-    PlanoViewSet,
-    ProgramaViewSet,
-    TagViewSet,
     EstatisticasView,
     FavoritoViewSet,
-    SolicitacaoAgenciaViewSet,
-    SolicitarRedefinicaoSenhaView,
+    PaisViewSet,
+    PlanoViewSet,
+    ProgramaViewSet,
     RedefinirSenhaView,
-    SolicitarCodigoLoginView,
-    VerificarCodigoLoginView,
+    SolicitacaoAgenciaViewSet,
     SolicitarCodigoCadastroView,
+    SolicitarCodigoLoginView,
+    SolicitarRedefinicaoSenhaView,
+    TagViewSet,
+    UserRegistrationView,
+    UserViewSet,
     VerificarCodigoCadastroView,
+    VerificarCodigoLoginView,
 )
-
-from django.conf import settings
-from django.conf.urls.static import static
 
 router = DefaultRouter()
 
@@ -70,6 +77,35 @@ urlpatterns = [
     # Registro de usuários
     path('api/registro/', UserRegistrationView.as_view(), name='user_registration'),
     path('api/estatisticas/', EstatisticasView.as_view(), name='estatisticas'),
+    path('api/contato/', ContatoCreateView.as_view(), name='contato_create'),
+    # Painel administrativo da API (consumido por /admin no frontend)
+    path('api/admin-painel/dados/', AdminDadosView.as_view(), name='admin_painel_dados'),
+    path('api/admin-painel/documento/', AdminDocumentoUrlView.as_view(), name='admin_painel_documento'),
+    path(
+        'api/admin-painel/solicitacoes-agencia/<int:pk>/aprovar/',
+        AdminAprovarSolicitacaoAgenciaView.as_view(),
+        name='admin_aprovar_solicitacao_agencia',
+    ),
+    path(
+        'api/admin-painel/solicitacoes-agencia/<int:pk>/recusar/',
+        AdminRecusarSolicitacaoAgenciaView.as_view(),
+        name='admin_recusar_solicitacao_agencia',
+    ),
+    path(
+        'api/admin-painel/solicitacoes-pais/<int:pk>/aprovar/',
+        AdminAprovarPaisAdicionalView.as_view(),
+        name='admin_aprovar_pais_adicional',
+    ),
+    path(
+        'api/admin-painel/solicitacoes-pais/<int:pk>/recusar/',
+        AdminRecusarPaisAdicionalView.as_view(),
+        name='admin_recusar_pais_adicional',
+    ),
+    path(
+        'api/admin-painel/mensagens/<int:pk>/',
+        AdminMensagemLidaView.as_view(),
+        name='admin_mensagem_lida',
+    ),
     # Redefinição de senha e login por código
     path('api/auth/esqueci-senha/', SolicitarRedefinicaoSenhaView.as_view(), name='esqueci_senha'),
     path('api/auth/redefinir-senha/', RedefinirSenhaView.as_view(), name='redefinir_senha'),
@@ -81,3 +117,6 @@ urlpatterns = [
     # API
     path('api/', include(router.urls)),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)
