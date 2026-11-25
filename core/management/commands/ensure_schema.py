@@ -10,7 +10,7 @@ _SCHEMA_RE = re.compile(r'^[a-zA-Z_][a-zA-Z0-9_]*$')
 
 
 class Command(BaseCommand):
-    help = 'Cria o schema PostgreSQL definido em DB_SCHEMA (ex.: django) se ainda não existir.'
+    help = 'Verifica ou cria o schema PostgreSQL definido em DB_SCHEMA (ex.: django).'
 
     def handle(self, *args, **options):
         if connection.vendor != 'postgresql':
@@ -26,7 +26,12 @@ class Command(BaseCommand):
             raise ValueError(f'DB_SCHEMA inválido: {schema!r}')
 
         with connection.cursor() as cursor:
-            cursor.execute(f'CREATE SCHEMA IF NOT EXISTS "{schema}"')
+            cursor.execute(
+                'SELECT 1 FROM information_schema.schemata WHERE schema_name = %s',
+                [schema],
+            )
+            if cursor.fetchone() is None:
+                cursor.execute(f'CREATE SCHEMA "{schema}"')
             cursor.execute(f'SET search_path TO "{schema}"')
 
         self.stdout.write(self.style.SUCCESS(f'Schema PostgreSQL "{schema}" pronto.'))
